@@ -7,7 +7,7 @@ function searchCarInfo() {
     //TODO Do something
 
     //var make = $("#makeInput").value;
-    var make = $("#makeinput").val();
+    var make = $("#makeInput").val();
     var model = $("#modelInput").val();
     var year = $("#yearInput").val();
 
