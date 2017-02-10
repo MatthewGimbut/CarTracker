@@ -3,16 +3,34 @@
  */
 
 function searchCarInfo() {
-    console.log("This should probably do something in the future");
+    console.log("This should probably do" +
+        " something in the future");
     //TODO Do something
 
-    //var make = $("#makeInput").value;
     var make = $("#makeInput").val();
     var model = $("#modelInput").val();
     var year = $("#yearInput").val();
 
-    console.log(make);
-    console.log(model);
-    console.log(year);
+    var car = new Car(make, model, year);
+
+    console.log(car.make);
+    console.log(car.model);
+    console.log(car.year);
+
+}
+
+function Car(make, model, year, carStyle) {
+    this.make = make;
+    this.model = model;
+    this.year = year;
+    this.carStyle = carStyle;
+
+    /**
+     * Pulls up image for car
+     * @returns {null}
+     */
+    this.getCarImage = function() {
+        return null;
+    }
 
 }
