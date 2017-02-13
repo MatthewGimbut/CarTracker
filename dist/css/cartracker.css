@@ -10,3 +10,10 @@
     height: 200px;
     max-height: 200px;
 }
+
+#map {
+    height: 75%;
+    width: 75%;
+    margin: 0;
+    padding: 0;
+}
