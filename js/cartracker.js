@@ -19,6 +19,10 @@ function searchCarInfo() {
 
 }
 
+function addVehicle() {
+    window.location.href = "../pages/car-search.html";
+}
+
 function Car(make, model, year, carStyle) {
     this.make = make;
     this.model = model;

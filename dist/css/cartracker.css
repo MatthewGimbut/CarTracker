@@ -1,0 +1,12 @@
+.carImageDiv {
+    width: 330px;
+    max-width: 330px;
+}
+
+.carImage {
+    width: 256px;
+    max-width: 256px;
+
+    height: 200px;
+    max-height: 200px;
+}
