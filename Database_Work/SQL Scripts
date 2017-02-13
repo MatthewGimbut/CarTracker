@@ -1,0 +1,15 @@
+Endpoint (Host) =  mikedb.clzedg3q1dlc.us-west-2.rds.amazonaws.com
+User = MikeDB
+pass = moscariello
+
+CREATE SCHEMA `carTracker` ;
+
+CREATE TABLE `CarTrackerInfo`.`users` (
+  `userID` INT NOT NULL AUTO_INCREMENT,
+  `firstName` VARCHAR(20) NOT NULL,
+  `lastName` VARCHAR(30) NULL,
+  `username` VARCHAR(20) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`userID`),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC));
