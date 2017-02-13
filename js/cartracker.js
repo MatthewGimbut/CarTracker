@@ -16,7 +16,6 @@ function searchCarInfo() {
     console.log(car.make);
     console.log(car.model);
     console.log(car.year);
-
 }
 
 function addVehicle() {
@@ -28,6 +27,7 @@ function Car(make, model, year, carStyle) {
     this.model = model;
     this.year = year;
     this.carStyle = carStyle;
+    this.alerts = [];
 
     /**
      * Pulls up image for car
@@ -35,6 +35,25 @@ function Car(make, model, year, carStyle) {
      */
     this.getCarImage = function() {
         return null;
-    }
+    };
+
+    this.getPriorityAlerts = function(priority) {
+        var priorityAlerts = null;
+        var numAlerts = 0;
+        for(var i = 0; i < this.alerts.length; i++) {
+            if(this.alerts[i].priority == priority) {
+                priorityAlerts[numAlerts] = this.alerts[i];
+                numAlerts++;
+            }
+        }
+        return priorityAlerts;
+    };
+}
+
+function Alert(priority, message) {
+    this.priority = priority;
+    this.message = message;
+
+    
 
 }
