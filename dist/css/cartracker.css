@@ -11,6 +11,9 @@
     max-height: 200px;
 }
 
-#map {
-    height: 75%;
+html, body, #mapContainer {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
 }
