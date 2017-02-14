@@ -348,8 +348,16 @@
     </nav>
 
     <div id="page-wrapper">
-        <div id="map"></div>
-
+        <div id="mapContainer"></div>
+        <script type="text/javascript">
+            var map;
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('mapContainer'), {
+                    center: {lat: -34.397, lng: 150.644},
+                    zoom: 8
+                });
+            }
+        </script>
     </div>
     <!-- /#page-wrapper -->
 
@@ -365,17 +373,16 @@
 <!-- Metis Menu Plugin JavaScript -->
 <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwJL84XBS1VOfsKUS24IqzVYvgJ1WY7mA&callback=initMap"
-        async defer>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwJL84XBS1VOfsKUS24IqzVYvgJ1WY7mA&callback=initMap()"
+        type="text/javascript">
     var map;
     function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById('mapContainer'), {
             center: {lat: -34.397, lng: 150.644},
             zoom: 8
         });
     }
 </script>
-
 
 <!-- Morris Charts JavaScript -->
 <!--
