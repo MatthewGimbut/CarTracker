@@ -13,3 +13,7 @@ CREATE TABLE `CarTrackerInfo`.`users` (
   PRIMARY KEY (`userID`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC));
+  
+ALTER TABLE `CarTrackerInfo`.`users` 
+ADD COLUMN `age` INT NULL AFTER `email`,
+ADD UNIQUE INDEX `userID_UNIQUE` (`userID` ASC);
