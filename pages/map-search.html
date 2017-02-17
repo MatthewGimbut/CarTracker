@@ -348,13 +348,34 @@
     </nav>
 
     <div id="page-wrapper" style="height:100%; width:100%;">
+        <br>
         <div id="mapContainer"></div>
         <script type="text/javascript">
             var map;
+            var latitude, longitude;
+
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
+                    console.log("Geolocation is not supported by this browser.");
+                    latitude = 1000;
+                    longitude = 1000;
+                }
+            }
+
+            function showPosition(position) {
+                console.log("Latitude: " + position.coords.latitude +
+                    "Longitude: " + position.coords.longitude);
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
+                initMap();
+            }
+
             function initMap() {
                 map = new google.maps.Map(document.getElementById('mapContainer'), {
-                    center: {lat: -34.397, lng: 150.644},
-                    zoom: 8
+                    center: {lat: latitude, lng: longitude},
+                    zoom: 15
                 });
             }
         </script>
@@ -373,15 +394,8 @@
 <!-- Metis Menu Plugin JavaScript -->
 <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwJL84XBS1VOfsKUS24IqzVYvgJ1WY7mA&callback=initMap"
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwJL84XBS1VOfsKUS24IqzVYvgJ1WY7mA&callback=getLocation"
         type="text/javascript">
-    var map;
-    function initMap() {
-        map = new google.maps.Map(document.getElementById('mapContainer'), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 8
-        });
-    }
 </script>
 
 <!-- Morris Charts JavaScript -->
