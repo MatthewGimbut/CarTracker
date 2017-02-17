@@ -1,0 +1,3 @@
+Endpoint (Hostname): mikedb.clzedg3q1dlc.us-west-2.rds.amazonaws.com
+username: MikeDB
+password: moscariello
