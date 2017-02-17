@@ -1,7 +1,6 @@
 /**
  * Created by Matthew on 2/7/2017.
  */
-
 function searchCarInfo() {
     console.log("This should probably do" +
         " something in the future");
@@ -10,6 +9,22 @@ function searchCarInfo() {
     var make = $("#makeInput").val();
     var model = $("#modelInput").val();
     var year = $("#yearInput").val();
+
+    var url = "http://api.edmunds.com/api/vehicle/v2/" +
+        (make !== null ? (make + "/"): "") +
+        "models?fmt=json&api_key=2873ck8xzdvuhyh4trmr7axu";
+
+    console.log(url);
+
+    $.ajax({
+        url:(url),
+        dataType:'json',
+        type: 'post',
+        //data: yourForm.serialize(),
+        success:function(response){
+            console.log(response);
+        }
+    });
 
     var car = new Car(make, model, year);
 
