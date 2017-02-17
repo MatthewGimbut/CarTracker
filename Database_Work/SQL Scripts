@@ -20,3 +20,11 @@ ADD UNIQUE INDEX `userID_UNIQUE` (`userID` ASC);
 
 ALTER TABLE `CarTrackerInfo`.`users` 
 ADD COLUMN `DOB` VARCHAR(10) NULL AFTER `age`;
+
+CREATE TABLE `CarTrackerInfo`.`cars` (
+  `userID` INT NOT NULL,
+  `make` VARCHAR(10) NULL,
+  `model` VARCHAR(10) NULL,
+  `year` INT NULL,
+  `mileage` INT NULL,
+  PRIMARY KEY (`userID`));
