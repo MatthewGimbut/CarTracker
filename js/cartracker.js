@@ -10,7 +10,7 @@ function searchCarInfo() {
     var model = $("#modelInput").val();
     var year = $("#yearInput").val();
 
-    var url = "http://api.edmunds.com/api/vehicle/v2/" +
+    var url = "https://api.edmunds.com/api/vehicle/v2/" +
         (make !== null ? (make + "/"): "") +
         "models?fmt=json&api_key=2873ck8xzdvuhyh4trmr7axu";
 
@@ -23,6 +23,14 @@ function searchCarInfo() {
         //data: yourForm.serialize(),
         success:function(response){
             console.log(response);
+            for (var i = 0; i < response.models.length; i++) {
+                var currentRow = document.createElement("div");
+                currentRow.className = "row";
+                var currentCar = document.createElement("p");
+                currentCar.innerHTML = response.models[i].id;
+                currentRow.append(currentCar);
+                $("#carInfo").append(currentRow);
+            }
         }
     });
 
