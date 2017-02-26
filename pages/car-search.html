@@ -344,25 +344,32 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Test</h1>
-                    <div>
-                        <input id="makeInput" type="text" class="form-control" placeholder="Make">
-                        <br>
-                        <input id="modelInput" type="text" class="form-control" placeholder="Model">
-                        <br>
-                        <input id="yearInput" type="text" class="form-control" placeholder="Year">
-                        <br>
-                        <button class="btn btn-default" type="button" onclick="searchCarInfo()" id="searchForCars">
-                            Search <i class="fa fa-search"></i>
-                        </button>
+                    <h1 class="page-header" id="testheader">Car Lookup</h1>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <input id="makeInput" type="text" class="form-control" placeholder="Make">
+                            <br>
+                            <input id="modelInput" type="text" class="form-control" placeholder="Model">
+                            <br>
+                            <input id="yearInput" type="text" class="form-control" placeholder="Year">
+                            <br>
+                        </div>
                     </div>
                     <div class="row">
-                        <a href="http://www.edmunds.com/?id=apis"> <img src="https://open-api.edmunds.com/api/openapi/v1/logo?size=100&format=ad&retina=true&color=white&api_key=2873ck8xzdvuhyh4trmr7axu"> </a>
+                        <div class="col-lg-4">
+                            <button class="btn btn-default" type="button" onclick="searchCarInfo()" id="searchForCars">
+                                Search <i class="fa fa-search"></i>
+                            </button>
+                        </div>
                     </div>
+                    <br>
                     <div id="carInfo">
 
                     </div>
+
                 </div>
+                <a href="http://www.edmunds.com/?id=apis"> <img src="https://open-api.edmunds.com/api/openapi/v1/logo?size=100&format=ad&retina=true&color=white&api_key=2873ck8xzdvuhyh4trmr7axu"> </a>
+
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->

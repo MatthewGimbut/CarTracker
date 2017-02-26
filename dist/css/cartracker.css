@@ -3,6 +3,11 @@
     max-width: 330px;
 }
 
+.carSearchDiv {
+    width: 128px;
+    max-width: 128px;
+}
+
 .carImage {
     width: 256px;
     max-width: 256px;

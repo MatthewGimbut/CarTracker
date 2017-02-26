@@ -1,7 +1,10 @@
+var currentCarList = [];
+
 /**
  * Created by Matthew on 2/7/2017.
  */
 function searchCarInfo() {
+    currentCarList = [];
     console.log("This should probably do" +
         " something in the future");
     //TODO Do something
@@ -9,47 +12,123 @@ function searchCarInfo() {
     var make = $("#makeInput").val();
     var model = $("#modelInput").val();
     var year = $("#yearInput").val();
+    var carInfo = $("#carInfo");
 
-    var url = "https://api.edmunds.com/api/vehicle/v2/" +
-        (make !== null ? (make + "/"): "") +
-        "models?fmt=json&api_key=2873ck8xzdvuhyh4trmr7axu";
 
-    console.log(url);
+    if(make !== "" && model !== "" && year !== "") {
+        var url = "https://api.edmunds.com/api/vehicle/v2/" +
+            make + "/" +
+            (model !== null ? (model + "/"): "") +
+            (year !== null ? year: "") +
+            "?fmt=json&api_key=2873ck8xzdvuhyh4trmr7axu";
+    } else {
+        var errorString = "Search failed.\n";
+        if(make == "") {
+            errorString += "Please enter a make.\n";
+        }
+        if(model == "") {
+            errorString += "Please enter a model.\n";
+        }
+        if(year == "") {
+            errorString += "Please enter a year.\n";
+        }
+        carInfo.text(errorString);
+    }
 
+    
     $.ajax({
         url:(url),
         dataType:'json',
-        type: 'post',
+        type: 'get',
         //data: yourForm.serialize(),
         success:function(response){
             console.log(response);
-            for (var i = 0; i < response.models.length; i++) {
-                var currentRow = document.createElement("div");
-                currentRow.className = "row";
-                var currentCar = document.createElement("p");
-                currentCar.innerHTML = response.models[i].id;
-                currentRow.append(currentCar);
-                $("#carInfo").append(currentRow);
+            var currentRow = document.createElement("div");
+            currentRow.className = "row col-lg-16";
+            carInfo.append(currentRow);
+            for(var i = 0; i < response.styles.length; i++) {
+                var car = new Car(
+                    make.capitalize(),
+                    model.capitalize(),
+                    year,
+                    response.styles[i].name,
+                    response.styles[i].trim
+                );
+                currentCarList.push(car);
+                var div = document.createElement("div");
+                div.innerHTML = '<div class="col-lg-4 carSearchDiv">' +
+                    '<div class="panel panel-info">' +
+                    '<div class="panel-heading">' +
+                    car.year + " " + car.make + " " + car.model +
+                    '</div>' +
+                    '<div class="panel-body">' +
+                    '<p>' + 'Style: ' + car.carStyle + '</p>' +
+                    '<p>' + 'Trim: ' + car.trim + '</p>' +
+                    '</div>' +
+                    '<div class="panel-footer">' +
+                    'Click <a id="carClick" href="" onclick="userSelectVehicle(this.id)">here</a> to add to car list and edit details.' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+                currentRow.appendChild(div);
+                var footer = document.getElementById("carClick");
+                footer.id = i.toString();
+                //currentRow.insertAdjacentHTML('beforeend', carDiv);
             }
+
+
+            /*for (var i = 0; i < response.models.length; i++) {
+                //console.log("first ran");
+                var currentRow = document.createElement("div");
+                currentRow.className = "row col-lg-16";
+                carInfo.append(currentRow);
+
+                for(var j = 0; j < response.models[i].years.length; j++) {
+                    //console.log("second ran");
+                    var makeName = response.models[i].id.substring(0, response.models[i].id.indexOf('_'));
+
+                    for(var k = 0; k < response.models[i].years[j].styles.length; k++) {
+                       //console.log("third ran");
+                        var car = new Car(makeName,
+                            response.models[i].name,
+                            response.models[i].years[j].year,
+                            response.models[i].years[j].styles[k].name,
+                            response.models[i].years[j].styles[k].trim
+                        );
+
+                        currentCarList.push(car);
+                        var carDiv = generateCarDiv(car);
+                        currentRow.insertAdjacentHTML('beforeend', carDiv);
+                    }
+                }
+            }*/
+        },
+
+        fail:function(data) {
+            carInfo.text("Search failed!");
         }
     });
-
-    var car = new Car(make, model, year);
-
-    console.log(car.make);
-    console.log(car.model);
-    console.log(car.year);
 }
 
 function addVehicle() {
     window.location.href = "../pages/car-search.html";
 }
 
-function Car(make, model, year, carStyle) {
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+function userSelectVehicle(car) {
+    // TODO Add selected vehicle to user's car list
+    console.log(car);
+}
+
+function Car(make, model, year, carStyle, trim) {
     this.make = make;
     this.model = model;
     this.year = year;
     this.carStyle = carStyle;
+    this.trim = trim;
     this.alerts = [];
 
     /**
@@ -76,7 +155,4 @@ function Car(make, model, year, carStyle) {
 function Alert(priority, message) {
     this.priority = priority;
     this.message = message;
-
-    
-
 }
