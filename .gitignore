@@ -5,3 +5,4 @@ bower_components
 .idea/workspace.xml
 .idea/vcs.xml
 .idea/CarTracker.iml
+.idea/modules.xml

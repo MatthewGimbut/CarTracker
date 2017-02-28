@@ -66,7 +66,7 @@ function searchCarInfo() {
                     '<p>' + 'Trim: ' + car.trim + '</p>' +
                     '</div>' +
                     '<div class="panel-footer">' +
-                    'Click <a id="carClick" href="" onclick="userSelectVehicle(this.id)">here</a> to add to car list and edit details.' +
+                    'Click <a id="carClick" href="#" onclick="userSelectVehicle(this.id)">here</a> to add to car list and edit details.' +
                     '</div>' +
                     '</div>' +
                     '</div>';
@@ -75,33 +75,6 @@ function searchCarInfo() {
                 footer.id = i.toString();
                 //currentRow.insertAdjacentHTML('beforeend', carDiv);
             }
-
-
-            /*for (var i = 0; i < response.models.length; i++) {
-                //console.log("first ran");
-                var currentRow = document.createElement("div");
-                currentRow.className = "row col-lg-16";
-                carInfo.append(currentRow);
-
-                for(var j = 0; j < response.models[i].years.length; j++) {
-                    //console.log("second ran");
-                    var makeName = response.models[i].id.substring(0, response.models[i].id.indexOf('_'));
-
-                    for(var k = 0; k < response.models[i].years[j].styles.length; k++) {
-                       //console.log("third ran");
-                        var car = new Car(makeName,
-                            response.models[i].name,
-                            response.models[i].years[j].year,
-                            response.models[i].years[j].styles[k].name,
-                            response.models[i].years[j].styles[k].trim
-                        );
-
-                        currentCarList.push(car);
-                        var carDiv = generateCarDiv(car);
-                        currentRow.insertAdjacentHTML('beforeend', carDiv);
-                    }
-                }
-            }*/
         },
 
         fail:function(data) {
