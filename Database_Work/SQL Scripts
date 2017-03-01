@@ -28,3 +28,18 @@ CREATE TABLE `CarTrackerInfo`.`cars` (
   `year` INT NULL,
   `mileage` INT NULL,
   PRIMARY KEY (`userID`));
+  
+ALTER TABLE `CarTrackerInfo`.`cars` 
+CHANGE COLUMN `make` `make` VARCHAR(10) NOT NULL ,
+CHANGE COLUMN `model` `model` VARCHAR(10) NOT NULL ,
+CHANGE COLUMN `year` `year` INT(11) NOT NULL ;
+
+ALTER TABLE `CarTrackerInfo`.`users` 
+ADD COLUMN `password` VARCHAR(64) NOT NULL AFTER `username`;
+
+ALTER TABLE `CarTrackerInfo`.`cars` 
+ADD COLUMN `trim` VARCHAR(10) NOT NULL AFTER `year`;
+
+ALTER TABLE `CarTrackerInfo`.`cars` 
+DROP PRIMARY KEY;
+
