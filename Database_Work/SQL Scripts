@@ -43,3 +43,9 @@ ADD COLUMN `trim` VARCHAR(10) NOT NULL AFTER `year`;
 ALTER TABLE `CarTrackerInfo`.`cars` 
 DROP PRIMARY KEY;
 
+ALTER TABLE `CarTrackerInfo`.`cars` 
+ADD COLUMN `carID` INT(11) NOT NULL FIRST,
+ADD PRIMARY KEY (`carID`),
+ADD UNIQUE INDEX `carID_UNIQUE` (`carID` ASC);
+
+
