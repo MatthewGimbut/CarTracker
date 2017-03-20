@@ -10,6 +10,7 @@
 
 ### Android App
 - [ ] Design UI
+- [ ] Test Build
 
 ### Database
 - [ ] Decide on database to use
