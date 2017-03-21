@@ -380,7 +380,37 @@
                     center: {lat: latitude, lng: longitude},
                     zoom: 15
                 });
+                console.log("Map initiated.");
+                infowindow = new google.maps.InfoWindow();
+                var service = new google.maps.places.PlacesService(map);
+                service.textSearch({
+                    location: {lat: latitude, lng: longitude},
+                    radius: 1000,
+                    query: 'autoshop'
+                }, callback);
             }
+
+            function callback(results, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    for (var i = 0; i < results.length; i++) {
+                        createMarker(results[i]);
+                    }
+                }
+            }
+
+            function createMarker(place) {
+                var placeLoc = place.geometry.location;
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: place.geometry.location
+                });
+
+                google.maps.event.addListener(marker, 'click', function() {
+                    infowindow.setContent(place.name);
+                    infowindow.open(map, this);
+                });
+            }
+
         </script>
     </div>
     <!-- /#page-wrapper -->
@@ -397,7 +427,7 @@
 <!-- Metis Menu Plugin JavaScript -->
 <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwJL84XBS1VOfsKUS24IqzVYvgJ1WY7mA&callback=getLocation"
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwJL84XBS1VOfsKUS24IqzVYvgJ1WY7mA&callback=getLocation&libraries=places"
         type="text/javascript">
 </script>
 
