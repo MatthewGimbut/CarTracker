@@ -9,3 +9,8 @@
 # Potential APIs:
   * http://developer.edmunds.com/api-documentation/vehicle/
   * http://www.carqueryapi.com/
+
+Google Maps API Key:  AIzaSyBwJL84XBS1VOfsKUS24IqzVYvgJ1WY7mA 
+Edmunds API Key: 2873ck8xzdvuhyh4trmr7axu
+
+API Examples: https://github.com/EdmundsAPI/sdk-javascript/tree/master/examples/VehicleAPI
