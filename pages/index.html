@@ -11,8 +11,8 @@
 
     <title>CarTracker Demo</title>
 
-    <!-- Custom CSS made by us (not from template) -->
-    <link href="../dist/css/cartracker.css" rel="stylesheet">
+    <!-- Custom CSS made by us (not from template)
+    <link href="../dist/css/cartracker.css" rel="stylesheet"> -->
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
 
 </head>
 
-<body>
+<body onload="loadHomePage()">
 
     <div id="wrapper">
 
@@ -280,6 +280,50 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-support fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge" id="numCars">0</div>
+                                    <div>View cars!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="car-list.html">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-shopping-cart fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">Stores</div>
+                                    <div>Find auto stores!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="map-search.html">
+                            <div class="panel-footer">
+                                <span class="pull-left">Go to map</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
                     <div class="panel panel-green">
                         <div class="panel-heading">
                             <div class="row">
@@ -301,96 +345,16 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
-                                    <div>Find auto stores!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="map-search.html">
-                            <div class="panel-footer">
-                                <span class="pull-left">Go to map</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">3</div>
-                                    <div>View cars!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
             </div>
             <!-- /.row -->
             <br>
             <br>
-            <div class="row" id="carList">
-                <div class="col-lg-4 carImageDiv">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            Example Car #1
-                        </div>
-                        <div class="panel-body">
-                            <img src="../img/car1.png" class="carImage">
-                        </div>
-                        <div class="panel-footer">
-                            Click <a href="">here</a> to view details.
-                        </div>
-                    </div>
+            <button type="button" class="btn btn-outline btn-primary btn-lg" onclick="addVehicle()">Add vehicle</button>
+            <br>
+            <div class="container-fluid">
+                <div class="row" id="carList">
+
                 </div>
-                <div class="col-lg-4 carImageDiv">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            Example Car #2
-                        </div>
-                        <div class="panel-body">
-                            <img src="../img/car2.jpg" class="carImage">
-                        </div>
-                        <div class="panel-footer">
-                            Click <a href="">here</a> to view details.
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 carImageDiv">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            Example Car #3
-                        </div>
-                        <div class="panel-body">
-                            <img src="../img/car3.png" class="carImage">
-                        </div>
-                        <div class="panel-footer">
-                            Click <a href="">here</a> to view details.
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <button type="button" class="btn btn-outline btn-primary btn-lg" onclick="addVehicle()">Add vehicle</button>
             </div>
         </div>
         <!-- /#page-wrapper -->
