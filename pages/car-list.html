@@ -9,10 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CarTracker Demo</title>
-
-    <!-- Custom CSS made by us (not from template) -->
-    <link href="../dist/css/cartracker.css" rel="stylesheet">
+    <title>CarTracker</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -22,9 +19,6 @@
 
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -38,7 +32,7 @@
 
 </head>
 
-<body>
+<body onload="displayVehicles()">
 
 <div id="wrapper">
 
@@ -233,7 +227,7 @@
                                 <a href="car-search.html"> Add Cars</a>
                             </li>
                             <li>
-                                <a href="car-list.html"> View Cars</a>
+                                <a href="#"> View Cars</a>
                             </li>
                             <li>
                                 <a href="#"> Maintenance</a>
@@ -258,10 +252,10 @@
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-envelope fa-fw"></i> Message Center</span></a>
+                        <a href="../pages/message-center.html"><i class="fa fa-envelope fa-fw"></i> Message Center</a>
                     </li>
                     <li>
-                        <a href="../pages/map-search.html"><i class="fa fa-shopping-cart fa-fw"></i> Find A Store</span></a>
+                        <a href="../pages/map-search.html"><i class="fa fa-shopping-cart fa-fw"></i> Find A Store</a>
                     </li>
                 </ul>
             </div>
@@ -270,88 +264,22 @@
         <!-- /.navbar-static-side -->
     </nav>
 
+
+    <!-- Page Content -->
     <div id="page-wrapper">
-        <br>
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="panel panel-green">
-                    <div class="panel-heading">
-                        Car #1 Alerts
-                    </div>
-                    <div class="panel-body">
-                        Do something low priority.
-                    </div>
-                    <div class="panel-footer">
-                        Click <a href="">here</a> to view details.
-                    </div>
-                </div>
-                <!-- /.col-lg-4 -->
+        <div class="container-fluid">
+            <div class="row" id="car-list-container">
+
+                <!-- /.col-lg-12 -->
             </div>
+            <!-- /.row -->
         </div>
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="panel panel-yellow">
-                    <div class="panel-heading">
-                        Car #2 Alerts
-                    </div>
-                    <div class="panel-body">
-                        Do something medium priority.
-                    </div>
-                    <div class="panel-footer">
-                        Click <a href="">here</a> to view details.
-                    </div>
-                </div>
-                <!-- /.col-lg-4 -->
-            </div>
-            <div class="col-lg-4">
-                <div class="panel panel-green">
-                    <div class="panel-heading">
-                        Car #2 Alerts
-                    </div>
-                    <div class="panel-body">
-                        Do something low priority.
-                    </div>
-                    <div class="panel-footer">
-                        Click <a href="">here</a> to view details.
-                    </div>
-                </div>
-                <!-- /.col-lg-4 -->
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="panel panel-red">
-                    <div class="panel-heading">
-                        Car #3 Alerts
-                    </div>
-                    <div class="panel-body">
-                        Do something high priority.
-                    </div>
-                    <div class="panel-footer">
-                        Click <a href="">here</a> to view details.
-                    </div>
-                </div>
-                <!-- /.col-lg-4 -->
-            </div>
-            <div class="col-lg-4">
-                <div class="panel panel-green">
-                    <div class="panel-heading">
-                        Car #3 Alerts
-                    </div>
-                    <div class="panel-body">
-                        Do something low priority.
-                    </div>
-                    <div class="panel-footer">
-                        Click <a href="">here</a> to view details.
-                    </div>
-                </div>
-                <!-- /.col-lg-4 -->
-            </div>
-        </div>
+        <!-- /.container-fluid -->
     </div>
     <!-- /#page-wrapper -->
 
 </div>
+
 <!-- /#wrapper -->
 
 <!-- jQuery -->
@@ -363,17 +291,9 @@
 <!-- Metis Menu Plugin JavaScript -->
 <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
-<!-- Morris Charts JavaScript -->
-<!--
-<script src="../vendor/raphael/raphael.min.js"></script>
-<script src="../vendor/morrisjs/morris.min.js"></script>
-<script src="../data/morris-data.js"></script>
--->
-
 <!-- Custom Theme JavaScript -->
 <script src="../dist/js/sb-admin-2.js"></script>
 
-<!-- CarTracker JavaScript -->
 <script src="../js/cartracker.js"></script>
 
 </body>

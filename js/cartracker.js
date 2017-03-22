@@ -1,4 +1,5 @@
 var currentCarList = [];
+var savedCarList = [];
 
 /**
  * Created by Matthew on 2/7/2017.
@@ -56,17 +57,17 @@ function searchCarInfo() {
                 );
                 currentCarList.push(car);
                 var div = document.createElement("div");
-                div.innerHTML = '<div class="col-lg-4 carSearchDiv">' +
+                div.innerHTML =
+                    '<div class="col-lg-4 carSearchDiv">' +
                     '<div class="panel panel-info">' +
                     '<div class="panel-heading">' +
                     car.year + " " + car.make + " " + car.model +
                     '</div>' +
                     '<div class="panel-body">' +
                     '<p>' + 'Style: ' + car.carStyle + '</p>' +
-                    '<p>' + 'Trim: ' + car.trim + '</p>' +
                     '</div>' +
                     '<div class="panel-footer">' +
-                    'Click <a id="carClick" href="#" onclick="userSelectVehicle(this.id)">here</a> to add to car list and edit details.' +
+                    '<a id="carClick" href="#" onclick="userSelectVehicle(this)">Click here to add to car list.</a>' +
                     '</div>' +
                     '</div>' +
                     '</div>';
@@ -88,12 +89,45 @@ function addVehicle() {
 }
 
 String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
+    return this.toLowerCase().charAt(0).toUpperCase() + this.slice(1);
+};
+
+function displayVehicles() {
+    var savedCarList = JSON.parse(localStorage.getItem("savedCarList"));
+    console.log(savedCarList);
+    var currentRow = document.getElementById("car-list-container");
+    for (var i = 0; i < savedCarList.length; i++) {
+        var div = document.createElement("div");
+        div.className = "row";
+        var car = savedCarList[i];
+
+        div.innerHTML = '<br><div class="col-lg-4 carSearchDiv">' +
+            '<div class="panel panel-info">' +
+            '<div class="panel-heading">' +
+            car.year + " " + car.make + " " + car.model +
+            '</div>' +
+            '<div class="panel-body">' +
+            '<p>' + 'Style: ' + car.carStyle + '</p>' +
+            '</div>' +
+            '<div class="panel-footer">' +
+            'Click <a id="carClick" href="#" onclick="#">here</a> to view/edit maintenance details.' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+
+        currentRow.appendChild(div);
+    }
 }
 
-function userSelectVehicle(car) {
+function userSelectVehicle(source) {
     // TODO Add selected vehicle to user's car list
-    console.log(car);
+    console.log(source.id);
+    console.log(currentCarList[source.id]);
+    savedCarList.push(currentCarList[source.id]);
+    source.innerHTML = "Car has been successfully added to list!";
+    source.onclick = "#";
+    source.disabled = true;
+    localStorage.setItem("savedCarList", JSON.stringify(savedCarList));
 }
 
 function Car(make, model, year, carStyle, trim) {
