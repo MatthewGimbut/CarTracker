@@ -48,4 +48,10 @@ ADD COLUMN `carID` INT(11) NOT NULL FIRST,
 ADD PRIMARY KEY (`carID`),
 ADD UNIQUE INDEX `carID_UNIQUE` (`carID` ASC);
 
+ALTER TABLE `CarTrackerInfo`.`users` 
+DROP COLUMN `DOB`;
 
+ALTER TABLE `CarTrackerInfo`.`users` 
+ADD COLUMN `birthMonth` INT NULL AFTER `age`,
+ADD COLUMN `birthDay` INT NULL AFTER `birthMonth`,
+ADD COLUMN `birthYear` INT NULL AFTER `birthDay`;
