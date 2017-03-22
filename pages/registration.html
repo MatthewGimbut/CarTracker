@@ -23,6 +23,11 @@
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <!-- Import jquery library -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -33,6 +38,7 @@
 </head>
 
 <body>
+
 
 <div class="container">
     <div class="row">
@@ -45,32 +51,37 @@
                     <form role="form">
                         <fieldset>
                             <div class="form-group">
+                                <input class="form-control" id="firstName" placeholder="First Name" name="firstName">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="lastName" placeholder="Last Name" name="lastName">
+                            </div>
+                            <div class="form-group">
                                 <input class="form-control" id="username" placeholder="Username" name="username">
                             </div>
                             <div class="form-group">
                                 <input class="form-control" id="email" placeholder="E-mail" name="email" type="email" autofocus>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" id="confirmEmail" placeholder="ConfirmE-mail" name="confirmEmail" type="email" autofocus>
+                                <input class="form-control" id="confirmEmail" placeholder="Confirm E-mail" name="confirmEmail" type="email" autofocus>
                             </div>
                             <div class="form-group">
                                 <input class="form-control" id="password" placeholder="Password" name="password" type="password" value="">
                             </div>
                             <div class="form-group">
-                                <input class="form-control" id="confirmPassword" placeholder="ConfirmPassword" name="confirmPassword" type="password">
+                                <input class="form-control" id="confirmPassword" placeholder="Confirm Password" name="confirmPassword" type="password">
                             </div>
                             <div class="form-group">
                                 <label>Enter Birthdate</label>
                                 <div class="form-group">
-                                    <input type="number" name="bday" max="31" min="1" size="0.5">Day
-                                    <input type="number" name="bmonth" max="12" min="1">Month
-                                    <input type="number" name="byear" max="2002" min="1990">Year
+                                    <input type="number" id='bDay' name="bday" max="31" min="1" size="0.5">Day
+                                    <input type="number" id='bMonth' name="bmonth" max="12" min="1">Month
+                                    <input type="number" id='bYear' name="byear" max="2002" min="1990">Year
                                 </div>
                             </div>
-                            <br>
                             <!-- Change this to a button or input when using this as a form -->
                             <div class="form-group">
-                                <button href="index.html" class="btn btn-lg btn-success btn-block">Register New User</button>
+                                <button type="button" id="register" class="btn btn-lg btn-success btn-block">Register New User</button>
                             </div>
                         </fieldset>
                     </form>
@@ -91,6 +102,8 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="../dist/js/sb-admin-2.js"></script>
+
+<script src="../js/createUser.js"></script>
 
 </body>
 
