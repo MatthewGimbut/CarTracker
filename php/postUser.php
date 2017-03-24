@@ -54,7 +54,7 @@ echo $_GET['callback'] . "({firstName: $firstName,
         lastName: $lastName,
         username: $username,
         email: $email,
-        password: $hash,
+        password: \"$hash\",
         bDay: $bDay,
         bMonth: $bMonth,
         bYear: $bYear})";
