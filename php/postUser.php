@@ -50,10 +50,10 @@ $result->close();
 $mysqli->close();
 
 
-echo $_GET['callback'] . "({firstName: $firstName,
-        lastName: $lastName,
-        username: $username,
-        email: $email,
+echo $_GET['callback'] . "({firstName: \"$firstName\",
+        lastName: \"$lastName\",
+        username: \"$username\",
+        email: \"$email\",
         password: \"$hash\",
         bDay: $bDay,
         bMonth: $bMonth,
