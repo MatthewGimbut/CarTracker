@@ -45,6 +45,7 @@ $(document).ready(function(){
                     }
                 })
 
+                window.open("userProfile", _self)
             }
             else {
                 alert("The passwords entered do not match!");
