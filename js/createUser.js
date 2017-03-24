@@ -6,10 +6,10 @@ $(document).ready(function(){
         console.log("This happened");
         var email = $("#email").val();
         var confirmEmail = $("#confirmEmail").val();
-        if(email == confirmEmail) {
+        if(email === confirmEmail) {
             var password = $("#password").val();
             var confirmPassword = $("#confirmPassword").val();
-            if (password == confirmPassword) {
+            if (password === confirmPassword) {
 
                 var firstName = $("#firstName").val();
                 var lastName = $("#lastName").val();
