@@ -11,25 +11,37 @@ $bDay = $_GET["bDay"];
 $bMonth = $_GET["bMonth"];
 $bYear = $_GET["bYear"];
 
-$result = $mysqli->query('INSERT INTO users (users.firstName, 
-											users.lastName, 
-											users.username, 
+// hash password before storing
+// use password_verify to verify
+$hash = (string) password_hash($password, PASSWORD_DEFAULT);
+
+// Prepare statement before execution to prevent exploits like SQL Injection
+$result = $mysqli->prepare('INSERT INTO users (users.firstName,
+											users.lastName,
+											users.username,
 											users.email,
-											users.password,  
-											users.birthDay, 
-											users.birthMonth, 
-											users.birthYear) VALUES 
-											('.$firstName.', '
-											.$lastName.', '
-											.$username.', '
-											.$email.', '
-											.$password.', '
-											.$bDay.', ' 
-											.$bMonth.', '
-											.$bYear.')');
+											users.password,
+											users.birthDay,
+											users.birthMonth,
+											users.birthYear) VALUES
+											(?,?,?,?,?,?,?,?)');
+
+$result->bind_param("sssssiii",
+                $firstName,
+								$lastName,
+								$username,
+								$email,
+								$hash,
+								$bDay,
+								$bMonth,
+								$bYear);
+
+$result->execute();
+$result->close();
+
 //echo $result;
 //$myArray = array();
- 
+
 //while($row = $result->fetch_assoc()) {
 //	$myArray[] = $row;
 //}
@@ -38,16 +50,14 @@ $result = $mysqli->query('INSERT INTO users (users.firstName,
 $mysqli->close();
 
 
-echo $_GET['callback'] . "({firstName: ".$firstName.",
-        lastName: ".$lastName.",
-        username: ".$username.",
-        email: ".$email.",
-        password: ".$password.",
-        bDay: ".$bDay.",
-        bMonth: ".$bMonth.",
-        bYear: ".$bYear."})";
+echo $_GET['callback'] . "({firstName: $firstName,
+        lastName: $lastName,
+        username: $username,
+        email: $email,
+        password: $hash,
+        bDay: $bDay,
+        bMonth: $bMonth,
+        bYear: $bYear})";
 
 //$result->close();
-
-
 ?>
