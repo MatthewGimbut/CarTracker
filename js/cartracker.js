@@ -1,4 +1,5 @@
 var currentCarList = [];
+var savedCarList = [];
 
 /**
  * Created by Matthew on 2/7/2017.
@@ -56,17 +57,17 @@ function searchCarInfo() {
                 );
                 currentCarList.push(car);
                 var div = document.createElement("div");
-                div.innerHTML = '<div class="col-lg-4 carSearchDiv">' +
+                div.innerHTML =
+                    '<div class="col-lg-4 carSearchDiv">' +
                     '<div class="panel panel-info">' +
                     '<div class="panel-heading">' +
                     car.year + " " + car.make + " " + car.model +
                     '</div>' +
                     '<div class="panel-body">' +
                     '<p>' + 'Style: ' + car.carStyle + '</p>' +
-                    '<p>' + 'Trim: ' + car.trim + '</p>' +
                     '</div>' +
                     '<div class="panel-footer">' +
-                    'Click <a id="carClick" href="#" onclick="userSelectVehicle(this.id)">here</a> to add to car list and edit details.' +
+                    '<a id="carClick" href="#" onclick="userSelectVehicle(this)">Click here to add to car list.</a>' +
                     '</div>' +
                     '</div>' +
                     '</div>';
@@ -88,12 +89,73 @@ function addVehicle() {
 }
 
 String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
+    return this.toLowerCase().charAt(0).toUpperCase() + this.slice(1);
+};
+
+function loadCookies() {
+    savedCarList = JSON.parse(localStorage.getItem("savedCarList"));
 }
 
-function userSelectVehicle(car) {
+function saveCookies() {
+    localStorage.setItem("savedCarList", JSON.stringify(savedCarList));
+}
+
+function getAddedCarPreview(car) {
+    return '<br><div class="col-lg-4 carSearchDiv">' +
+        '<div class="panel panel-info">' +
+        '<div class="panel-heading">' +
+        car.year + " " + car.make + " " + car.model +
+        '</div>' +
+        '<div class="panel-body">' +
+        '<p>' + 'Style: ' + car.carStyle + '</p>' +
+        '</div>' +
+        '<div class="panel-footer">' +
+        'Click <a id="carClick" href="#" onclick="#">here</a> to view/edit maintenance details.' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+}
+
+function displayVehicles() {
+    loadCookies();
+    console.log(savedCarList);
+    var currentRow = document.getElementById("car-list-container");
+    for (var i = 0; i < savedCarList.length; i++) {
+        var div = document.createElement("div");
+        div.className = "row";
+        div.innerHTML = getAddedCarPreview(savedCarList[i]);
+        currentRow.appendChild(div);
+    }
+}
+
+function userSelectVehicle(source) {;
     // TODO Add selected vehicle to user's car list
-    console.log(car);
+    console.log(source.id);
+    console.log(currentCarList[source.id]);
+    savedCarList.push(currentCarList[source.id]);
+    source.innerHTML = "Car has been successfully added to list!";
+    source.onclick = "#";
+    source.disabled = true;
+    saveCookies();
+}
+
+function loadHomePage() {
+    loadCookies();
+    document.getElementById("numCars").innerHTML = savedCarList.length.toString();
+    var container = document.getElementById("carList");
+    if (savedCarList.length == 0) {
+        var message = document.createElement("div");
+        message.innerHTML = "You do not currently have any cars linked to your account. Please click Cars -> Add Cars to begin.";
+        container.appendChild(message);
+    } else {
+        for (var i = 0; i < savedCarList.length; i++) {
+            var div = document.createElement("div");
+            div.className = "row";
+            div.style.width = "100%";
+            div.innerHTML = getAddedCarPreview(savedCarList[i]);
+            container.appendChild(div);
+        }
+    }
 }
 
 function Car(make, model, year, carStyle, trim) {
