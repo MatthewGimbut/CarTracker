@@ -39,13 +39,14 @@ $(document).ready(function(){
                     success: function(response, textStatus){
                         console.log(textStatus);
                         console.log(JSON.stringify(response));
+                        saveCookies(JSON.stringify(response))
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         alert("Error " + errorThrown);
                     }
                 })
 
-                window.open("userProfile", _self)
+                window.open("../pages/userProfile.html");//, "_self");
             }
             else {
                 alert("The passwords entered do not match!");
@@ -56,3 +57,7 @@ $(document).ready(function(){
         }
     });
 });
+
+function saveCookies(userJSON){
+    localStorage.setItem('userJSON', userJSON);
+}
