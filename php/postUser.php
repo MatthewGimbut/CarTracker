@@ -43,9 +43,9 @@ echo $_GET['callback'] . "({firstName: ".$firstName.",
         username: ".$username.",
         email: ".$email.",
         password: ".$password.",
-        bDay: ".$bDay.",
-        bMonth: ".$bMonth.",
-        bYear: ".$bYear."})";
+        birthDay: ".$bDay.",
+        birthMonth: ".$bMonth.",
+        birthYear: ".$bYear."})";
 
 //$result->close();
 

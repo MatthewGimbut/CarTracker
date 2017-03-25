@@ -24,7 +24,7 @@ $(document).ready(function(){
                     async: false,
                     type: 'GET',
                     url: 'http://localhost/postUser.php',
-                    dataType: 'jsonP',
+                    dataType: 'jsonp',
                     contentType:'application/javascript',
                     jsonp: 'callback',
                     jsonpcallback: 'logResults',
@@ -39,14 +39,14 @@ $(document).ready(function(){
                     success: function(response, textStatus){
                         console.log(textStatus);
                         console.log(JSON.stringify(response));
-                        saveCookies(JSON.stringify(response))
+                        saveCookies(JSON.stringify(response));
+                        window.open("../pages/userProfile.html", "_self");
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         alert("Error " + errorThrown);
                     }
                 })
 
-                window.open("../pages/userProfile.html");//, "_self");
             }
             else {
                 alert("The passwords entered do not match!");

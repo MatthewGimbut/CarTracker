@@ -34,7 +34,6 @@ function User(firstName, lastName, username, password, email, age, bMonth, bDay,
 
 function loadCookies() {
     userJSON = JSON.parse(localStorage.getItem('userJSON'));
-    console.log("Stuff: " + userJSON.firstName);
 }
 
 function display(){
@@ -42,14 +41,14 @@ function display(){
     $("#nameTitle").html("User: " + userJSON.firstName + " " + userJSON.lastName);
     $("#username").html(userJSON.username);
     $("#email").html(userJSON.email);
-    $("#DOB").html(userJSON.bMonth + "/" + userJSON.bDay + "/" + userJSON.bYear)
+    $("#DOB").html(userJSON.birthMonth + "/" + userJSON.birthDay + "/" + userJSON.birthYear)
 
     var currentDate = new Date();
 
-    if(currentDate.getDay() < userJSON.bDay || currentDate.getMonth() < userJSON.bMonth){
-        $("#Age").html(currentDate.getFullYear() - userJSON.bYear - 1);
+    if(currentDate.getDay() < parseInt(userJSON.birthDay) || currentDate.getMonth() < parseInt(userJSON.birthMonth)){
+        $("#Age").html(currentDate.getFullYear() - parseInt(userJSON.birthYear) - 1);
     }
     else{
-        $("#Age").html(currentDate.getFullYear() - userJSON.bYear);
+        $("#Age").html(currentDate.getFullYear() - parseInt(userJSON.birthYear));
     }
     }
