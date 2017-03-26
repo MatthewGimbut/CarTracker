@@ -55,3 +55,6 @@ ALTER TABLE `CarTrackerInfo`.`users`
 ADD COLUMN `birthMonth` INT NULL AFTER `age`,
 ADD COLUMN `birthDay` INT NULL AFTER `birthMonth`,
 ADD COLUMN `birthYear` INT NULL AFTER `birthDay`;
+
+ALTER TABLE `CarTrackerInfo`.`cars` 
+ADD COLUMN `dateMileage` DATE NULL AFTER `mileage`;
