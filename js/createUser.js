@@ -24,7 +24,7 @@ $(document).ready(function(){
                     async: false,
                     type: 'GET',
                     url: 'http://localhost/postUser.php',
-                    dataType: 'jsonP',
+                    dataType: 'jsonp',
                     contentType:'application/javascript',
                     jsonp: 'callback',
                     jsonpcallback: 'logResults',
@@ -39,6 +39,8 @@ $(document).ready(function(){
                     success: function(response, textStatus){
                         console.log(textStatus);
                         console.log(JSON.stringify(response));
+                        saveCookies(JSON.stringify(response));
+                        window.open("../pages/userProfile.html", "_self");
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         alert("Error " + errorThrown);
@@ -55,3 +57,7 @@ $(document).ready(function(){
         }
     });
 });
+
+function saveCookies(userJSON){
+    localStorage.setItem('userJSON', userJSON);
+}
