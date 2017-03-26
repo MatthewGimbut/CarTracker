@@ -39,15 +39,19 @@ $(document).ready(function(){
                 success: function(response, textStatus){
                     console.log(textStatus);
                     console.log(JSON.stringify(response));
+                    saveCookies(JSON.stringify(response));
+                    window.open("../pages/userProfile.html", "_self");
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     alert("Error " + errorThrown + "\nPlease contact the webmaster with this error.");
                 }
             })
+
         }
 
     });
 });
+
 
 /**
  * Checks whether entered names are valid
@@ -136,4 +140,7 @@ function validateEmail(email, confirmEmail) {
         return false;
     }
     return true;
+
+function saveCookies(userJSON){
+    localStorage.setItem('userJSON', userJSON);
 }
