@@ -42,7 +42,7 @@ $(document).ready(function(){
                         console.log(JSON.stringify(response));
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
-                        alert("Error " + errorThrown);
+                        alert("Error " + errorThrown + "\nPlease contact the webmaster with this error.");
                     }
                 })
             }
