@@ -135,11 +135,12 @@ function validateEmail(email, confirmEmail) {
     if (email !== confirmEmail) {
         alert("Error:\nEmails do not match");
         return false;
-    }else if(!regex.test(email)){
+    } else if (!regex.test(email)) {
         alert("Error:\nNot a valid e-mail address");
         return false;
     }
     return true;
+}
 
 function saveCookies(userJSON){
     localStorage.setItem('userJSON', userJSON);
