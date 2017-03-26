@@ -49,14 +49,14 @@ $result->close();
 
 $mysqli->close();
 
-echo $_GET['callback'] . "({firstName: ".$firstName.",
-        lastName: ".$lastName.",
-        username: ".$username.",
-        email: ".$email.",
-        password: ".$password.",
-        birthDay: ".$bDay.",
-        birthMonth: ".$bMonth.",
-        birthYear: ".$bYear."})";
+echo $_GET['callback'] . "({firstName: \"$firstName\",
+        lastName: \"$lastName\",
+        username: \"$username\",
+        email: \"$email\",
+        password: \"$hash\",
+        birthDay: $bDay,
+        birthMonth: $bMonth,
+        birthYear: $bYear})";
 
 //$result->close();
 ?>
