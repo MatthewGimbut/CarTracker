@@ -6,54 +6,50 @@
  */
 $(document).ready(function(){
     $('#register').on('click', function(event){
-        var email = $("#email").val();
-        var confirmEmail = $("#confirmEmail").val();
-        if(email === confirmEmail) {
-            var password = $("#password").val();
-            var confirmPassword = $("#confirmPassword").val();
-            if (password === confirmPassword) {
+        var password = $("#password").val();
+        var confirmPassword = $("#confirmPassword").val();
+        if (password === confirmPassword) {
 
-                var firstName = $("#firstName").val();
-                var lastName = $("#lastName").val();
-                var username = $("#username").val();
-                var bDay = $("#bDay").val();
-                var bMonth = $("#bMonth").val();
-                var bYear = $("#bYear").val();
+            var firstName = $("#firstName").val();
+            var lastName = $("#lastName").val();
+            var username = $("#username").val();
+            var email = $("#email").val();
+            var confirmEmail = $("#confirmEmail").val();
+            var bDay = $("#bDay").val();
+            var bMonth = $("#bMonth").val();
+            var bYear = $("#bYear").val();
 
-                if(validateNames(firstName, lastName, username)){
-                    $.ajax({
-                        async: false,
-                        type: 'GET',
-                        url: 'http://localhost/postUser.php',
-                        dataType: 'jsonP',
-                        contentType:'application/javascript',
-                        jsonp: 'callback',
-                        jsonpcallback: 'logResults',
-                        data: {firstName: firstName,
-                            lastName: lastName,
-                            username: username,
-                            email: email,
-                            password: password,
-                            bDay: bDay,
-                            bMonth: bMonth,
-                            bYear: bYear},
-                        success: function(response, textStatus){
-                            console.log(textStatus);
-                            console.log(JSON.stringify(response));
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                            alert("Error " + errorThrown);
-                        }
-                    })
-                }
-
+            if(validateNames(firstName, lastName, username)
+                && validateEmail(email, confirmEmail)){
+                $.ajax({
+                    async: false,
+                    type: 'GET',
+                    url: 'http://localhost/postUser.php',
+                    dataType: 'jsonP',
+                    contentType:'application/javascript',
+                    jsonp: 'callback',
+                    jsonpcallback: 'logResults',
+                    data: {firstName: firstName,
+                        lastName: lastName,
+                        username: username,
+                        email: email,
+                        password: password,
+                        bDay: bDay,
+                        bMonth: bMonth,
+                        bYear: bYear},
+                    success: function(response, textStatus){
+                        console.log(textStatus);
+                        console.log(JSON.stringify(response));
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert("Error " + errorThrown);
+                    }
+                })
             }
-            else {
-                alert("The passwords entered do not match!");
-            }
+
         }
-        else{
-            alert("The email addresses entered do not match!");
+        else {
+            alert("The passwords entered do not match!");
         }
     });
 });
@@ -79,7 +75,7 @@ function validateNames(firstName, lastName, username){
             || lastName.length > 30
             || username === ""
             || username.length > 20 ){
-        alert("Error: Fields cannot be blank.\nFirst Name and Username must be 20 characters or less.\n" +
+        alert("Error:\nFields cannot be blank.\nFirst Name and Username must be 20 characters or less.\n" +
             "Last Name must be 30 characters or left");
         return false;
     }
@@ -95,7 +91,7 @@ function validateNames(firstName, lastName, username){
     regex = /^[a-zA-Z0-9_-]+$/; //Lower, upper, digits, underscore, hyphen
 
     if(!regex.test(username)){
-        alert("Error: Username contains invalid characters");
+        alert("Error: Invalid username");
         return false;
     }
 
@@ -103,21 +99,27 @@ function validateNames(firstName, lastName, username){
 }
 
 function validatePassword(password, confirmPassword){
-    if (password === confirmPassword) {
+    if (password !== confirmPassword) {
         return true;
     }
     return false;
 }
 
+/**
+ * Determines whether email matches its confirmation, and whether it is valid
+ * @param email Email address for user
+ * @param confirmEmail Confirmation of email
+ * @returns {boolean} True if all tests pass
+ */
 function validateEmail(email, confirmEmail) {
     //Found this at emailregex.com. It "99.99% works"
     regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    if (!email === confirmEmail) {
+    if (email !== confirmEmail) {
         alert("Error: Emails do not match");
         return false;
     }else if(!regex.test(email)){
-        alert("Error: Email contains invalid characters");
+        alert("Error: Not a valid e-mail address");
         return false;
     }
     return true;
