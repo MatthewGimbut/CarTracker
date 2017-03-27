@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>CarTracker - Account Notifications</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -263,15 +263,33 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
+
+                            <!-- Added new in-site search engine -->
+                            <!-- start of freefind search box html -->
+                            <table cellpadding=0 cellspacing=0 border=0 >
+                                <tr>
+                                    <td  style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt;">
+                                        <form style="margin:0px; margin-top:4px; margin-left:30px;" action="http://search.freefind.com/find.html" method="get" accept-charset="utf-8" target="_self">
+                                            <input type="hidden" name="si" value="31098423">
+                                            <input type="hidden" name="pid" value="r">
+                                            <input type="hidden" name="n" value="0">
+                                            <input type="hidden" name="_charset_" value="">
+                                            <input type="hidden" name="bcd" value="&#247;">
+                                            <input type="text" name="query" size="15">
+                                            <input type="submit" value="search">
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left; font-family: Arial, Helvetica, sans-serif;	font-size: 7.5pt; padding-top:4px;">
+                                        <a style="text-decoration:none; color:gray; margin-left:45px;" href="http://www.freefind.com" >search engine</a><a style="text-decoration:none; color:gray;" href="http://www.freefind.com" > by
+                                        <span style="color: #606060;">freefind</span></a>
+                                    </td>
+
+                                </tr>
+                            </table>
+                            <!-- end of freefind search box html -->
+
                         </li>
                         <li>
                             <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
