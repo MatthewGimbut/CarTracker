@@ -33,34 +33,34 @@ $(document).ready(function(){
 
                     //First create row to put alert in
                     var row = document.createElement("div");
-                    row.class = "row";
+                    row.className = "row";
 
                     //Create another div for column
                     var col = document.createElement("div");
-                    col.class = "col-lg-4";
+                    col.className = "col-lg-4";
                     row.appendChild(col);
 
                     //Create alert object
                     var alert = document.createElement("div");
                     alert.id = "alert" + index;
-                    alert.class = "panel panel-yellow";
+                    alert.className = "panel panel-yellow";
                     col.appendChild(alert);
 
                     //Create heading
                     var heading = document.createElement("div");
-                    heading.class = "panel-heading";
+                    heading.className = "panel-heading";
                     heading.innerHTML = car;
                     alert.appendChild(heading);
 
                     //Create body
                     var body = document.createElement("div");
-                    body.class = "panel-body";
+                    body.className = "panel-body";
                     body.innerHTML = "It has been " + miles + " miles since your last maintenance";
                     alert.appendChild(body);
 
                     //Create footer (empty for now)
                     var footer = document.createElement("div");
-                    body.class = "panel-footer";
+                    body.className = "panel-footer";
                     alert.appendChild(footer);
 
                     document.getElementById("page-wrapper").appendChild(row);
