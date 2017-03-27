@@ -1,9 +1,6 @@
 /**
- * Retrieves the mileage of cars THAT ARE CLOSE TO DUE FOR SERVICE
  *
- * Do not use this to retrieve all of a user's vehicles, but it can be used as a template for that
- *
- * @author Michael Crinite
+ * @author Michael Moscariello
  */
 $(document).ready(function(){
     $("#update").on("click", function(){
