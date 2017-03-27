@@ -13,12 +13,12 @@ CREATE TABLE `CarTrackerInfo`.`users` (
   PRIMARY KEY (`userID`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC));
-  
-ALTER TABLE `CarTrackerInfo`.`users` 
+
+ALTER TABLE `CarTrackerInfo`.`users`
 ADD COLUMN `age` INT NULL AFTER `email`,
 ADD UNIQUE INDEX `userID_UNIQUE` (`userID` ASC);
 
-ALTER TABLE `CarTrackerInfo`.`users` 
+ALTER TABLE `CarTrackerInfo`.`users`
 ADD COLUMN `DOB` VARCHAR(10) NULL AFTER `age`;
 
 CREATE TABLE `CarTrackerInfo`.`cars` (
@@ -28,24 +28,25 @@ CREATE TABLE `CarTrackerInfo`.`cars` (
   `year` INT NULL,
   `mileage` INT NULL,
   PRIMARY KEY (`userID`));
-  
-ALTER TABLE `CarTrackerInfo`.`cars` 
+
+ALTER TABLE `CarTrackerInfo`.`cars`
 CHANGE COLUMN `make` `make` VARCHAR(10) NOT NULL ,
 CHANGE COLUMN `model` `model` VARCHAR(10) NOT NULL ,
 CHANGE COLUMN `year` `year` INT(11) NOT NULL ;
 
-ALTER TABLE `CarTrackerInfo`.`users` 
+ALTER TABLE `CarTrackerInfo`.`users`
 ADD COLUMN `password` VARCHAR(64) NOT NULL AFTER `username`;
 
-ALTER TABLE `CarTrackerInfo`.`cars` 
+ALTER TABLE `CarTrackerInfo`.`cars`
 ADD COLUMN `trim` VARCHAR(10) NOT NULL AFTER `year`;
 
-ALTER TABLE `CarTrackerInfo`.`cars` 
+ALTER TABLE `CarTrackerInfo`.`cars`
 DROP PRIMARY KEY;
 
-ALTER TABLE `CarTrackerInfo`.`cars` 
+ALTER TABLE `CarTrackerInfo`.`cars`
 ADD COLUMN `carID` INT(11) NOT NULL FIRST,
 ADD PRIMARY KEY (`carID`),
 ADD UNIQUE INDEX `carID_UNIQUE` (`carID` ASC);
 
-
+ALTER TABLE `CarTrackerInfo`.`cars`
+ADD COLUMN `mileageLastInspection` FLOAT(10) NULL DEFAULT 0.0 AFTER `dateMileage`;
