@@ -23,6 +23,9 @@ $(document).ready(function(){
         success: function(response, textStatus){
             console.log(response);
             if(response.length > 0){ //Then at least one car was returned
+                var elem = document.getElementById("defaultAlertPanel");
+                elem.parentNode.removeChild(elem);
+
                 var index = 0;
                 while(index < response.length){
                     var car = response[index].make + " " + response[index].model;
@@ -61,11 +64,6 @@ $(document).ready(function(){
                     alert.appendChild(footer);
 
                     document.getElementById("page-wrapper").appendChild(row);
-
-                    // if(index = 0){
-                    //     var elem = document.getElementById("defaultAlertPanel");
-                    //     elem.parentNode.removeChild(elem);
-                    // }
 
                     index = index + 1;
                 }
