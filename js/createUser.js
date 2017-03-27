@@ -19,7 +19,8 @@ $(document).ready(function(){
 
         if(validateNames(firstName, lastName, username)
             && validateEmail(email, confirmEmail)
-            && validatePassword(password, confirmPassword)){
+            && validatePassword(password, confirmPassword)
+            && validateDOB(bDay, bMonth, bYear)){
             $.ajax({
                 async: false,
                 type: 'GET',
@@ -140,6 +141,28 @@ function validateEmail(email, confirmEmail) {
         return false;
     }
     return true;
+}
+
+function validateDOB(bDay, bMonth, bYear){
+    var date = new Date();
+
+    if(bDay <= 31 && bDay > 0){
+        if(bMonth <= 12 && bMonth > 0){
+            if(bYear <= (date.getFullYear() - 13) && bYear > 1900){
+                return true;
+            }
+            else{
+                alert("Year not in range!");
+                return false;
+            }
+        }else{
+            alert("Month not in range!");
+            return false;
+        }
+    }else{
+        alert("Day not in range!");
+        return false;
+    }
 }
 
 function saveCookies(userJSON){
