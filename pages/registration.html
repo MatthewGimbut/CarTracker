@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Car Tracker User Registration</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Import jquery library -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Car Tracker - Register New User</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form">
+                        <fieldset>
+                            <div class="form-group">
+                                <input class="form-control" id="firstName" placeholder="First Name" name="firstName">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="lastName" placeholder="Last Name" name="lastName">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="username" placeholder="Username" name="username">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="email" placeholder="E-mail" name="email" type="email" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="confirmEmail" placeholder="Confirm E-mail" name="confirmEmail" type="email" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="password" placeholder="Password" name="password" type="password" value="">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="confirmPassword" placeholder="Confirm Password" name="confirmPassword" type="password">
+                            </div>
+                            <div class="form-group">
+                                <label>Enter Birthdate</label>
+                                <div class="form-group">
+                                    <input type="number" id='bMonth' name="bmonth" max="12" min="1">Month
+                                    <input type="number" id='bDay' name="bday" max="31" min="1" size="0.5">Day
+                                    <input type="number" id='bYear' name="byear" max="2017" min="1900">Year
+                                </div>
+                            </div>
+                            <!-- Change this to a button or input when using this as a form -->
+                            <div class="form-group">
+                                <button type="button" id="register" class="btn btn-lg btn-success btn-block">Register New User</button>
+                                <button type="button" id="cancel" class="btn btn-lg btn-success btn-block" onclick="location.href='./login.html';">Cancel</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="../dist/js/sb-admin-2.js"></script>
+
+<script src="../js/createUser.js"></script>
+
+</body>
+
+</html>

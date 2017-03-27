@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CarTracker - Home Page</title>
+    <title>CarTracker Demo</title>
 
     <!-- Custom CSS made by us (not from template)
     <link href="../dist/css/cartracker.css" rel="stylesheet"> -->
@@ -30,7 +30,7 @@
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via  -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -191,9 +191,9 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="userProfile.html"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
-                        <li><a href="settings.html"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Login</a>
@@ -208,39 +208,20 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-
-
                         <li class="sidebar-search">
                             <a href="index.html">
                                 <img src="../img/newlogotransparent.png" style="width: 100%;">
                             </a>
-
-                            <!-- Added new in-site search engine -->
-                            <!-- start of freefind search box html -->
-                            <table cellpadding=0 cellspacing=0 border=0 >
-                                <tr>
-                                    <td  style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt;">
-                                        <form style="margin:0px; margin-top:4px; margin-left:30px;" action="http://search.freefind.com/find.html" method="get" accept-charset="utf-8" target="_self">
-                                            <input type="hidden" name="si" value="31098423">
-                                            <input type="hidden" name="pid" value="r">
-                                            <input type="hidden" name="n" value="0">
-                                            <input type="hidden" name="_charset_" value="">
-                                            <input type="hidden" name="bcd" value="&#247;">
-                                            <input type="text" name="query" size="15">
-                                            <input type="submit" value="search">
-                                        </form>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align:left; font-family: Arial, Helvetica, sans-serif;	font-size: 7.5pt; padding-top:4px;">
-                                        <a style="text-decoration:none; color:gray; margin-left:45px;" href="http://www.freefind.com" >search engine</a><a style="text-decoration:none; color:gray;" href="http://www.freefind.com" > by
-                                        <span style="color: #606060;">freefind</span></a>
-                                    </td>
-
-                                </tr>
-                            </table>
-                            <!-- end of freefind search box html -->
-
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <!-- TODO Add a search function for the website? -->
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
                         </li>
                         <li>
                             <a href="index.html"><i class="fa fa-home fa-fw"></i> Home</a>
@@ -255,7 +236,7 @@
                                     <a href="car-list.html"> View Cars</a>
                                 </li>
                                 <li>
-                                    <a href="car-info.html"> Maintenance</a>
+                                    <a href="#"> Maintenance</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -289,97 +270,100 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-        <div id="page-wrapper">
+<!-- Page Content -->
+<!-- Description:
+	 Page will allow user to view and update some of the information about thier car.
+	 Viewable:
+    	 Make, Model, Year, Next Recomended Oil Change
+	 Updateable:
+    	 Maileage, Last Oil Change
+     Should be reachable from view car list page, click on a 
+	 car and get to the car info page, retrieve the car data to fill
+	 in the fields.
+	 
+	 -Still needs to be able to get and send data to database
+	 	to update the vehichle info
+	 -Buttons currently dont do anything
+-->
+    <div id="page-wrapper">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Welcome, [username]!</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge" id="numCars">0</div>
-                                    <div>View cars!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="car-list.html">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
+                    <div>
+                        <h1 class="page-header" id="testheader">Car Info</h1>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">Stores</div>
-                                    <div>Find auto stores!</div>
-                                </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+							<label for="disabledSelect">Make</label>
+                            <input class="form-control" id="make" type="text" placeholder="[Vehicle Make]" disabled>
+							<br>
+							
+							<label for="disabledSelect">Model</label>
+							<input class="form-control" id="model" type="text" placeholder="[Vehicle Model]" disabled>
+							<br>
+							
+							<label for="disabledSelect">Year</label>
+							<input class="form-control" id="year" type="text" placeholder="[Vehicle Year]" disabled>
+							<br>
+							<br>
+							
+							<label for="disabledSelect">Mileage : Last Updated [date]</label>
+							<input class="form-control" id="milage" type="text" placeholder="[Vehicle Mileage]" disabled>
+							<br>
+							
+							<label>Update Mileage</label>
+							<div class="form-group input-group">
+                              <input type="text" class="form-control" placeholder="Update Total Mileage">
+                              <span class="input-group-btn" placeholder="Update Total Mileage">
+                                <button class="btn btn-default" type="button"><i class="fa fa-check"></i>
+                                </button>
+                              </span>
+							</div>
+							<br>
+							
+							<label for="disabledSelect">Last Oil Change</label>
+							<input class="form-control" id="lastOilChange" type="text" placeholder="[month/day/year]" disabled>
+                            <br>
+							
+							<label for="disabledSelect">Recomended Next Oil Change</label>
+							<input class="form-control" id="nextOilChange" type="text" placeholder="[month/day/year]" disabled>
+                            <br>
+							
+							<div class="form-group">
+							<label>Recent Oil Change?</label>
+                              <label>Month</label>
+                                <select class="form-control">
+                                  <option>January</option>
+                                  <option>February</option>
+                                  <option>March</option>
+                                  <option>April</option>
+                                  <option>May</option>
+                                  <option>June</option>
+                                  <option>July</option>
+                                  <option>August</option>
+                                  <option>September</option>
+                                  <option>October</option>
+                                  <option>November</option>
+                                  <option>December</option>
+                                </select>
+								
+                              <label>Day</label>
+                              <input class="form-control" placeholder="day">
+                              <label>Year</Year>
+                              <input class="form-control" placeholder="year">
+                              <br>
+                              <button class="btn btn-default" type="button" onclick="updateOilChange()" id="updateInformation">
+                              Update Oil Change <i class="fa fa-check"></i>
+                              </button>
+							  
                             </div>
-                        </div>
-                        <a href="map-search.html">
-                            <div class="panel-footer">
-                                <span class="pull-left">Go to map</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-tasks fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
-                                    <div>View tasks!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
-            <br>
-            <br>
-            <button type="button" class="btn btn-outline btn-primary btn-lg" onclick="addVehicle()">Add vehicle</button>
-            <br>
-            <div class="container-fluid">
-                <div class="row" id="carList">
-
-                </div>
-            </div>
-        </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
+                        	</div>
+                    	</div>
+                	</div> <!-- /.col-lg-12 -->
+            	</div> <!-- /.row -->
+        	</div> <!-- /.container-fluid -->
+    	</div> <!-- /#page-wrapper -->
+	</div> <!-- /#wrapper -->
 
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
