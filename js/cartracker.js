@@ -1,6 +1,9 @@
 var currentCarList = [];
 var savedCarList = [];
 
+var userJSON = JSON.parse(localStorage.getItem('userJSON'));
+var userID, edmMake, edmModel, edmYear, edmTrim;
+
 /**
  * Created by Matthew on 2/7/2017.
  */
@@ -24,13 +27,13 @@ function searchCarInfo() {
             "?fmt=json&api_key=2873ck8xzdvuhyh4trmr7axu";
     } else {
         var errorString = "Search failed.\n";
-        if(make == "") {
+        if(make === "") {
             errorString += "Please enter a make.\n";
         }
-        if(model == "") {
+        if(model === "") {
             errorString += "Please enter a model.\n";
         }
-        if(year == "") {
+        if(year === "") {
             errorString += "Please enter a year.\n";
         }
         carInfo.text(errorString);
@@ -128,22 +131,57 @@ function displayVehicles() {
     }
 }
 
-function userSelectVehicle(source) {;
+function userSelectVehicle(source) {
     // TODO Add selected vehicle to user's car list
+    var carobj = currentCarList[source.id];
+
     console.log(source.id);
-    console.log(currentCarList[source.id]);
-    savedCarList.push(currentCarList[source.id]);
+    console.log(carobj);
+    savedCarList.push(carobj);
     source.innerHTML = "Car has been successfully added to list!";
     source.onclick = "#";
     source.disabled = true;
-    saveCookies();
+    edmMake = carobj.make;
+    edmModel = carobj.model + " " + carobj.carStyle;
+    edmTrim = carobj.trim;
+    edmYear = carobj.year;
+    username = userJSON.username;
+    insertCarToDB();
+    //saveCookies();
+}
+
+function insertCarToDB(){
+    //Database call
+    $.ajax({
+        async: false,
+        type: 'GET',
+        url: 'http://localhost/storeCars.php',
+        dataType: 'jsonP',
+        contentType:'application/javascript',
+        jsonp: 'callback',
+        jsonpcallback: 'logResults',
+        data: {make: edmMake,
+            model: edmModel,
+            trim: edmTrim,
+            year: edmYear,
+            username: username},
+        success: function(response, textStatus){
+            console.log(textStatus);
+            console.log(JSON.stringify(response));
+            saveCookies(JSON.stringify(response));
+            window.open("../pages/car-list.html", "_self");
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert("Error " + errorThrown + "\nPlease contact the webmaster with this error.");
+        }
+    })
 }
 
 function loadHomePage() {
     loadCookies();
     document.getElementById("numCars").innerHTML = savedCarList.length.toString();
     var container = document.getElementById("carList");
-    if (savedCarList.length == 0) {
+    if (savedCarList.length === 0) {
         var message = document.createElement("div");
         message.innerHTML = "You do not currently have any cars linked to your account. Please click Cars -> Add Cars to begin.";
         container.appendChild(message);
@@ -178,7 +216,7 @@ function Car(make, model, year, carStyle, trim) {
         var priorityAlerts = null;
         var numAlerts = 0;
         for(var i = 0; i < this.alerts.length; i++) {
-            if(this.alerts[i].priority == priority) {
+            if(this.alerts[i].priority === priority) {
                 priorityAlerts[numAlerts] = this.alerts[i];
                 numAlerts++;
             }
