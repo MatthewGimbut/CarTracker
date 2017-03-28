@@ -141,11 +141,13 @@ function displayVehicles() {
             //saveCookies(JSON.stringify(response));
             //window.open("../pages/car-list.html", "_self");
 
-            var div = document.createElement("div");
+            var div;
             var currentRow = document.getElementById("car-list-container");
             var curr, retMake, retModel, retYear, retStyle, retTrim;
 
             for (var i = 0; i < response.length; i++) {
+                div = document.createElement("div");
+
                 //Generate a car object for each response to user below
                 retMake = response[i].make;
                 retModel = response[i].model;
