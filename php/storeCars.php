@@ -29,7 +29,7 @@ $stmt = $mysqli->prepare('INSERT INTO cars (cars.userID,
                                                 cars.trim) VALUES
 											(?,?,?,?,?)');
 
-$stmt->bind_param("issis", $userID, $make, $model, $trim, $year);
+$stmt->bind_param("issis", $userID, $make, $model, $year, $trim);
 
 $stmt->execute();
 $stmt->close();
