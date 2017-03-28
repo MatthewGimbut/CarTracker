@@ -76,7 +76,7 @@ function validateNames(firstName, lastName, username){
             || username === ""
             || username.length > 20 ){
         alert("Error:\nFields cannot be blank.\nFirst Name and Username must be 20 characters or less.\n" +
-            "Last Name must be 30 characters or left");
+            "Last Name must be 30 characters or less");
         return false;
     }
 

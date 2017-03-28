@@ -1,5 +1,6 @@
 /**
- * Created by Mike on 3/26/2017.
+ *
+ * @author Michael Moscariello
  */
 $(document).ready(function(){
     $("#update").on("click", function(){
