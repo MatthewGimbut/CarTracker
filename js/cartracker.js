@@ -2,22 +2,19 @@ var currentCarList = [];
 var savedCarList = [];
 
 var userJSON = JSON.parse(localStorage.getItem('userJSON'));
-var userID, edmMake, edmModel, edmYear, edmTrim;
+var username = userJSON.username;
+var userID, edmMake, edmModel, edmYear, edmStyle, edmTrim;
 
 /**
- * Created by Matthew on 2/7/2017.
+ * @author Matthew Gimbut, Michael Crinite
  */
 function searchCarInfo() {
     currentCarList = [];
-    console.log("This should probably do" +
-        " something in the future");
-    //TODO Do something
 
     var make = $("#makeInput").val();
     var model = $("#modelInput").val();
     var year = $("#yearInput").val();
     var carInfo = $("#carInfo");
-
 
     if(make !== "" && model !== "" && year !== "") {
         var url = "https://api.edmunds.com/api/vehicle/v2/" +
@@ -95,10 +92,12 @@ String.prototype.capitalize = function() {
     return this.toLowerCase().charAt(0).toUpperCase() + this.slice(1);
 };
 
+//deprecated
 function loadCookies() {
     savedCarList = JSON.parse(localStorage.getItem("savedCarList"));
 }
 
+//deprecated
 function saveCookies() {
     localStorage.setItem("savedCarList", JSON.stringify(savedCarList));
 }
@@ -119,37 +118,94 @@ function getAddedCarPreview(car) {
         '</div>';
 }
 
+/**
+ * Queries db for vehicles belonging to userID, displays them on car-list.html
+ */
 function displayVehicles() {
-    loadCookies();
-    console.log(savedCarList);
-    var currentRow = document.getElementById("car-list-container");
-    for (var i = 0; i < savedCarList.length; i++) {
-        var div = document.createElement("div");
-        div.className = "row";
-        div.innerHTML = getAddedCarPreview(savedCarList[i]);
-        currentRow.appendChild(div);
-    }
+    //loadCookies();
+    //console.log(savedCarList);
+
+    //Database call
+    $.ajax({
+        async: false,
+        type: 'GET',
+        url: 'http://localhost/getAllCars.php',
+        dataType: 'jsonP',
+        contentType:'application/javascript',
+        jsonp: 'callback',
+        jsonpcallback: 'logResults',
+        data: {username: username},
+        success: function(response, textStatus){
+            console.log(textStatus);
+            console.log(JSON.stringify(response));
+            //saveCookies(JSON.stringify(response));
+            //window.open("../pages/car-list.html", "_self");
+
+            var div;
+            var currentRow = document.getElementById("car-list-container");
+            if(currentRow === null){
+                // Not the best way to avoid exceptions stopping the program
+                currentRow = document.createElement("div");
+            }
+            var curr, retMake, retModel, retYear, retStyle, retTrim;
+
+            for (var i = 0; i < response.length; i++) {
+                div = document.createElement("div");
+
+                //Generate a car object for each response to user below
+                retMake = response[i].make;
+                retModel = response[i].model;
+                retYear = response[i].year;
+                retStyle = response[i].style;
+                retTrim = response[i].trim;
+
+                curr = new Car(
+                    retMake,
+                    retModel,
+                    retYear,
+                    retStyle,
+                    retTrim
+                );
+
+                savedCarList.push(curr);
+
+                div.className = "row";
+                div.innerHTML = getAddedCarPreview(curr);
+                currentRow.appendChild(div);
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert("Error " + errorThrown + "\nPlease contact the webmaster with this error.");
+        }
+    })
 }
 
+/**
+ * When a user selects a car, saves the car to the database under the user's name
+ * @param source Car to add
+ */
 function userSelectVehicle(source) {
     // TODO Add selected vehicle to user's car list
     var carobj = currentCarList[source.id];
 
     console.log(source.id);
     console.log(carobj);
-    savedCarList.push(carobj);
+    //savedCarList.push(carobj); //No longer save as cookies
     source.innerHTML = "Car has been successfully added to list!";
     source.onclick = "#";
     source.disabled = true;
     edmMake = carobj.make;
-    edmModel = carobj.model + " " + carobj.carStyle;
+    edmModel = carobj.model
+    edmStyle = carobj.carStyle;
     edmTrim = carobj.trim;
     edmYear = carobj.year;
-    username = userJSON.username;
     insertCarToDB();
-    //saveCookies();
+    //saveCookies(); //No longer save cars in cookie
 }
 
+/**
+ * Makes call to storeCars.php to insert a car into the database
+ */
 function insertCarToDB(){
     //Database call
     $.ajax({
@@ -164,11 +220,12 @@ function insertCarToDB(){
             model: edmModel,
             trim: edmTrim,
             year: edmYear,
+            style: edmStyle,
             username: username},
         success: function(response, textStatus){
             console.log(textStatus);
             console.log(JSON.stringify(response));
-            saveCookies(JSON.stringify(response));
+            //saveCookies(JSON.stringify(response));
             window.open("../pages/car-list.html", "_self");
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -178,8 +235,10 @@ function insertCarToDB(){
 }
 
 function loadHomePage() {
-    loadCookies();
-    document.getElementById("numCars").innerHTML = savedCarList.length.toString();
+    //loadCookies(); //no longer save as cookies
+    //displayVehicles();
+    console.log("list contains:\n" + savedCarList);
+    document.getElementById("numCars").innerHTML = savedCarList.length;
     var container = document.getElementById("carList");
     if (savedCarList.length === 0) {
         var message = document.createElement("div");
@@ -194,6 +253,8 @@ function loadHomePage() {
             container.appendChild(div);
         }
     }
+    //Set username
+    document.getElementById("welcome-message").innerHTML = "Welcome " + username + "!";
 }
 
 function Car(make, model, year, carStyle, trim) {

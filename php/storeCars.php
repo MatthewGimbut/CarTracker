@@ -5,6 +5,7 @@ $mysqli = new mysqli('mikedb.clzedg3q1dlc.us-west-2.rds.amazonaws.com','MikeDB',
 $make = $_GET["make"];
 $model = $_GET["model"];
 $trim = $_GET["trim"];
+$style = $_GET["style"];
 $year = $_GET["year"];
 $username = $_GET["username"];
 
@@ -26,10 +27,11 @@ $stmt = $mysqli->prepare('INSERT INTO cars (cars.userID,
                                                 cars.make,
                                                 cars.model,
                                                 cars.year,
+                                                cars.style,
                                                 cars.trim) VALUES
-											(?,?,?,?,?)');
+											(?,?,?,?,?,?)');
 
-$stmt->bind_param("issis", $userID, $make, $model, $trim, $year);
+$stmt->bind_param("ississ", $userID, $make, $model, $year, $style, $trim);
 
 $stmt->execute();
 $stmt->close();
@@ -41,6 +43,7 @@ echo $_GET['callback'] . "({userID: \"$userID\",
         make: \"$make\",
         model: \"$model\",
         trim: \"$trim\",
+        style: \"$style\",
         year: \"$year\"})";
 
 ?>
