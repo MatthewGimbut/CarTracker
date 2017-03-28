@@ -7,6 +7,10 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
+        <!-- for testing email -->
+        <meta name="email" content="masterhalo812@yahoo.com">
+
+
         <title>User Profile</title>
 
             <!-- Custom CSS made by us (not from template) -->
@@ -89,9 +93,11 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="panel-footer">
                                 <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
                                 <span class="pull-right">
+                                    <button onclick="sendTestNotification();">Send a Test Notification</button>
                                         <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
                                         <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
                                     </span>
@@ -117,9 +123,14 @@
 
         <script src="../js/userProfile.js"></script>
 
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+        <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+        <script src="../js/getEmail.js"></script>
+
         <!-- Set Up Mileage Progressbars -->
         <script src="../js/progressBars.js"></script>
-
 
     </body>
 
