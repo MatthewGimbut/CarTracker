@@ -143,6 +143,10 @@ function displayVehicles() {
 
             var div;
             var currentRow = document.getElementById("car-list-container");
+            if(currentRow === null){
+                // Not the best way to avoid exceptions stopping the program
+                currentRow = document.createElement("div");
+            }
             var curr, retMake, retModel, retYear, retStyle, retTrim;
 
             for (var i = 0; i < response.length; i++) {
@@ -186,7 +190,7 @@ function userSelectVehicle(source) {
 
     console.log(source.id);
     console.log(carobj);
-    //savedCarList.push(carobj);
+    //savedCarList.push(carobj); //No longer save as cookies
     source.innerHTML = "Car has been successfully added to list!";
     source.onclick = "#";
     source.disabled = true;
@@ -196,7 +200,7 @@ function userSelectVehicle(source) {
     edmTrim = carobj.trim;
     edmYear = carobj.year;
     insertCarToDB();
-    //saveCookies();
+    //saveCookies(); //No longer save cars in cookie
 }
 
 /**
@@ -231,10 +235,10 @@ function insertCarToDB(){
 }
 
 function loadHomePage() {
-    loadCookies();
-    //Might need to separate this call
-    displayVehicles();
-    document.getElementById("numCars").innerHTML = savedCarList.length.toString();
+    //loadCookies(); //no longer save as cookies
+    //displayVehicles();
+    console.log("list contains:\n" + savedCarList);
+    document.getElementById("numCars").innerHTML = savedCarList.length;
     var container = document.getElementById("carList");
     if (savedCarList.length === 0) {
         var message = document.createElement("div");
