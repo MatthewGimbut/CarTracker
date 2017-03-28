@@ -119,6 +119,14 @@ $(document).ready(function(){
     })
 });
 
+/**
+ * For setting the color of the bar eventually
+ *
+ * Ask Mike C
+ *
+ * @param value Mileage percentage to round
+ * @returns {number} Rounded number
+ */
 function roundup(value){
     if(value ===0) {
         return 0;
@@ -132,50 +140,5 @@ function roundup(value){
         return 80;
     }else{
         return 100;
-    }
-}
-
-function extracode(){
-    var elem = document.getElementById("defaultAlertPanel");
-    elem.parentNode.removeChild(elem);
-
-    var index = 0;
-    while(index < response.length){
-
-        //First create row to put alert in
-        var row = document.createElement("div");
-        row.className = "row";
-
-        //Create another div for column
-        var col = document.createElement("div");
-        col.className = "col-lg-4";
-        row.appendChild(col);
-
-        //Create alert object
-        var alert = document.createElement("div");
-        alert.id = "alert" + index;
-        alert.className = "panel panel-yellow";
-        col.appendChild(alert);
-
-        //Create heading
-        var heading = document.createElement("div");
-        heading.className = "panel-heading";
-        heading.innerHTML = car;
-        alert.appendChild(heading);
-
-        //Create body
-        var body = document.createElement("div");
-        body.className = "panel-body";
-        body.innerHTML = "It has been " + miles + " miles since your last maintenance";
-        alert.appendChild(body);
-
-        //Create footer (empty for now)
-        var footer = document.createElement("div");
-        body.className = "panel-footer";
-        alert.appendChild(footer);
-
-        document.getElementById("page-wrapper").appendChild(row);
-
-        index = index + 1;
     }
 }
