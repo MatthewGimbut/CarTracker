@@ -24,11 +24,7 @@ function sendTestNotification(){
 }
 
 function sendTestNotif(){
-    var params = "masterhalo812@yahoo.com";
-    params = params.serializeArray().reduce(function(obj, item) {
-        obj[item.name] = item.value;
-        return obj;
-    }, {});
+    var params = {toEmail: "masterhalo812@yahoo.com"};
     initializeEmailJS();
 
     // Change to your service ID, or keep using the default service
