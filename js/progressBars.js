@@ -27,86 +27,90 @@ $(document).ready(function(){
         data: {username: username},
         success: function(response, textStatus){
             console.log(response);
-            if(response.length > 0) { //Then at least one car was returned
-                //Generate bars (1 per car)
+            try {
+                if (response.length > 0) { //Then at least one car was returned
+                    //Generate bars (1 per car)
 
-                //Car vars
-                var car, milesSince, window, progress, percent;
+                    //Car vars
+                    var car, milesSince, window, progress, percent;
 
-                var index = 0;
+                    var index = 0;
 
-                //HTML vars
-                var separator, listItem, alink, container, textP, bar, innerbar, innerHTML;
+                    //HTML vars
+                    var separator, listItem, alink, container, textP, bar, innerbar, innerHTML;
 
-                var rounded, type;
+                    var rounded, type;
 
-                while (index < response.length) {
-                    car = response[index].make + " " + response[index].model;
-                    milesSince = response[index].mileage - response[index].mileageLastInspection;
-                    window = 5000; //Miles between oil changes
-                    progress = milesSince / window;
-                    percent = progress * 100;
-                    rounded = roundup(percent);
+                    while (index < response.length) {
+                        car = response[index].make + " " + response[index].model;
+                        milesSince = response[index].mileage - response[index].mileageLastInspection;
+                        window = 5000; //Miles between oil changes
+                        progress = milesSince / window;
+                        percent = progress * 100;
+                        rounded = roundup(percent);
 
-                    if(rounded < 40 && rounded > 20){
-                        type = "(success)";
-                    }else if(rounded < 60){
-                        type = "(warning)";
-                    }else{
-                        type = "(danger)";
+                        if (rounded < 40 && rounded > 20) {
+                            type = "(success)";
+                        } else if (rounded < 60) {
+                            type = "(warning)";
+                        } else {
+                            type = "(danger)";
+                        }
+
+                        if (index > 0) {
+                            separator = document.createElement("li");
+                            separator.className = "divider";
+
+                            document.getElementById("dropdown-miles").appendChild(separator);
+                        }
+
+                        //List Item
+                        listItem = document.createElement("li");
+
+                        //For some reason there's an a link with no url?
+                        alink = document.createElement("a");
+                        listItem.appendChild(alink);
+
+                        //Container for
+                        container = document.createElement("div");
+                        alink.appendChild(container);
+
+                        //Description
+                        textP = document.createElement("p");
+                        innerHTML = "<Strong>" + car + "</Strong>";
+                        innerHTML = innerHTML + "<span class=\"pull-right text-muted\">" +
+                            percent + "% To Next Service</span>";
+                        textP.innerHTML = innerHTML;
+                        container.appendChild(textP);
+
+                        //Display bar
+
+                        bar = document.createElement("div");
+                        bar.className = "progress progress-striped active";
+                        container.appendChild(bar);
+
+                        //Actual progressbar
+                        innerbar = document.createElement("div");
+                        innerbar.className = "progress-bar progress-bar-success";
+                        innerbar.setAttribute("role", "progressbar");
+                        innerbar.setAttribute("aria-valuenow", "" + percent);
+                        innerbar.setAttribute("aria-valuemin", "0");
+                        innerbar.setAttribute("aria-valuemax", "100");
+                        innerbar.setAttribute("style", "width: " + percent + "%");
+                        innerHTML = "<span class=\"sr-only\">" + percent + "Complete" + type + "</span>";
+                        innerbar.innerHTML = innerHTML;
+                        bar.appendChild(innerbar);
+
+                        document.getElementById("dropdown-miles").appendChild(listItem);
+
+                        index = index + 1;
                     }
-
-                    if (index > 0){
-                        separator = document.createElement("li");
-                        separator.className = "divider";
-
-                        document.getElementById("dropdown-miles").appendChild(separator);
-                    }
-
-                    //List Item
-                    listItem = document.createElement("li");
-
-                    //For some reason there's an a link with no url?
-                    alink = document.createElement("a");
-                    listItem.appendChild(alink);
-
-                    //Container for
-                    container = document.createElement("div");
-                    alink.appendChild(container);
-
-                    //Description
-                    textP = document.createElement("p");
-                    innerHTML = "<Strong>" + car + "</Strong>";
-                    innerHTML = innerHTML + "<span class=\"pull-right text-muted\">" +
-                        percent + "% To Next Service</span>";
-                    textP.innerHTML = innerHTML;
-                    container.appendChild(textP);
-
-                    //Display bar
-
-                    bar = document.createElement("div");
-                    bar.className = "progress progress-striped active";
-                    container.appendChild(bar);
-
-                    //Actual progressbar
-                    innerbar = document.createElement("div");
-                    innerbar.className = "progress-bar progress-bar-success";
-                    innerbar.setAttribute("role", "progressbar");
-                    innerbar.setAttribute("aria-valuenow", "" + percent);
-                    innerbar.setAttribute("aria-valuemin", "0");
-                    innerbar.setAttribute("aria-valuemax", "100");
-                    innerbar.setAttribute("style", "width: " + percent + "%");
-                    innerHTML = "<span class=\"sr-only\">" + percent + "Complete" + type + "</span>";
-                    innerbar.innerHTML = innerHTML;
-                    bar.appendChild(innerbar);
-
-                    document.getElementById("dropdown-miles").appendChild(listItem);
-
-                    index = index + 1;
                 }
-            }
-            else{
-                console.log("User has no cars in need of maintenance");
+                else {
+                    console.log("User has no cars in need of maintenance");
+                }
+            }catch(e){
+                console.log("No Progress Bars To Set");
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
