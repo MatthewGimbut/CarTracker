@@ -3,7 +3,7 @@ var savedCarList = [];
 
 var userJSON = JSON.parse(localStorage.getItem('userJSON'));
 var username = userJSON.username;
-var userID, edmMake, edmModel, edmYear, edmTrim;
+var userID, edmMake, edmModel, edmYear, edmStyle, edmTrim;
 
 /**
  * @author Matthew Gimbut, Michael Crinite
@@ -15,7 +15,6 @@ function searchCarInfo() {
     var model = $("#modelInput").val();
     var year = $("#yearInput").val();
     var carInfo = $("#carInfo");
-
 
     if(make !== "" && model !== "" && year !== "") {
         var url = "https://api.edmunds.com/api/vehicle/v2/" +
@@ -144,23 +143,25 @@ function displayVehicles() {
 
             var div = document.createElement("div");
             var currentRow = document.getElementById("car-list-container");
-            var curr, retMake, retModel, retYear, retTrim;
+            var curr, retMake, retModel, retYear, retStyle, retTrim;
 
             for (var i = 0; i < response.length; i++) {
                 //Generate a car object for each response to user below
                 retMake = response[i].make;
                 retModel = response[i].model;
                 retYear = response[i].year;
+                retStyle = response[i].style;
                 retTrim = response[i].trim;
 
                 curr = new Car(
                     retMake,
                     retModel,
                     retYear,
-                    null, //no carStyle column in DB
-                          //TODO: add carStyle column to DB
+                    retStyle,
                     retTrim
                 );
+
+                savedCarList.push(curr);
 
                 div.className = "row";
                 div.innerHTML = getAddedCarPreview(curr);
@@ -183,12 +184,13 @@ function userSelectVehicle(source) {
 
     console.log(source.id);
     console.log(carobj);
-    savedCarList.push(carobj);
+    //savedCarList.push(carobj);
     source.innerHTML = "Car has been successfully added to list!";
     source.onclick = "#";
     source.disabled = true;
     edmMake = carobj.make;
-    edmModel = carobj.model + " " + carobj.carStyle;
+    edmModel = carobj.model
+    edmStyle = carobj.carStyle;
     edmTrim = carobj.trim;
     edmYear = carobj.year;
     insertCarToDB();
@@ -212,6 +214,7 @@ function insertCarToDB(){
             model: edmModel,
             trim: edmTrim,
             year: edmYear,
+            style: edmStyle,
             username: username},
         success: function(response, textStatus){
             console.log(textStatus);
@@ -227,6 +230,8 @@ function insertCarToDB(){
 
 function loadHomePage() {
     loadCookies();
+    //Might need to separate this call
+    displayVehicles();
     document.getElementById("numCars").innerHTML = savedCarList.length.toString();
     var container = document.getElementById("carList");
     if (savedCarList.length === 0) {
