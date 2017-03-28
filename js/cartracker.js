@@ -6,13 +6,10 @@ var username = userJSON.username;
 var userID, edmMake, edmModel, edmYear, edmTrim;
 
 /**
- * Created by Matthew on 2/7/2017.
+ * @author Matthew Gimbut, Michael Crinite
  */
 function searchCarInfo() {
     currentCarList = [];
-    console.log("This should probably do" +
-        " something in the future");
-    //TODO Do something
 
     var make = $("#makeInput").val();
     var model = $("#modelInput").val();
@@ -96,10 +93,12 @@ String.prototype.capitalize = function() {
     return this.toLowerCase().charAt(0).toUpperCase() + this.slice(1);
 };
 
+//deprecated
 function loadCookies() {
     savedCarList = JSON.parse(localStorage.getItem("savedCarList"));
 }
 
+//deprecated
 function saveCookies() {
     localStorage.setItem("savedCarList", JSON.stringify(savedCarList));
 }
@@ -120,6 +119,9 @@ function getAddedCarPreview(car) {
         '</div>';
 }
 
+/**
+ * Queries db for vehicles belonging to userID, displays them on car-list.html
+ */
 function displayVehicles() {
     //loadCookies();
     //console.log(savedCarList);
@@ -171,6 +173,10 @@ function displayVehicles() {
     })
 }
 
+/**
+ * When a user selects a car, saves the car to the database under the user's name
+ * @param source Car to add
+ */
 function userSelectVehicle(source) {
     // TODO Add selected vehicle to user's car list
     var carobj = currentCarList[source.id];
@@ -236,6 +242,8 @@ function loadHomePage() {
             container.appendChild(div);
         }
     }
+    //Set username
+    document.getElementById("welcome-message").innerHTML = "Welcome " + username + "!";
 }
 
 function Car(make, model, year, carStyle, trim) {
