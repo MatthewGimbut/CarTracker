@@ -19,7 +19,7 @@ function initializeEmailJS(){
  * @param toEmail target Email
  */
 function sendTestNotification(){
-    var params = {tloEmai: userJSON.email};
+    var params = {toEmail: userJSON.email};
     initializeEmailJS();
 
     // Change to your service ID, or keep using the default service
