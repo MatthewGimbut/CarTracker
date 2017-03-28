@@ -2,6 +2,7 @@ var currentCarList = [];
 var savedCarList = [];
 
 var userJSON = JSON.parse(localStorage.getItem('userJSON'));
+var username = userJSON.username;
 var userID, edmMake, edmModel, edmYear, edmTrim;
 
 /**
@@ -120,15 +121,54 @@ function getAddedCarPreview(car) {
 }
 
 function displayVehicles() {
-    loadCookies();
-    console.log(savedCarList);
-    var currentRow = document.getElementById("car-list-container");
-    for (var i = 0; i < savedCarList.length; i++) {
-        var div = document.createElement("div");
-        div.className = "row";
-        div.innerHTML = getAddedCarPreview(savedCarList[i]);
-        currentRow.appendChild(div);
-    }
+    //loadCookies();
+    //console.log(savedCarList);
+
+    //Database call
+    $.ajax({
+        async: false,
+        type: 'GET',
+        url: 'http://localhost/getAllCars.php',
+        dataType: 'jsonP',
+        contentType:'application/javascript',
+        jsonp: 'callback',
+        jsonpcallback: 'logResults',
+        data: {username: username},
+        success: function(response, textStatus){
+            console.log(textStatus);
+            console.log(JSON.stringify(response));
+            //saveCookies(JSON.stringify(response));
+            //window.open("../pages/car-list.html", "_self");
+
+            var div = document.createElement("div");
+            var currentRow = document.getElementById("car-list-container");
+            var curr, retMake, retModel, retYear, retTrim;
+
+            for (var i = 0; i < response.length; i++) {
+                //Generate a car object for each response to user below
+                retMake = response[i].make;
+                retModel = response[i].model;
+                retYear = response[i].year;
+                retTrim = response[i].trim;
+
+                curr = new Car(
+                    retMake,
+                    retModel,
+                    retYear,
+                    null, //no carStyle column in DB
+                          //TODO: add carStyle column to DB
+                    retTrim
+                );
+
+                div.className = "row";
+                div.innerHTML = getAddedCarPreview(curr);
+                currentRow.appendChild(div);
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert("Error " + errorThrown + "\nPlease contact the webmaster with this error.");
+        }
+    })
 }
 
 function userSelectVehicle(source) {
@@ -145,11 +185,13 @@ function userSelectVehicle(source) {
     edmModel = carobj.model + " " + carobj.carStyle;
     edmTrim = carobj.trim;
     edmYear = carobj.year;
-    username = userJSON.username;
     insertCarToDB();
     //saveCookies();
 }
 
+/**
+ * Makes call to storeCars.php to insert a car into the database
+ */
 function insertCarToDB(){
     //Database call
     $.ajax({
@@ -168,7 +210,7 @@ function insertCarToDB(){
         success: function(response, textStatus){
             console.log(textStatus);
             console.log(JSON.stringify(response));
-            saveCookies(JSON.stringify(response));
+            //saveCookies(JSON.stringify(response));
             window.open("../pages/car-list.html", "_self");
         },
         error: function(jqXHR, textStatus, errorThrown) {
