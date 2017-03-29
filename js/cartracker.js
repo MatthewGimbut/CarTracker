@@ -57,6 +57,8 @@ function searchCarInfo() {
             currentRow.className = "row col-lg-16";
             carInfo.append(currentRow);
             for(var i = 0; i < response.styles.length; i++) {
+                console.log(typeof make);
+                console.log(make.capitalize());
                 var car = new Car(
                     make.capitalize(),
                     model.capitalize(),
