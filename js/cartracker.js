@@ -12,6 +12,16 @@ var username = userJSON.username;
 var userID, edmMake, edmModel, edmYear, edmStyle, edmTrim;
 
 /**
+ * For formatting search results.
+ * Adds a function to all strings to make sure they are all lowercase
+ * except for the first letter, which is always capitalized.
+ * @returns {string}
+ */
+function capitalize(toCap) {
+    return toCap.toLowerCase().charAt(0).toUpperCase() + toCap.slice(1);
+}
+
+/**
  * Gathers information from the user and uses it to find and display
  * the results of the search.
  * This is the only place that Edmunds API is called.
@@ -24,6 +34,9 @@ function searchCarInfo() {
     var model = $("#modelInput").val();
     var year = $("#yearInput").val();
     var carInfo = $("#carInfo");
+
+    console.log(typeof make);
+    console.log(capitalize(make));
 
     if(make !== "" && model !== "" && year !== "") {
         var url = "https://api.edmunds.com/api/vehicle/v2/" +
@@ -57,11 +70,9 @@ function searchCarInfo() {
             currentRow.className = "row col-lg-16";
             carInfo.append(currentRow);
             for(var i = 0; i < response.styles.length; i++) {
-                console.log(typeof make);
-                console.log(make.capitalize());
                 var car = new Car(
-                    make.capitalize(),
-                    model.capitalize(),
+                    capitalize(make),
+                    capitalize(model),
                     year,
                     response.styles[i].name,
                     response.styles[i].trim
@@ -101,16 +112,6 @@ function searchCarInfo() {
 function addVehicle() {
     window.location.href = "../pages/car-search.html";
 }
-
-/**
- * For formatting search results.
- * Adds a function to all strings to make sure they are all lowercase
- * except for the first letter, which is always capitalized.
- * @returns {string}
- */
-String.prototype.capitalize = function() {
-    return this.toLowerCase().charAt(0).toUpperCase() + this.slice(1);
-};
 
 //deprecated
 function loadCookies() {
