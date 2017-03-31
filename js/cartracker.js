@@ -110,6 +110,10 @@ function getAddedCarPreview(car) {
         '</div>' +
         '<div class="panel-body">' +
         '<p>' + 'Style: ' + car.carStyle + '</p>' +
+        '<div class="panel-body">'+
+        '<input id="car' + car.carId + '">' +
+        '<button onclick="updateMileage(' + car.carId + ')">Update Car Mileage</button>' +
+        '</div>' +
         '</div>' +
         '<div class="panel-footer">' +
         'Click <a id="carClick" href="#" onclick="#">here</a> to view/edit maintenance details.' +
@@ -147,12 +151,13 @@ function displayVehicles() {
                 // Not the best way to avoid exceptions stopping the program
                 currentRow = document.createElement("div");
             }
-            var curr, retMake, retModel, retYear, retStyle, retTrim;
+            var curr, retId, retMake, retModel, retYear, retStyle, retTrim;
 
             for (var i = 0; i < response.length; i++) {
                 div = document.createElement("div");
 
                 //Generate a car object for each response to user below
+                retId = response[i].carID;
                 retMake = response[i].make;
                 retModel = response[i].model;
                 retYear = response[i].year;
@@ -160,6 +165,7 @@ function displayVehicles() {
                 retTrim = response[i].trim;
 
                 curr = new Car(
+                    retId,
                     retMake,
                     retModel,
                     retYear,
@@ -257,7 +263,12 @@ function loadHomePage() {
     document.getElementById("welcome-message").innerHTML = "Welcome " + username + "!";
 }
 
-function Car(make, model, year, carStyle, trim) {
+function updateMileage(carID){
+    console.log(carID);
+}
+
+function Car(carId, make, model, year, carStyle, trim) {
+    this.carId = carId;
     this.make = make;
     this.model = model;
     this.year = year;
