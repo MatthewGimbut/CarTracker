@@ -102,7 +102,7 @@ function saveCookies() {
     localStorage.setItem("savedCarList", JSON.stringify(savedCarList));
 }
 
-function getAddedCarPreview(car) {
+function getAddedCarPreview(car, carID) {
     return '<br><div class="col-lg-4 carSearchDiv">' +
         '<div class="panel panel-info">' +
         '<div class="panel-heading">' +
@@ -111,8 +111,8 @@ function getAddedCarPreview(car) {
         '<div class="panel-body">' +
         '<p>' + 'Style: ' + car.carStyle + '</p>' +
         '<div class="panel-body">'+
-        '<input id="car' + car.carId + '">' +
-        '<button onclick="updateMileage(' + car.carId + ')">Update Car Mileage</button>' +
+        '<input id="car' + carID + '">' +
+        '<button onclick="updateMileage(' + carID + ')">Update Car Mileage</button>' +
         '</div>' +
         '</div>' +
         '<div class="panel-footer">' +
@@ -165,7 +165,6 @@ function displayVehicles() {
                 retTrim = response[i].trim;
 
                 curr = new Car(
-                    retId,
                     retMake,
                     retModel,
                     retYear,
@@ -176,7 +175,7 @@ function displayVehicles() {
                 savedCarList.push(curr);
 
                 div.className = "row";
-                div.innerHTML = getAddedCarPreview(curr);
+                div.innerHTML = getAddedCarPreview(curr, retId);
                 currentRow.appendChild(div);
             }
         },
@@ -264,11 +263,42 @@ function loadHomePage() {
 }
 
 function updateMileage(carID){
-    console.log(carID);
+            var newMileage = $("#car" + carID).val();
+            var currentDate = new Date();
+            var currentMonth = currentDate.getMonth() + 1;
+            var currentDay = currentDate.getDate();
+            var currentYear = currentDate.getFullYear();
+
+            if(!isNaN(newMileage)){
+                $.ajax({
+                    async: false,
+                    type: 'GET',
+                    url: 'http://localhost/updateMileage.php',
+                    dataType: 'jsonp',
+                    contentType:'application/javascript',
+                    jsonp: 'callback',
+                    jsonpcallback: 'logResults',
+                    data: {carID: carID,
+                        mileage: newMileage,
+                        monthMileage: currentMonth,
+                        dayMileage: currentDay,
+                        yearMileage: currentYear},
+                    success: function(response, textStatus){
+                        console.log(response);
+                        alert("New mileage at " + response.mileage + " updated for current car on " +
+                            response.monthMileage + "/" + response.dayMileage + "/" + response.yearMileage);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert("Error " + errorThrown);
+                    }
+                })
+            }
+            else{
+                alert("New mileage must be a number!");
+            }
 }
 
-function Car(carId, make, model, year, carStyle, trim) {
-    this.carId = carId;
+function Car(make, model, year, carStyle, trim) {
     this.make = make;
     this.model = model;
     this.year = year;
