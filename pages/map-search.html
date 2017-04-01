@@ -294,7 +294,11 @@
                 var request = { placeId: place.place_id };
                 service.getDetails(request, function(details, status) {
                     google.maps.event.addListener(marker, 'click', function () {
-                        infowindow.setContent(place.name + "<br />" + details.formatted_address + "<br />" + details.website + "<br />" + details.rating + " stars<br />" + details.formatted_phone_number);
+                        infowindow.setContent(place.name + "<br/>" +
+                                (details.formatted_address !== undefined ? details.formatted_address  + "<br/>" : "") +
+                                (details.website !== undefined ? details.website  + "<br/>" : "") +
+                                (details.rating !== undefined ? details.rating  + " stars<br/>" : "") +
+                                (details.formatted_phone_number !== undefined ? details.formatted_phone_number  + "<br/>" : ""));
                         infowindow.open(map, this);
                     });
                 });
