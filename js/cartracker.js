@@ -102,7 +102,7 @@ function saveCookies() {
     localStorage.setItem("savedCarList", JSON.stringify(savedCarList));
 }
 
-function getAddedCarPreview(car) {
+function getAddedCarPreview(car, carID) {
     return '<br><div class="col-lg-4 carSearchDiv">' +
         '<div class="panel panel-info">' +
         '<div class="panel-heading">' +
@@ -110,6 +110,10 @@ function getAddedCarPreview(car) {
         '</div>' +
         '<div class="panel-body">' +
         '<p>' + 'Style: ' + car.carStyle + '</p>' +
+        '<div class="panel-body">'+
+        '<input id="car' + carID + '">' +
+        '<button onclick="updateMileage(' + carID + ')">Update Car Mileage</button>' +
+        '</div>' +
         '</div>' +
         '<div class="panel-footer">' +
         'Click <a id="carClick" href="#" onclick="#">here</a> to view/edit maintenance details.' +
@@ -147,12 +151,13 @@ function displayVehicles() {
                 // Not the best way to avoid exceptions stopping the program
                 currentRow = document.createElement("div");
             }
-            var curr, retMake, retModel, retYear, retStyle, retTrim;
+            var curr, retId, retMake, retModel, retYear, retStyle, retTrim;
 
             for (var i = 0; i < response.length; i++) {
                 div = document.createElement("div");
 
                 //Generate a car object for each response to user below
+                retId = response[i].carID;
                 retMake = response[i].make;
                 retModel = response[i].model;
                 retYear = response[i].year;
@@ -170,7 +175,7 @@ function displayVehicles() {
                 savedCarList.push(curr);
 
                 div.className = "row";
-                div.innerHTML = getAddedCarPreview(curr);
+                div.innerHTML = getAddedCarPreview(curr, retId);
                 currentRow.appendChild(div);
             }
         },
@@ -255,6 +260,42 @@ function loadHomePage() {
     }
     //Set username
     document.getElementById("welcome-message").innerHTML = "Welcome " + username + "!";
+}
+
+function updateMileage(carID){
+            var newMileage = $("#car" + carID).val();
+            var currentDate = new Date();
+            var currentMonth = currentDate.getMonth() + 1;
+            var currentDay = currentDate.getDate();
+            var currentYear = currentDate.getFullYear();
+
+            if(!isNaN(newMileage)){
+                $.ajax({
+                    async: false,
+                    type: 'GET',
+                    url: 'http://localhost/updateMileage.php',
+                    dataType: 'jsonp',
+                    contentType:'application/javascript',
+                    jsonp: 'callback',
+                    jsonpcallback: 'logResults',
+                    data: {carID: carID,
+                        mileage: newMileage,
+                        monthMileage: currentMonth,
+                        dayMileage: currentDay,
+                        yearMileage: currentYear},
+                    success: function(response, textStatus){
+                        console.log(response);
+                        alert("New mileage at " + response.mileage + " updated for current car on " +
+                            response.monthMileage + "/" + response.dayMileage + "/" + response.yearMileage);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert("Error " + errorThrown);
+                    }
+                })
+            }
+            else{
+                alert("New mileage must be a number!");
+            }
 }
 
 function Car(make, model, year, carStyle, trim) {
