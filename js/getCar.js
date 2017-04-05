@@ -10,7 +10,7 @@ function getCar(){
     $.ajax({
         async: false,
         type: 'GET',
-        url: 'http://localhost/getCar.php',
+        url: '../php/getCar.php',
         dataType: 'jsonp',
         contentType:'application/javascript',
         jsonp: 'callback',

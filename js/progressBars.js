@@ -19,7 +19,7 @@ $(document).ready(function(){
     $.ajax({
         async: false,
         type: 'GET',
-        url: 'http://localhost/getAllCars.php',
+        url: '../php/getAllCars.php',
         dataType: 'jsonp',
         contentType:'application/javascript',
         jsonp: 'callback',

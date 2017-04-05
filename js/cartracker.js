@@ -133,7 +133,7 @@ function displayVehicles() {
     $.ajax({
         async: false,
         type: 'GET',
-        url: 'http://localhost/getAllCars.php',
+        url: '../php/getAllCars.php',
         dataType: 'jsonP',
         contentType:'application/javascript',
         jsonp: 'callback',
@@ -216,7 +216,7 @@ function insertCarToDB(){
     $.ajax({
         async: false,
         type: 'GET',
-        url: 'http://localhost/storeCars.php',
+        url: '../php/storeCars.php',
         dataType: 'jsonP',
         contentType:'application/javascript',
         jsonp: 'callback',
