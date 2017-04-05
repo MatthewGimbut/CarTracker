@@ -1,6 +1,8 @@
-IPv4 54.190.19.36
+IPv4 54.68.25.38
 
 user: ec2-user
 
 Public DNS (IPv4)
-ec2-54-190-19-36.us-west-2.compute.amazonaws.com
+ec2-54-68-25-38.us-west-2.compute.amazonaws.com
+
+http://www.cartrackerproject.me
