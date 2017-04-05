@@ -1,4 +1,4 @@
-IPv4 54.68.25.38
+Elastic IP: 54.68.25.38
 
 user: ec2-user
 
