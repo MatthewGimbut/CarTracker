@@ -1,0 +1,6 @@
+IPv4 54.190.19.36
+
+user: ec2-user
+
+Public DNS (IPv4)
+ec2-54-190-19-36.us-west-2.compute.amazonaws.com
