@@ -233,6 +233,7 @@
         <script type="text/javascript">
             var map;
             var latitude, longitude;
+            var service;
 
             /*
                 Requests the location of the user.
@@ -242,8 +243,8 @@
                     navigator.geolocation.getCurrentPosition(showPosition);
                 } else {
                     console.log("Geolocation is not supported by this browser.");
-                    latitude = 1000;
-                    longitude = 1000;
+                    latitude = 0;
+                    longitude = 0;
                 }
             }
 
@@ -269,11 +270,12 @@
                 });
                 console.log("Map initiated.");
                 infowindow = new google.maps.InfoWindow();
-                var service = new google.maps.places.PlacesService(map);
+                service = new google.maps.places.PlacesService(map);
+
                 service.textSearch({
                     location: {lat: latitude, lng: longitude},
                     radius: 1000,
-                    query: 'autoshop'
+                    query: 'auto shop'
                 }, callback);
             }
 
@@ -291,10 +293,16 @@
                     map: map,
                     position: place.geometry.location
                 });
-
-                google.maps.event.addListener(marker, 'click', function() {
-                    infowindow.setContent(place.name);
-                    infowindow.open(map, this);
+                var request = { placeId: place.place_id };
+                service.getDetails(request, function(details, status) {
+                    google.maps.event.addListener(marker, 'click', function () {
+                        infowindow.setContent(place.name + "<br/>" +
+                                (details.formatted_address !== undefined ? details.formatted_address  + "<br/>" : "") +
+                                (details.website !== undefined ? details.website  + "<br/>" : "") +
+                                (details.rating !== undefined ? details.rating  + " stars<br/>" : "") +
+                                (details.formatted_phone_number !== undefined ? details.formatted_phone_number  + "<br/>" : ""));
+                        infowindow.open(map, this);
+                    });
                 });
             }
 
@@ -330,6 +338,8 @@
 
 <!-- CarTracker JavaScript -->
 <script src="../js/cartracker.js"></script>
+<script src="../js/car.js"></script>
+<script src="../js/alert.js"></script>
 
 <!-- Set Up Mileage Progressbars -->
 <script src="../js/progressBars.js"></script>

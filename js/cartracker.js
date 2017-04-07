@@ -1,3 +1,9 @@
+/**
+ * This file contains most of the code regarding searching for cars
+ * and manipulating the corresponding data.
+ * @author Matthew Gimbut, Michael Crinite
+ */
+
 var currentCarList = [];
 var savedCarList = [];
 
@@ -6,7 +12,20 @@ var username = userJSON.username;
 var userID, edmMake, edmModel, edmYear, edmStyle, edmTrim;
 
 /**
- * @author Matthew Gimbut, Michael Crinite
+ * For formatting search results.
+ * Adds a function to all strings to make sure they are all lowercase
+ * except for the first letter, which is always capitalized.
+ * @returns {string}
+ */
+function capitalize(toCap) {
+    return toCap.toLowerCase().charAt(0).toUpperCase() + toCap.slice(1);
+}
+
+/**
+ * Gathers information from the user and uses it to find and display
+ * the results of the search.
+ * This is the only place that Edmunds API is called.
+ * Additionally, the car-search.html page is the only page that accesses the API.
  */
 function searchCarInfo() {
     currentCarList = [];
@@ -15,6 +34,9 @@ function searchCarInfo() {
     var model = $("#modelInput").val();
     var year = $("#yearInput").val();
     var carInfo = $("#carInfo");
+
+    console.log(typeof make);
+    console.log(capitalize(make));
 
     if(make !== "" && model !== "" && year !== "") {
         var url = "https://api.edmunds.com/api/vehicle/v2/" +
@@ -49,8 +71,8 @@ function searchCarInfo() {
             carInfo.append(currentRow);
             for(var i = 0; i < response.styles.length; i++) {
                 var car = new Car(
-                    make.capitalize(),
-                    model.capitalize(),
+                    capitalize(make),
+                    capitalize(model),
                     year,
                     response.styles[i].name,
                     response.styles[i].trim
@@ -78,19 +100,27 @@ function searchCarInfo() {
             }
         },
 
-        fail:function(data) {
+        error: function(data) {
             carInfo.text("Search failed!");
         }
     });
 }
 
+/**
+ * Disables clicks on car links after adding to car list.
+ */
+function clickAndDisable(link) {
+    link.onclick = function(event) {
+        event.preventDefault();
+    }
+}
+
+/**
+ * Redirects web page to the car search place
+ */
 function addVehicle() {
     window.location.href = "../pages/car-search.html";
 }
-
-String.prototype.capitalize = function() {
-    return this.toLowerCase().charAt(0).toUpperCase() + this.slice(1);
-};
 
 //deprecated
 function loadCookies() {
@@ -102,6 +132,14 @@ function saveCookies() {
     localStorage.setItem("savedCarList", JSON.stringify(savedCarList));
 }
 
+
+/**
+ * Small preview widget for Car objects.
+ * Will display basic information about the car such as the make, model, year, and details.
+ * Allows the user to select a car and view more details quickly.
+ * @param car Car object to be displayed on the screen.
+ * @returns {string}
+ */
 function getAddedCarPreview(car, carID) {
     return '<br><div class="col-lg-4 carSearchDiv">' +
         '<div class="panel panel-info">' +
@@ -190,7 +228,6 @@ function displayVehicles() {
  * @param source Car to add
  */
 function userSelectVehicle(source) {
-    // TODO Add selected vehicle to user's car list
     var carobj = currentCarList[source.id];
 
     console.log(source.id);
@@ -199,6 +236,7 @@ function userSelectVehicle(source) {
     source.innerHTML = "Car has been successfully added to list!";
     source.onclick = "#";
     source.disabled = true;
+    clickAndDisable(source);
     edmMake = carobj.make;
     edmModel = carobj.model
     edmStyle = carobj.carStyle;
@@ -239,11 +277,15 @@ function insertCarToDB(){
     })
 }
 
+/**
+ * Called when the homepage is loaded, Displays the cars (if any)
+ * the user has on the screen.
+ */
 function loadHomePage() {
     //loadCookies(); //no longer save as cookies
     //displayVehicles();
     console.log("list contains:\n" + savedCarList);
-    document.getElementById("numCars").innerHTML = savedCarList.length;
+    document.getElementById("numCars").innerHTML = savedCarList.length.toString(); //Added toString so WebStorm wouldn't yell at me for inconsistent types
     var container = document.getElementById("carList");
     if (savedCarList.length === 0) {
         var message = document.createElement("div");
@@ -298,19 +340,19 @@ function updateMileage(carID){
             }
 }
 
-function Car(make, model, year, carStyle, trim) {
+/* function Car(make, model, year, carStyle, trim) {
     this.make = make;
     this.model = model;
     this.year = year;
     this.carStyle = carStyle;
     this.trim = trim;
-    this.alerts = [];
+    this.alerts = [];*/
 
     /**
      * Pulls up image for car
      * @returns {null}
      */
-    this.getCarImage = function() {
+   /* this.getCarImage = function() {
         return null;
     };
 
@@ -330,4 +372,4 @@ function Car(make, model, year, carStyle, trim) {
 function Alert(priority, message) {
     this.priority = priority;
     this.message = message;
-}
+}*/
