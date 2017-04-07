@@ -349,7 +349,7 @@ function updateMileage(carID, mileage){
             }
 }
 
-function Car(make, model, year, carStyle, trim, mileage) {
+/*function Car(make, model, year, carStyle, trim, mileage) {
 
     this.make = make;
     this.model = model;
