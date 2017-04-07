@@ -1,0 +1,8 @@
+Elastic IP: 54.68.25.38
+
+user: ec2-user
+
+Public DNS (IPv4)
+ec2-54-68-25-38.us-west-2.compute.amazonaws.com
+
+http://www.cartrackerproject.me
