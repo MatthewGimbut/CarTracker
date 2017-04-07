@@ -107,6 +107,15 @@ function searchCarInfo() {
 }
 
 /**
+ * Disables clicks on car links after adding to car list.
+ */
+function clickAndDisable(link) {
+    link.onclick = function(event) {
+        event.preventDefault();
+    }
+}
+
+/**
  * Redirects web page to the car search place
  */
 function addVehicle() {
@@ -213,7 +222,6 @@ function displayVehicles() {
  * @param source Car to add
  */
 function userSelectVehicle(source) {
-    // TODO Add selected vehicle to user's car list
     var carobj = currentCarList[source.id];
 
     console.log(source.id);
@@ -222,6 +230,7 @@ function userSelectVehicle(source) {
     source.innerHTML = "Car has been successfully added to list!";
     source.onclick = "#";
     source.disabled = true;
+    clickAndDisable(source);
     edmMake = carobj.make;
     edmModel = carobj.model
     edmStyle = carobj.carStyle;
