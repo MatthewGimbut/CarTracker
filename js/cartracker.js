@@ -132,6 +132,7 @@ function saveCookies() {
     localStorage.setItem("savedCarList", JSON.stringify(savedCarList));
 }
 
+
 /**
  * Small preview widget for Car objects.
  * Will display basic information about the car such as the make, model, year, and details.
@@ -139,7 +140,7 @@ function saveCookies() {
  * @param car Car object to be displayed on the screen.
  * @returns {string}
  */
-function getAddedCarPreview(car) {
+function getAddedCarPreview(car, carID) {
     return '<br><div class="col-lg-4 carSearchDiv">' +
         '<div class="panel panel-info">' +
         '<div class="panel-heading">' +
@@ -147,6 +148,10 @@ function getAddedCarPreview(car) {
         '</div>' +
         '<div class="panel-body">' +
         '<p>' + 'Style: ' + car.carStyle + '</p>' +
+        '<div class="panel-body">'+
+        '<input id="car' + carID + '">' +
+        '<button onclick="updateMileage(' + carID + ')">Update Car Mileage</button>' +
+        '</div>' +
         '</div>' +
         '<div class="panel-footer">' +
         'Click <a id="carClick" href="#" onclick="#">here</a> to view/edit maintenance details.' +
@@ -166,7 +171,7 @@ function displayVehicles() {
     $.ajax({
         async: false,
         type: 'GET',
-        url: 'http://localhost/getAllCars.php',
+        url: '../php/getAllCars.php',
         dataType: 'jsonP',
         contentType:'application/javascript',
         jsonp: 'callback',
@@ -184,12 +189,13 @@ function displayVehicles() {
                 // Not the best way to avoid exceptions stopping the program
                 currentRow = document.createElement("div");
             }
-            var curr, retMake, retModel, retYear, retStyle, retTrim;
+            var curr, retId, retMake, retModel, retYear, retStyle, retTrim;
 
             for (var i = 0; i < response.length; i++) {
                 div = document.createElement("div");
 
                 //Generate a car object for each response to user below
+                retId = response[i].carID;
                 retMake = response[i].make;
                 retModel = response[i].model;
                 retYear = response[i].year;
@@ -207,7 +213,7 @@ function displayVehicles() {
                 savedCarList.push(curr);
 
                 div.className = "row";
-                div.innerHTML = getAddedCarPreview(curr);
+                div.innerHTML = getAddedCarPreview(curr, retId);
                 currentRow.appendChild(div);
             }
         },
@@ -248,7 +254,7 @@ function insertCarToDB(){
     $.ajax({
         async: false,
         type: 'GET',
-        url: 'http://localhost/storeCars.php',
+        url: '../php/storeCars.php',
         dataType: 'jsonP',
         contentType:'application/javascript',
         jsonp: 'callback',
@@ -298,3 +304,72 @@ function loadHomePage() {
     document.getElementById("welcome-message").innerHTML = "Welcome " + username + "!";
 }
 
+function updateMileage(carID){
+            var newMileage = $("#car" + carID).val();
+            var currentDate = new Date();
+            var currentMonth = currentDate.getMonth() + 1;
+            var currentDay = currentDate.getDate();
+            var currentYear = currentDate.getFullYear();
+
+            if(!isNaN(newMileage)){
+                $.ajax({
+                    async: false,
+                    type: 'GET',
+                    url: 'http://localhost/updateMileage.php',
+                    dataType: 'jsonp',
+                    contentType:'application/javascript',
+                    jsonp: 'callback',
+                    jsonpcallback: 'logResults',
+                    data: {carID: carID,
+                        mileage: newMileage,
+                        monthMileage: currentMonth,
+                        dayMileage: currentDay,
+                        yearMileage: currentYear},
+                    success: function(response, textStatus){
+                        console.log(response);
+                        alert("New mileage at " + response.mileage + " updated for current car on " +
+                            response.monthMileage + "/" + response.dayMileage + "/" + response.yearMileage);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert("Error " + errorThrown);
+                    }
+                })
+            }
+            else{
+                alert("New mileage must be a number!");
+            }
+}
+
+/* function Car(make, model, year, carStyle, trim) {
+    this.make = make;
+    this.model = model;
+    this.year = year;
+    this.carStyle = carStyle;
+    this.trim = trim;
+    this.alerts = [];*/
+
+    /**
+     * Pulls up image for car
+     * @returns {null}
+     */
+   /* this.getCarImage = function() {
+        return null;
+    };
+
+    this.getPriorityAlerts = function(priority) {
+        var priorityAlerts = null;
+        var numAlerts = 0;
+        for(var i = 0; i < this.alerts.length; i++) {
+            if(this.alerts[i].priority === priority) {
+                priorityAlerts[numAlerts] = this.alerts[i];
+                numAlerts++;
+            }
+        }
+        return priorityAlerts;
+    };
+}
+
+function Alert(priority, message) {
+    this.priority = priority;
+    this.message = message;
+}*/

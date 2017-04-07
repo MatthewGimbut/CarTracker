@@ -14,7 +14,7 @@ $(document).ready(function(){
             $.ajax({
                 async: false,
                 type: 'GET',
-                url: 'http://localhost/updateMileage.php',
+                url: '../php/updateMileage.php',
                 dataType: 'jsonp',
                 contentType:'application/javascript',
                 jsonp: 'callback',
