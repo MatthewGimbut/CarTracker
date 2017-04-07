@@ -149,8 +149,9 @@ function getAddedCarPreview(car, carID) {
         '<div class="panel-body">' +
         '<p>' + 'Style: ' + car.carStyle + '</p>' +
         '<div class="panel-body">'+
+        '<p id="mileage' + carID + '">Current Mileage: ' + car.mileage + '</p>' +
         '<input id="car' + carID + '">' +
-        '<button onclick="updateMileage(' + carID + ')">Update Car Mileage</button>' +
+        '<button onclick="updateMileage(' + carID + ',' + car.mileage + ')">Update Car Mileage</button>' +
         '</div>' +
         '</div>' +
         '<div class="panel-footer">' +
@@ -189,7 +190,7 @@ function displayVehicles() {
                 // Not the best way to avoid exceptions stopping the program
                 currentRow = document.createElement("div");
             }
-            var curr, retId, retMake, retModel, retYear, retStyle, retTrim;
+            var curr, retId, retMake, retModel, retYear, retStyle, retTrim, retMileage;
 
             for (var i = 0; i < response.length; i++) {
                 div = document.createElement("div");
@@ -201,13 +202,15 @@ function displayVehicles() {
                 retYear = response[i].year;
                 retStyle = response[i].style;
                 retTrim = response[i].trim;
+                retMileage = response[i].mileage;
 
                 curr = new Car(
                     retMake,
                     retModel,
                     retYear,
                     retStyle,
-                    retTrim
+                    retTrim,
+                    retMileage
                 );
 
                 savedCarList.push(curr);
@@ -304,7 +307,7 @@ function loadHomePage() {
     document.getElementById("welcome-message").innerHTML = "Welcome " + username + "!";
 }
 
-function updateMileage(carID){
+function updateMileage(carID, mileage){
             var newMileage = $("#car" + carID).val();
             var currentDate = new Date();
             var currentMonth = currentDate.getMonth() + 1;
@@ -312,41 +315,49 @@ function updateMileage(carID){
             var currentYear = currentDate.getFullYear();
 
             if(!isNaN(newMileage)){
-                $.ajax({
-                    async: false,
-                    type: 'GET',
-                    url: 'http://localhost/updateMileage.php',
-                    dataType: 'jsonp',
-                    contentType:'application/javascript',
-                    jsonp: 'callback',
-                    jsonpcallback: 'logResults',
-                    data: {carID: carID,
-                        mileage: newMileage,
-                        monthMileage: currentMonth,
-                        dayMileage: currentDay,
-                        yearMileage: currentYear},
-                    success: function(response, textStatus){
-                        console.log(response);
-                        alert("New mileage at " + response.mileage + " updated for current car on " +
-                            response.monthMileage + "/" + response.dayMileage + "/" + response.yearMileage);
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        alert("Error " + errorThrown);
-                    }
-                })
+                if(newMileage > mileage ||
+                    (newMileage < mileage && confirm("WARNING: Updated mileage is lower than current recorded mileage. Continue to update?"))) {
+                    $.ajax({
+                        async: false,
+                        type: 'GET',
+                        url: '../php/updateMileage.php',
+                        dataType: 'jsonp',
+                        contentType: 'application/javascript',
+                        jsonp: 'callback',
+                        jsonpcallback: 'logResults',
+                        data: {
+                            carID: carID,
+                            mileage: newMileage,
+                            monthMileage: currentMonth,
+                            dayMileage: currentDay,
+                            yearMileage: currentYear
+                        },
+                        success: function (response, textStatus) {
+                            console.log(response);
+                            alert("New mileage at " + response.mileage + " updated for current car on " +
+                                response.monthMileage + "/" + response.dayMileage + "/" + response.yearMileage);
+                            $("#mileage" + carID).text("Current Mileage: " + newMileage);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert("Error " + errorThrown);
+                        }
+                    })
+                }
             }
             else{
                 alert("New mileage must be a number!");
             }
 }
 
-/* function Car(make, model, year, carStyle, trim) {
+function Car(make, model, year, carStyle, trim, mileage) {
+
     this.make = make;
     this.model = model;
     this.year = year;
     this.carStyle = carStyle;
     this.trim = trim;
-    this.alerts = [];*/
+    this.mileage = mileage;
+    this.alerts = [];
 
     /**
      * Pulls up image for car
