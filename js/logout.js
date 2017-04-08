@@ -4,7 +4,7 @@
 
 $(document).ready(function() {
     $("#logout").click(function(){
-        alert("clicked");
+        //alert("clicked");
         localStorage.setItem('userJSON', null);
     });
 });
