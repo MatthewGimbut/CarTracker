@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>CarTracker - User Profile</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="View your CarTracker profile. Login to edit details.">
+    <meta name="author" content="CarTracker LLC">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<!-- This user profile template was found at: http://bootsnipp.com/snippets/featured/simple-user-profile -->
+<body>
+
+<div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">CarTracker</a>
+        </div>
+        <!-- /.navbar-header -->
+
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-messages">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>Read All Messages</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-messages -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul id="dropdown-miles" class="dropdown-menu dropdown-tasks">
+                    <!--
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>See All Tasks</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li> -->
+                </ul>
+                <!-- /.dropdown-tasks -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="userProfile.html"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    </li>
+                    <li><a href="settings.html"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li id="loginitem"><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Login</a>
+                    </li>
+                    <li id="reg"><a href="registration.html">Register</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+        <!-- /.navbar-top-links -->
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+
+
+                    <li class="sidebar-search">
+                        <a href="index.html">
+                            <img src="../img/newlogotransparent.png" style="width: 100%;">
+                        </a>
+
+                        <!-- Added new in-site search engine -->
+                        <!-- start of freefind search box html -->
+                        <table cellpadding=0 cellspacing=0 border=0>
+                            <tr>
+                                <td style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt;">
+                                    <form style="margin:0px; margin-top:4px; margin-left:30px;"
+                                          action="http://search.freefind.com/find.html" method="get"
+                                          accept-charset="utf-8" target="_self">
+                                        <input type="hidden" name="si" value="31098423">
+                                        <input type="hidden" name="pid" value="r">
+                                        <input type="hidden" name="n" value="0">
+                                        <input type="hidden" name="_charset_" value="">
+                                        <input type="hidden" name="bcd" value="&#247;">
+                                        <input type="text" name="query" size="15">
+                                        <input type="submit" value="search">
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left; font-family: Arial, Helvetica, sans-serif;	font-size: 7.5pt; padding-top:4px;">
+                                    <a style="text-decoration:none; color:gray; margin-left:45px;"
+                                       href="http://www.freefind.com">search engine</a><a
+                                        style="text-decoration:none; color:gray;" href="http://www.freefind.com"> by
+                                    <span style="color: #606060;">freefind</span></a>
+                                </td>
+
+                            </tr>
+                        </table>
+                        <!-- end of freefind search box html -->
+
+                    </li>
+                    <li>
+                        <a href="index.html"><i class="fa fa-home fa-fw"></i> Home</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-car fa-fw"></i> Cars<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="car-search.html"> Add Cars</a>
+                            </li>
+                            <li>
+                                <a href="car-list.html"> View Cars</a>
+                            </li>
+                            <li>
+                                <a href="car-info.html"> Maintenance</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-male fa-fw"></i> Profile<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="userProfile.html"> View Profile</a>
+                            </li>
+                            <li>
+                                <a href="userProfile.html"> Edit Profile</a>
+                            </li>
+                            <li>
+                                <a href="settings.html"> Preferences</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="../pages/message-center.html"><i class="fa fa-envelope fa-fw"></i> Message
+                            Center</span></a>
+                    </li>
+                    <li>
+                        <a href="../pages/map-search.html"><i class="fa fa-shopping-cart fa-fw"></i> Find A Store</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+
+    <div id="page-wrapper">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
+                    <A href="edit.html">Edit Profile</A>
+                    <label>|</label>
+                    <A id="logout" href="login.html">Logout</A>
+                    <br>
+                    <p class="text-info" id="currentDate"></p>
+
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+
+
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" id="nameTitle"></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-3 col-lg-3 " align="center"><img alt="User Pic"
+                                                                                    src="https://freeiconshop.com/wp-content/uploads/edd/car-outline-front-view.png"
+                                                                                    class="img-responsive"
+                                                                                    style="border: #00018B 4px solid;">
+                                </div>
+
+                                <div class=" col-md-9 col-lg-9 ">
+                                    <table class="table table-user-information">
+                                        <tbody>
+
+                                        <tr>
+                                            <td>Username</td>
+                                            <td id="username">(USERNAME HERE)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email</td>
+                                            <td id="email"><a href="mailto:EMAIL HERE">EMAIL HERE</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Date of Birth</td>
+                                            <td id="DOB">(DOB HERE)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Age</td>
+                                            <td id="Age">AGE HERE</td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+
+                                    <a href="mileDemo.html" class="btn btn-primary">My Vehicles</a>
+                                    <a href="index.html" class="btn btn-primary">Home Page</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+<script src="../js/userProfile.js"></script>
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+<script src="../js/getEmail.js"></script>
+
+<!-- Set Up Mileage Progressbars -->
+<script src="../js/progressBars.js"></script>
+
+<script src="../js/dynamicnav.js"></script>
+
+<script src="../js/logout.js"></script>
+
+</body>
+
+</html>
