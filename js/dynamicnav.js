@@ -17,6 +17,7 @@ $(document).ready(function(){
     //console.log(userJSON);
 
     var currentItem, href, a;
+
     if(userJSON !== null){
         //Remove register option
         currentItem = document.getElementById("reg");
@@ -27,10 +28,10 @@ $(document).ready(function(){
         href = currentItem.children[0];
         href.innerHTML = "Log out";
         currentItem.setAttribute("id", "logout");
-    }else{
+
         //Change profile links to login page
         currentItem = document.getElementById("profileLink");
         a = currentItem.children[0];
-        a.setAttribute("href", "login.html");
+        a.setAttribute("href", "userProfile.html");
     }
 });
