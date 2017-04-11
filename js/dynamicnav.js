@@ -29,7 +29,7 @@ $(document).ready(function(){
 
         //Change profile links to login page
         currentItem = document.getElementById("profileLink");
-        href = currentItem.children[0];
-        href.setAttribute("href", "login.html");
+        var a = currentItem.children[0];
+        a.setAttribute("href", "login.html");
     }
 });
