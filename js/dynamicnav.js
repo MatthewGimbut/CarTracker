@@ -26,5 +26,10 @@ $(document).ready(function(){
         var href = currentItem.children[0];
         href.innerHTML = "Log out";
         currentItem.setAttribute("id", "logout");
+
+        //Change profile links to login page
+        currentItem = document.getElementById("profileLink");
+        href = currentItem.children[0];
+        href.setAttribute("href", "login.html");
     }
 });
