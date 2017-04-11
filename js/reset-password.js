@@ -15,6 +15,8 @@ $(document).ready(function(){
         if(validatePassword(newPassword1,newPassword2)==true) {
             alert("good");
             //ready to update password
+            //change password in database
+            //take back to userProfile.html
         }
     });
 });
