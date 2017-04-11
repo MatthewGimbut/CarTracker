@@ -19,8 +19,8 @@ $(document).ready(function(){
             $.ajax({
                 async: false,
                 type: 'GET',
-                //url: '../php/reset-password.php',
-                url: '//localhost/reset-password.php',
+                url: '../php/reset-password.php',
+                //url: '//localhost/reset-password.php',
                 dataType: 'jsonP',
                 contentType:'application/javascript',
                 jsonp: 'callback',
