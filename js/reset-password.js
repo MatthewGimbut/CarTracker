@@ -3,20 +3,43 @@
  */
 var userJSON = JSON.parse(localStorage.getItem('userJSON'));
 var username = userJSON.username;
+var email = userJSON.email;
 
 document.getElementById("panel-header").innerHTML = "Reset Password for " + username;
 
 $(document).ready(function(){
     $('#reset-password').on('click', function(event) {
-        var newPassword1 = $("#new-password").val();
-        var newPassword2 = $("#confirm-new-password").val();
+        var newPassword1 = $("#newPassword1").val();
+        var newPassword2 = $("#newPassword2").val();
         var regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 
         if(validatePassword(newPassword1,newPassword2)==true) {
-            alert("good");
-            //ready to update password
             //change password in database
             //take back to userProfile.html
+            $.ajax({
+                async: false,
+                type: 'GET',
+                //url: '../php/reset-password.php',
+                url: '//localhost/reset-password.php',
+                dataType: 'jsonP',
+                contentType:'application/javascript',
+                jsonp: 'callback',
+                jsonpcallback: 'logResults',
+                data: {
+                    username: username,
+                    newPassword1: newPassword1,
+                    email: email
+                },
+                    success: function(response, textStatus){
+                    console.log(textStatus);
+                    console.log(JSON.stringify(response));
+                    alert("Your Password Has Been Changed");
+                    window.open("../pages/userProfile.html", "_self");
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert("Error " + errorThrown + "\nPlease contact the webmaster with this error.");
+                }
+            })
         }
     });
 });
