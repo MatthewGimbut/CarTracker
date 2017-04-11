@@ -16,20 +16,21 @@ $(document).ready(function(){
     var username = userJSON.username;
     //console.log(userJSON);
 
+    var currentItem, href, a;
     if(userJSON !== null){
         //Remove register option
-        var currentItem = document.getElementById("reg");
+        currentItem = document.getElementById("reg");
         currentItem.parentNode.removeChild(currentItem);
 
         //Change login to logout
         currentItem = document.getElementById("loginitem");
-        var href = currentItem.children[0];
+        href = currentItem.children[0];
         href.innerHTML = "Log out";
         currentItem.setAttribute("id", "logout");
-
+    }else{
         //Change profile links to login page
         currentItem = document.getElementById("profileLink");
-        var a = currentItem.children[0];
+        a = currentItem.children[0];
         a.setAttribute("href", "login.html");
     }
 });
