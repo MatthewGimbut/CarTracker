@@ -27,6 +27,7 @@ $(document).ready(function(){
                 elem.parentNode.removeChild(elem);
 
                 var index = 0;
+                var message = false;
                 while(index < response.length){
                     var car = response[index].make + " " + response[index].model;
                     var miles = response[index].mileage - response[index].mileageLastInspection;
@@ -40,10 +41,20 @@ $(document).ready(function(){
                     col.className = "col-lg-4";
                     row.appendChild(col);
 
+                    var color;
+                    if(miles > 5000){
+                        color = " panel-red";
+                        message = true;
+                    }else if(miles > 2500){
+                        color = " panel-yellow";
+                    }else{
+                        color = " panel-green";
+                    }
+
                     //Create alert object
                     var alert = document.createElement("div");
                     alert.id = "alert" + index;
-                    alert.className = "panel panel-yellow";
+                    alert.className = "panel" + color;
                     col.appendChild(alert);
 
                     //Create heading
@@ -67,6 +78,8 @@ $(document).ready(function(){
 
                     index = index + 1;
                 }
+
+                //Insert code to add messages to messagebar
             }
             else{
                 console.log("User has no cars in need of maintenance");
