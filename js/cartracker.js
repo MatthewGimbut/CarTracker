@@ -241,7 +241,7 @@ function userSelectVehicle(source) {
     source.disabled = true;
     clickAndDisable(source);
     edmMake = carobj.make;
-    edmModel = carobj.model
+    edmModel = carobj.model;
     edmStyle = carobj.carStyle;
     edmTrim = carobj.trim;
     edmYear = carobj.year;

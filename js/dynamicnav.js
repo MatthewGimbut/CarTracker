@@ -14,7 +14,7 @@ function loadCookies() {
 $(document).ready(function(){
     loadCookies();
     var username = userJSON.username;
-    console.log(userJSON);
+    //console.log(userJSON);
 
     if(userJSON !== null){
         //Remove register option
