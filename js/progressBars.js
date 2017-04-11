@@ -50,11 +50,11 @@ $(document).ready(function(){
                         rounded = roundup(percent);
 
                         if (rounded < 40 && rounded > 20) {
-                            type = "(success)";
+                            type = " progress-bar-success";
                         } else if (rounded < 60) {
-                            type = "(warning)";
+                            type = " progress-bar-warning";
                         } else {
-                            type = "(danger)";
+                            type = " progress-bar-danger";
                         }
 
                         if (index > 0) {
@@ -78,6 +78,10 @@ $(document).ready(function(){
                         //Description
                         textP = document.createElement("p");
                         innerHTML = "<Strong>" + car + "</Strong>";
+                        textP.innerHTML = innerHTML;
+                        container.appendChild(textP);
+
+                        textP = document.createElement("p");
                         innerHTML = innerHTML + "<span class=\"pull-right text-muted\">" +
                             percent + "% To Next Service</span>";
                         textP.innerHTML = innerHTML;
@@ -86,7 +90,7 @@ $(document).ready(function(){
                         //Display bar
 
                         bar = document.createElement("div");
-                        bar.className = "progress progress-striped active";
+                        bar.className = "progress progress-striped active" + type;
                         container.appendChild(bar);
 
                         //Actual progressbar
@@ -97,7 +101,7 @@ $(document).ready(function(){
                         innerbar.setAttribute("aria-valuemin", "0");
                         innerbar.setAttribute("aria-valuemax", "100");
                         innerbar.setAttribute("style", "width: " + percent + "%");
-                        innerHTML = "<span class=\"sr-only\">" + percent + "Complete" + type + "</span>";
+                        innerHTML = "<span class=\"sr-only\">" + percent + "Complete" + "</span>";
                         innerbar.innerHTML = innerHTML;
                         bar.appendChild(innerbar);
 
