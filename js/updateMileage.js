@@ -27,6 +27,7 @@ $(document).ready(function(){
                     console.log(response);
                     alert("New mileage at " + response.mileage + " updated for current car on " +
                         response.monthMileage + "/" + response.dayMileage + "/" + response.yearMileage);
+                    location.reload(true); //Force server reload
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     alert("Error " + errorThrown);
