@@ -37,7 +37,7 @@ $(document).ready(function(){
                     var index = 0;
 
                     //HTML vars
-                    var separator, listItem, alink, container, textP, bar, innerbar, innerHTML;
+                    var separator, listItem, alink, container, textP, textP2, bar, innerbar, innerHTML;
 
                     var rounded, type;
 
@@ -73,6 +73,7 @@ $(document).ready(function(){
 
                         //Container for
                         container = document.createElement("div");
+                        container.setAttribute("title", percent + "% To Next Service");
                         alink.appendChild(container);
 
                         //Description
@@ -80,22 +81,22 @@ $(document).ready(function(){
                         innerHTML = "<Strong>" + car + "</Strong>";
                         textP.innerHTML = innerHTML;
                         container.appendChild(textP);
-
-                        textP = document.createElement("p");
+                        /**
+                        textP2 = document.createElement("p");
                         innerHTML = innerHTML + "<span class=\"pull-right text-muted\">" +
                             percent + "% To Next Service</span>";
                         textP.innerHTML = innerHTML;
-                        container.appendChild(textP);
-
+                        container.appendChild(textP2);
+                        */
                         //Display bar
 
                         bar = document.createElement("div");
-                        bar.className = "progress progress-striped active" + type;
+                        bar.className = "progress progress-striped active";
                         container.appendChild(bar);
 
                         //Actual progressbar
                         innerbar = document.createElement("div");
-                        innerbar.className = "progress-bar progress-bar-success";
+                        innerbar.className = "progress-bar" + type;
                         innerbar.setAttribute("role", "progressbar");
                         innerbar.setAttribute("aria-valuenow", "" + percent);
                         innerbar.setAttribute("aria-valuemin", "0");
