@@ -48,8 +48,9 @@ $(document).ready(function(){
                         progress = milesSince / window;
                         percent = progress * 100;
                         rounded = roundup(percent);
+                        console.log(rounded);
 
-                        if (rounded < 40 && rounded > 20) {
+                        if (rounded < 40) {
                             type = " progress-bar-success";
                         } else if (rounded < 60) {
                             type = " progress-bar-warning";
