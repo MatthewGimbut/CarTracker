@@ -32,7 +32,11 @@ $(document).ready(function(){
                     var car = response[index].make + " " + response[index].model;
                     var miles = response[index].mileage - response[index].mileageLastInspection;
 
-                    if(window.location.pathname === '/message-center.html'){
+                    //Hopefully temporary workaround to make sure we're in Message Center
+                    var isMsgCntr = null;
+                    isMsgCntr = document.getElementById("message-center-distinguisher");
+
+                    if(isMsgCntr !== null){
                         console.log("Right page");
                         //First create row to put alert in
                         var row = document.createElement("div");
@@ -82,18 +86,12 @@ $(document).ready(function(){
                     }
                     //Add messages to messagebar
 
-                // <li>
-                //     <a href="#">
-                //         <div>
-                //         <strong>John Smith</strong>
-                //     <span class="pull-right text-muted">
-                //         <em>Yesterday</em>
-                //         </span>
-                //         </div>
-                //         <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                //     </a>
-                //     </li>
+                    if (index > 0) {
+                        var separate = document.createElement("li");
+                        separate.className = "divider";
 
+                        document.getElementById("messageList").appendChild(separate);
+                    }
 
                     //Create listitem
                     var listItem = document.createElement("li");
@@ -115,13 +113,8 @@ $(document).ready(function(){
                     var messageList = document.getElementById("messageList");
                     messageList.appendChild(listItem);
 
-
                     index = index + 1;
                 }
-                index = 0;
-
-
-
             }
             else{
                 console.log("User has no cars in need of maintenance");
