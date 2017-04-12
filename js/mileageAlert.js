@@ -86,7 +86,7 @@ $(document).ready(function(){
                     }
                     //Add messages to messagebar
 
-                    if (index > 0) {
+                    if (index > 0) { //Add separator between messages
                         var separate = document.createElement("li");
                         separate.className = "divider";
 
