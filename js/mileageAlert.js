@@ -14,8 +14,7 @@ $(document).ready(function(){
     $.ajax({
         async: false,
         type: 'GET',
-        //url: '../php/alert.php',
-        url: '/localhost/alert.php',
+        url: '../php/alert.php',
         dataType: 'jsonp',
         contentType:'application/javascript',
         jsonp: 'callback',
