@@ -126,15 +126,15 @@ $(document).ready(function(){
                 console.log("User has no cars in need of maintenance");
 
                 //Create listitem
-                var listItem = document.createElement("li");
+                listItem = document.createElement("li");
                 //Create link
-                var link = document.createElement("a");
+                link = document.createElement("a");
                 link.setAttribute("href", "message-center.html");
                 //Create div for text
-                var carCont = document.createElement("div");
-                carCont.innerHTML = "<strong>" + No messages +"</strong>";
+                carCont = document.createElement("div");
+                carCont.innerHTML = "<strong>" + "No messages" +"</strong>";
                 //Span for information
-                var spanner = document.createElement("span");
+                spanner = document.createElement("span");
                 spanner.className = "pull-right text-muted";
                 spanner.innerHTML = "Maintenance up-to-date!";
 
@@ -142,7 +142,7 @@ $(document).ready(function(){
                 link.appendChild(carCont);
                 listItem.appendChild(link);
 
-                var messageList = document.getElementById("messageList");
+                messageList = document.getElementById("messageList");
                 messageList.appendChild(listItem);
             }
         },
