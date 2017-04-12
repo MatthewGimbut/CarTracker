@@ -112,7 +112,7 @@ $(document).ready(function(){
                     link.appendChild(carCont);
                     listItem.appendChild(link);
 
-                    var messageList = document.getElementbyId("messageList");
+                    var messageList = document.getElementById("messageList");
                     messageList.appendChild(listItem);
 
 
