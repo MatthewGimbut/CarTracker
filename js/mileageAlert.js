@@ -24,7 +24,10 @@ $(document).ready(function(){
             console.log(response);
             if(response.length > 0){ //Then at least one car was returned
                 var elem = document.getElementById("defaultAlertPanel");
-                elem.parentNode.removeChild(elem);
+
+                if(elem !== null){ //Only remove if not null, obviously
+                    elem.parentNode.removeChild(elem);
+                }
 
                 var index = 0;
                 var message = false;
