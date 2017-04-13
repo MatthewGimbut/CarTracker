@@ -227,6 +227,65 @@ function displayVehicles() {
 }
 
 /**
+ * Function below is used with car-info.html
+ */
+function retrieveCars(){
+
+    $.ajax({
+        async: false,
+        type: 'GET',
+        url: '../php/getAllCars.php',
+        dataType: 'jsonP',
+        contentType:'application/javascript',
+        jsonp: 'callback',
+        jsonpcallback: 'logResults',
+        data: {username: username},
+        success: function(response, textStatus){
+            console.log(textStatus);
+            console.log(JSON.stringify(response));
+
+            var curr, retId, retMake, retModel, retYear, retStyle, retTrim, retMileage;
+
+            for (var i = 0; i < response.length; i++) {
+
+                //Generate a car object for each response to user below
+                retId = response[i].carID;
+                retMake = response[i].make;
+                retModel = response[i].model;
+                retYear = response[i].year;
+                retStyle = response[i].style;
+                retTrim = response[i].trim;
+                retMileage = response[i].mileage;
+
+                curr = new Car(
+                    retMake,
+                    retModel,
+                    retYear,
+                    retStyle,
+                    retTrim,
+                    retMileage
+                );
+
+                savedCarList.push(curr);
+
+                var list = document.getElementById("carList");
+                var car = curr.make + " " + curr.model + " " + curr.year;
+                var li = document.createElement("li");
+                var link = document.createElement("a");
+                var text = document.createTextNode(car);
+                link.appendChild(text);
+                link.href = "#";
+                li.appendChild(link);
+                list.appendChild(li);
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert("Error " + errorThrown + "\nPlease contact the webmaster with this error.");
+        }
+    })
+}
+
+/**
  * When a user selects a car, saves the car to the database under the user's name
  * @param source Car to add
  */

@@ -38,7 +38,7 @@
 
 </head>
 
-<body onload="loadHomePage()">
+<body onload="retrieveCars()">
 
     <div id="wrapper">
 
@@ -197,7 +197,7 @@
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Car to Update
                                     <span class="caret"></span></button>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu" id="carList">
                                     <li><a href="#">[Select Car]</a></li>
                                 </ul>
                             </div>
@@ -223,7 +223,7 @@
 							<div class="form-group input-group">
                               <input type="text" class="form-control" placeholder="Update Total Mileage">
                               <span class="input-group-btn" placeholder="Update Total Mileage">
-                                <button class="btn btn-default" type="button"><i class="fa fa-check"></i>
+                                <button class="btn btn-default" type="button" onclick="updateMileage()"><i class="fa fa-check"></i>
                                 </button>
                               </span>
 							</div>
