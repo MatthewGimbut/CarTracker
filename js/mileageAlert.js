@@ -124,7 +124,7 @@ $(document).ready(function(){
 
                 var tasks = document.getElementById("tasknum");
                 if(tasks !== null){
-                    tasks.innerHTML = index - 1;
+                    tasks.innerHTML = response.length;
                 }
             }
             else{
