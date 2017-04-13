@@ -215,7 +215,7 @@ function displayVehicles() {
                     retMileage
                 );
 
-                savedCarList.push(curr);
+                //savedCarList.push(curr);
 
                 div.className = "row";
                 div.innerHTML = getAddedCarPreview(curr, retId);
@@ -240,6 +240,9 @@ function displayVehicles() {
 
                 }
             }
+            try{
+                document.getElementById("welcome-message").innerHTML = "Welcome " + username + "!";
+            }catch(err){}
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert("Error " + errorThrown + "\nPlease contact the webmaster with this error.");
@@ -319,7 +322,7 @@ function loadHomePage() {
     //     }
     // }
     //Set username
-    document.getElementById("welcome-message").innerHTML = "Welcome " + username + "!";
+    //document.getElementById("welcome-message").innerHTML = "Welcome " + username + "!";
 }
 
 function updateMileage(carID, mileage){
