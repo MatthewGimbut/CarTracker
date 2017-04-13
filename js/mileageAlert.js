@@ -124,6 +124,11 @@ $(document).ready(function(){
                 //There are two envelope icons to change
                 envelopes[0].className = "glyphicon glyphicon-alert";
                 envelopes[1].className = "glyphicon glyphicon-alert";
+
+                var tasks = document.getElementById("tasknum");
+                if(tasks !== null){
+                    tasks.innerHTML = index - 1;
+                }
             }
             else{
                 console.log("User has no cars in need of maintenance");
