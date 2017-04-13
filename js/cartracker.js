@@ -187,10 +187,11 @@ function displayVehicles() {
             var div;
             var currentRow = document.getElementById("car-list-container");
             if(currentRow === null){
-                // Not the best way to avoid exceptions stopping the program
                 currentRow = document.createElement("div");
             }
             var curr, retId, retMake, retModel, retYear, retStyle, retTrim, retMileage;
+
+            var container = document.getElementById("carList");
 
             for (var i = 0; i < response.length; i++) {
                 div = document.createElement("div");
@@ -218,6 +219,25 @@ function displayVehicles() {
                 div.className = "row";
                 div.innerHTML = getAddedCarPreview(curr, retId);
                 currentRow.appendChild(div);
+
+                //Set homepage must be done here because
+                //async calls do things at the same time
+                //so cars won't be loaded before it sets up
+                if (container !== null) {
+                    // Set home page
+                    if (i === 0) {
+                        container.removeChild(contain.children[0]); // Remove div saying there's no cars
+                    }
+
+                    var hpCar = document.createElement("div");
+                    hpCar.className = "row";
+                    hpCar.style.width = "100%";
+                    hpCar.innerHTML = getAddedCarPreview(curr);
+                    container.appendChild(hpCar);
+
+                    document.getElementById("numCars").innerHTML = (i + 1);
+
+                }
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -285,24 +305,18 @@ function insertCarToDB(){
  * the user has on the screen.
  */
 function loadHomePage() {
-    //loadCookies(); //no longer save as cookies
-    //displayVehicles();
-    console.log("list contains:\n" + savedCarList);
-    document.getElementById("numCars").innerHTML = savedCarList.length.toString(); //Added toString so WebStorm wouldn't yell at me for inconsistent types
-    var container = document.getElementById("carList");
-    if (savedCarList.length === 0) {
-        var message = document.createElement("div");
-        message.innerHTML = "You do not currently have any cars linked to your account. Please click Cars -> Add Cars to begin.";
-        container.appendChild(message);
-    } else {
-        for (var i = 0; i < savedCarList.length; i++) {
-            var div = document.createElement("div");
-            div.className = "row";
-            div.style.width = "100%";
-            div.innerHTML = getAddedCarPreview(savedCarList[i]);
-            container.appendChild(div);
-        }
-    }
+    //console.log("list contains:\n" + savedCarList);
+    //document.getElementById("numCars").innerHTML = savedCarList.length.toString(); //Added toString so WebStorm wouldn't yell at me for inconsistent types
+    // var container = document.getElementById("carList");
+    // if (savedCarList.length !== 0) {
+    //     for (var i = 0; i < savedCarList.length; i++) {
+    //         var div = document.createElement("div");
+    //         div.className = "row";
+    //         div.style.width = "100%";
+    //         div.innerHTML = getAddedCarPreview(savedCarList[i]);
+    //         container.appendChild(div);
+    //     }
+    // }
     //Set username
     document.getElementById("welcome-message").innerHTML = "Welcome " + username + "!";
 }
