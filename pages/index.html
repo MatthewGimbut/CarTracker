@@ -40,7 +40,7 @@ many miles you have left until your oil should be changed, and much more!">
 
 </head>
 
-<body onload="loadHomePage()">
+<body onload="displayVehicles()">
 
     <div id="wrapper">
 
@@ -250,12 +250,12 @@ many miles you have left until your oil should be changed, and much more!">
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
+                                    <div id="tasknum" class="huge">0</div>
                                     <div>View tasks!</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="message-center.html">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -272,7 +272,7 @@ many miles you have left until your oil should be changed, and much more!">
             <br>
             <div class="container-fluid">
                 <div class="row" id="carList">
-
+                    <div>You do not currently have any cars linked to your account. Please click Cars -> Add Cars to begin.</div>
                 </div>
             </div>
         </div>
