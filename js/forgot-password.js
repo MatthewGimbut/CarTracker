@@ -8,6 +8,7 @@ $(document).ready(function(){
         var bMonth = $("#bMonth").val();
         var bYear = $("#bYear").val();
 
+        //testing
         alert(
             "Email: " + email +
             "\nB Day: " + bDay +
@@ -16,15 +17,48 @@ $(document).ready(function(){
         );
 
         if(validateEmail(email) && validateDOB(bDay,bMonth,bYear)) {
-            alert("good");
+            //alert("good");
             //data valid
             //  if there is a user with this email and DOB
             //      login to that user
             //      take to reset-password.html
             //  esle notify that user is not found
+            $.ajax({
+                async: false,
+                type: 'GET',
+                url: '../php/forgot-password.php',
+                //url: '//localhost/forgot-password.php',
+                dataType: 'jsonP',
+                contentType:'application/javascript',
+                jsonp: 'callback',
+                jsonpcallback: 'logResults',
+                data: {
+                    email: email,
+                    bDay: bDay,
+                    bMonth: bMonth,
+                    bYear: bYear
+                },
+                success: function(response, textStatus){
+                    console.log(textStatus);
+                    if(response.length > 0) {
+                        //found the user, can reset password
+                        console.log(textStatus);
+                        console.log(JSON.stringify(response));
+                        sendTestNotification();
+                        alert("Your password has been reset to b5k#az7! \nEmail Sent to " + email);
+                        // window.open("../pages/login.html", "_self");
+                    }
+                    else {
+                        alert("user with that email and birth date not found");
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert("Error " + errorThrown + "\nPlease contact the webmaster with this error.");
+                }
+            })
         }
     });
-})
+});
 
 function validateEmail(email) {
     regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
