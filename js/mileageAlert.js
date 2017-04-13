@@ -120,10 +120,7 @@ $(document).ready(function(){
                 }
                 //Change the icon to reflect notifications existing
                 var envelopes = document.getElementsByClassName("fa fa-envelope fa-fw");
-
-                //There are two envelope icons to change
                 envelopes[0].className = "glyphicon glyphicon-alert";
-                envelopes[1].className = "glyphicon glyphicon-alert";
 
                 var tasks = document.getElementById("tasknum");
                 if(tasks !== null){
