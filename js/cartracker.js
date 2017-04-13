@@ -122,17 +122,6 @@ function addVehicle() {
     window.location.href = "../pages/car-search.html";
 }
 
-//deprecated
-function loadCookies() {
-    savedCarList = JSON.parse(localStorage.getItem("savedCarList"));
-}
-
-//deprecated
-function saveCookies() {
-    localStorage.setItem("savedCarList", JSON.stringify(savedCarList));
-}
-
-
 /**
  * Small preview widget for Car objects.
  * Will display basic information about the car such as the make, model, year, and details.
@@ -304,27 +293,6 @@ function insertCarToDB(){
     })
 }
 
-/**
- * Called when the homepage is loaded, Displays the cars (if any)
- * the user has on the screen.
- */
-function loadHomePage() {
-    //console.log("list contains:\n" + savedCarList);
-    //document.getElementById("numCars").innerHTML = savedCarList.length.toString(); //Added toString so WebStorm wouldn't yell at me for inconsistent types
-    // var container = document.getElementById("carList");
-    // if (savedCarList.length !== 0) {
-    //     for (var i = 0; i < savedCarList.length; i++) {
-    //         var div = document.createElement("div");
-    //         div.className = "row";
-    //         div.style.width = "100%";
-    //         div.innerHTML = getAddedCarPreview(savedCarList[i]);
-    //         container.appendChild(div);
-    //     }
-    // }
-    //Set username
-    //document.getElementById("welcome-message").innerHTML = "Welcome " + username + "!";
-}
-
 function updateMileage(carID, mileage){
             var newMileage = $("#car" + carID).val();
             var currentDate = new Date();
@@ -367,6 +335,17 @@ function updateMileage(carID, mileage){
             }
 }
 
+
+//deprecated
+function loadCookies() {
+    savedCarList = JSON.parse(localStorage.getItem("savedCarList"));
+}
+
+//deprecated
+function saveCookies() {
+    localStorage.setItem("savedCarList", JSON.stringify(savedCarList));
+}
+
 /*function Car(make, model, year, carStyle, trim, mileage) {
 
     this.make = make;
@@ -402,3 +381,24 @@ function Alert(priority, message) {
     this.priority = priority;
     this.message = message;
 }*/
+
+/**
+ * Called when the homepage is loaded, Displays the cars (if any)
+ * the user has on the screen.
+function loadHomePage() {
+    //console.log("list contains:\n" + savedCarList);
+    //document.getElementById("numCars").innerHTML = savedCarList.length.toString(); //Added toString so WebStorm wouldn't yell at me for inconsistent types
+    // var container = document.getElementById("carList");
+    // if (savedCarList.length !== 0) {
+    //     for (var i = 0; i < savedCarList.length; i++) {
+    //         var div = document.createElement("div");
+    //         div.className = "row";
+    //         div.style.width = "100%";
+    //         div.innerHTML = getAddedCarPreview(savedCarList[i]);
+    //         container.appendChild(div);
+    //     }
+    // }
+    //Set username
+    //document.getElementById("welcome-message").innerHTML = "Welcome " + username + "!";
+}
+ */
