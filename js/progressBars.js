@@ -70,6 +70,7 @@ $(document).ready(function(){
 
                         //For some reason there's an a link with no url?
                         alink = document.createElement("a");
+                        alink.setAttribute("href", "car-list.html");
                         listItem.appendChild(alink);
 
                         //Container for
