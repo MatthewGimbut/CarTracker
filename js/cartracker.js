@@ -192,6 +192,7 @@ function displayVehicles() {
             var curr, retId, retMake, retModel, retYear, retStyle, retTrim, retMileage;
 
             var container = document.getElementById("carList");
+            console.log(container === null);
 
             for (var i = 0; i < response.length; i++) {
                 div = document.createElement("div");
@@ -226,7 +227,7 @@ function displayVehicles() {
                 if (container !== null) {
                     // Set home page
                     if (i === 0) {
-                        container.removeChild(contain.children[0]); // Remove div saying there's no cars
+                        container.removeChild(container.children[0]); // Remove div saying there's no cars
                     }
 
                     var hpCar = document.createElement("div");
@@ -235,7 +236,7 @@ function displayVehicles() {
                     hpCar.innerHTML = getAddedCarPreview(curr);
                     container.appendChild(hpCar);
 
-                    document.getElementById("numCars").innerHTML = (i + 1);
+                    document.getElementById("numCars").innerHTML = (i + 1).toString();
 
                 }
             }
