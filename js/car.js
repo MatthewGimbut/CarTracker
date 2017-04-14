@@ -47,4 +47,57 @@ function Car(make, model, year, carStyle, trim, mileage, alerts) {
         }
         return priorityAlerts;
     };
+
+    /**
+     * Generates a small preview panel when adding a car to the search results.
+     * Slightly different from the full car display panel of a car already added.
+     * @returns {string}
+     */
+    this.getFormattedSearchHTML = function() {
+        return '<div class="col-lg-4 carSearchDiv">' +
+            '<div class="panel panel-info">' +
+            '<div class="panel-heading">' +
+            this.year + " " + this.make + " " + this.model +
+            '</div>' +
+            '<div class="panel-body">' +
+            '<p>' + 'Style: ' + this.carStyle + '</p>' +
+            '</div>' +
+            '<div class="panel-footer">' +
+            '<a id="carClick" href="#" onclick="userSelectVehicle(this)">Click here to add to car list.</a>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+    };
+
+    /**
+     * Small preview widget for Car objects.
+     * Will display basic information about the car such as the make, model, year, and details.
+     * Allows the user to select a car and view more details quickly.
+     * @param carID Car's carID field in the database
+     * @returns {string}
+     */
+    this.getFormattedCarHTML = function(carID) {
+        return '<br><div class="col-lg-4 carSearchDiv">' +
+            '<div class="panel panel-info">' +
+            '<div class="panel-heading">' +
+            this.year + " " + this.make + " " + this.model +
+            '<span class="pull-right">' +
+            '<a data-original-title="Remove this car" data-toggle="tooltip" type="button"' +
+            ' class="btn btn-sm btn-danger" onclick="removeCar(' + carID + ');">' +
+            '<i class="glyphicon glyphicon-remove"></i></a></span>' +
+            '</div>' +
+            '<div class="panel-body">' +
+            '<p>' + 'Style: ' + this.carStyle + '</p>' +
+            '<div class="panel-body">'+
+            '<p id="mileage' + carID + '">Current Mileage: ' + this.mileage + '</p>' +
+            '<input id="car' + carID + '">' +
+            '<button onclick="updateMileage(' + carID + ',' + this.mileage + ')">Update Car Mileage</button>' +
+            '</div>' +
+            '</div>' +
+            '<div class="panel-footer">' +
+            'Click <a id="carClick" href="#" onclick="#">here</a> to view/edit maintenance details.' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+    };
 }
