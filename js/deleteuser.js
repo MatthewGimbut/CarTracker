@@ -7,13 +7,13 @@ function deleteUser(){
 
     if(confirmDelete){
         var userJSON = localStorage.getItem("userJSON");
-        var userID = userJSON.username;
+        var username = userJSON.username;
 
         $.ajax({
             url: '../php/removeUser.php',
             dataType:'json',
             type: 'get',
-            data: {userID: userID},
+            data: {username: username},
             success:function(){
                 alert("User deleted");
                 localStorage.setItem('savedCarList', null);
