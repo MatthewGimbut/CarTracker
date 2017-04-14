@@ -10,15 +10,14 @@ function deleteUser(){
         var userID = userJSON.userID;
 
         $.ajax({
-            url:(url),
+            url: '../php/removeUser.php',
             dataType:'json',
             type: 'get',
-            url: '../php/removeUser.php',
             data: {userID: userID},
-            success:function(response){
+            success:function(){
                 window.location="cartrackerproject.me";
             },
-            error: function(data) {
+            error: function() {
                 alert("Removal of user was not successful.");
             }
         });
