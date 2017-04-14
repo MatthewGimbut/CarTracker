@@ -3,7 +3,6 @@
 $mysqli = new mysqli('mikedb.clzedg3q1dlc.us-west-2.rds.amazonaws.com','MikeDB','moscariello', 'CarTrackerInfo');
 
 $username = $_GET["username"];
-$userID = 0;
 
 $stmt = $mysqli->prepare("SELECT userID FROM users WHERE users.username=?");
 $stmt->bind_param("s", $username);
