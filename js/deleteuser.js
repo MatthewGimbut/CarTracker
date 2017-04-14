@@ -20,17 +20,12 @@ function deleteUser(){
             jsonp: 'callback',
             jsonpcallback: 'logResults',
             type: 'get',
-            data: {username: username},
-            success:function(){
-                alert("User deleted");
-                localStorage.setItem('savedCarList', null);
-                localStorage.setItem('userJSON', null);
-                window.location="cartrackerproject.me";
-            },
-            error: function(errorThrown) {
-                alert("Removal of user was not successful\n." + errorThrown);
-
-            }
+            data: {username: username}
         });
+
+        alert("User deleted");
+        localStorage.setItem('savedCarList', null);
+        localStorage.setItem('userJSON', null);
+        window.location="cartrackerproject.me";
     }
 }
