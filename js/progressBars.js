@@ -16,7 +16,7 @@ $(document).ready(function(){
     var username = userJSON.username;
 
     $.ajax({
-        async: false,
+        async: true,
         type: 'GET',
         url: '../php/getAllCars.php',
         dataType: 'jsonp',
