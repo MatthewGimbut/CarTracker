@@ -98,7 +98,7 @@ function sendAlertNotification(toEmail, messageDetails, alertSeverity, alertPrev
         //send the email
         emailjs.send(service_id, template_id, params)
             .then(function () {
-                console.log("Sent Critical Notification Email.");
+                console.log("Sent " + template_id + " Email.");
             }, function (err) {
                 console.log("Send email failed!\r\n Response:\n " + JSON.stringify(err));
             });
@@ -106,6 +106,34 @@ function sendAlertNotification(toEmail, messageDetails, alertSeverity, alertPrev
     }else{ //severity was invalid
         console.log("Error: Severity variable not valid. Email not sent.");
     }
+}
+
+/*
+ * This function will send an email to a new user to CarTracker and ask them to verify their email. A randomly generated link
+ * should have already been made to accommodate for this to happen.
+ * @param toEmail the email that needs to be verified
+ * @param verificationLink the weblink to where the verification can be completed for the user. This should be randomly-generated
+ */
+function sendVerificationEmail(toEmail, verificationLink){
+    var params = {toEmail: toEmail, verifyLink: verificationLink};
+
+    // Change to your service ID, or keep using the default service
+    var service_id = "default_service";
+
+    var template_id = "verifyEmail";
+    src = "https://cdn.emailjs.com/dist/email.min.js";
+    src = "//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
+
+    //This email type uses Account 1, which has the template for Verification
+    emailjs.init("user_P5JsJpV2qiU1B6MpHRqqM");
+
+    //send the email
+    emailjs.send(service_id, template_id, params)
+        .then(function () {
+            console.log("Sent Verification Email.");
+        }, function (err) {
+            console.log("Send email failed!\r\n Response:\n " + JSON.stringify(err));
+        });
 }
 
 function sendUpdate(){
@@ -124,6 +152,7 @@ function sendUpdate(){
         var preview = "Weekly Update";
 
         //send update email, severity param is 3 because 3 sends the Update template.
+        //from Joe: I noticed that you used your personal email for the first parameter. I kept it in place, but when you do change it for any user, make sure this is the location it goes now.
         sendAlertNotification("mikecrinite@gmail.com", details, 3, preview);
     }, millisTill10);
 
