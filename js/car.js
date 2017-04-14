@@ -14,7 +14,7 @@
  * @param alerts An array of Alert objects that contain all important information which the user needs to see.
  * @constructor
  */
-function Car(make, model, year, carStyle, trim, mileage, alerts) {
+function Car(make, model, year, carStyle, trim, mileage, alerts, carID) {
     this.make = make;
     this.model = model;
     this.year = year;
@@ -22,6 +22,7 @@ function Car(make, model, year, carStyle, trim, mileage, alerts) {
     this.trim = trim;
     this.mileage = mileage;
     this.alerts = [];
+    this.carID = carID;
 
     /**
      * Pulls up image for car
@@ -76,22 +77,22 @@ function Car(make, model, year, carStyle, trim, mileage, alerts) {
      * @param carID Car's carID field in the database
      * @returns {string}
      */
-    this.getFormattedCarHTML = function(carID) {
+    this.getFormattedCarHTML = function() {
         return '<br><div class="col-lg-4 carSearchDiv">' +
             '<div class="panel panel-info">' +
             '<div class="panel-heading">' +
             this.year + " " + this.make + " " + this.model +
             '<span class="pull-right">' +
             '<a data-original-title="Remove this car" data-toggle="tooltip" type="button"' +
-            ' class="btn btn-sm btn-danger" onclick="removeCar(' + carID + ');">' +
-            '<i class="glyphicon glyphicon-remove"></i></a></span>' +
+            ' class="btn btn-sm btn-danger" onclick="removeCar(' + this.carID + ');">' +
+            '<div><i class="glyphicon glyphicon-remove"></i></a></span></div>' +
             '</div>' +
             '<div class="panel-body">' +
             '<p>' + 'Style: ' + this.carStyle + '</p>' +
             '<div class="panel-body">'+
-            '<p id="mileage' + carID + '">Current Mileage: ' + this.mileage + '</p>' +
-            '<input id="car' + carID + '">' +
-            '<button onclick="updateMileage(' + carID + ',' + this.mileage + ')">Update Car Mileage</button>' +
+            '<p id="mileage' + this.carID + '">Current Mileage: ' + this.mileage + '</p>' +
+            '<input id="car' + this.carID + '">' +
+            '<button onclick="updateMileage(' + this.carID + ',' + this.mileage + ')">Update Car Mileage</button>' +
             '</div>' +
             '</div>' +
             '<div class="panel-footer">' +
