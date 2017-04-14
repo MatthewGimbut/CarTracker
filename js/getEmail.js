@@ -36,21 +36,54 @@ function sendTestNotification(){
         });
 }
 
-function sendTestNotif(){
-    var params = {toEmail: "masterhalo812@yahoo.com"};
+/*
+ * This method is to be used outside of the user being logged in, so there is no database calls.
+ * They must be performed outside and the email string must be sent into this method to have
+ * an email be sent correctly.
+ * @param toEmail the target Email
+ * @param messageDetails the details of the critical message. This is the ENTIRETY of the email, so make sure it's descriptive for the situation at hand.
+ */
+function sendCriticalNotification(toEmail, messageDetails){
+    var params = {toEmail: toEmail, details: messageDetails};
     initializeEmailJS();
 
     // Change to your service ID, or keep using the default service
     var service_id = "default_service";
 
-    var template_id = "notification";
+    var template_id = "criticalAlert";
     src="https://cdn.emailjs.com/dist/email.min.js";
     src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
     emailjs.send(service_id,template_id,params)
         .then(function(){
-            alert("Sent!");
+            console.log("Sent Critical Notification Email.");
         }, function(err) {
-            alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
+            console.log("Send email failed!\r\n Response:\n " + JSON.stringify(err));
+        });
+}
+
+/*
+ * This method is to be used outside of the user being logged in, so there is no database calls.
+ * They must be performed outside and the email string must be sent into this method to have
+ * an email be sent correctly.
+ * @param toEmail the target Email
+ * @param messageDetails the details of the moderate message. This is the ENTIRETY of the email, so make sure it's descriptive for the situation at hand.
+ * @param
+ */
+function sendModerateNotification(messageDetails){
+    var params = {toEmail: toEmail, details: messageDetails};
+    initializeEmailJS();
+
+    // Change to your service ID, or keep using the default service
+    var service_id = "default_service";
+
+    var template_id = "moderateAlert";
+    src="https://cdn.emailjs.com/dist/email.min.js";
+    src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
+    emailjs.send(service_id,template_id,params)
+        .then(function(){
+            console.log("Sent Moderate Notification Email.");
+        }, function(err) {
+            console.log("Send email failed!\r\n Response:\n " + JSON.stringify(err));
         });
 }
 
