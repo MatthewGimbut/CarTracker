@@ -116,22 +116,15 @@ function sendUpdate(){
     }
     setTimeout(function(){
         //Currently just sends an update at 10am. Let's see if it works.
-        var params = {toEmail: "mikecrinite@gmail.com"};
-        initializeEmailJS();
 
-        // Change to your service ID, or keep using the default service
-        var service_id = "default_service";
+        //message details. TODO: currently a skeleton with an example of how the message will be sent once passed to the sendAlertNotification method.
+        var details = "This week with your car account:\n" +
+            "Your {first car} has X miles and is Y miles away from an oil change.\n" +
+            "Your {second car} has Y miles remaining until your tires should be checked or replaced.";
+        var preview = "Weekly Update";
 
-        var template_id = "notification";
-        src="https://cdn.emailjs.com/dist/email.min.js";
-        src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
-        emailjs.send(service_id,template_id,params)
-            .then(function(){
-                alert("Sent!");
-            }, function(err) {
-                alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
-            });
-        console.log("sent!");
+        //send update email, severity param is 3 because 3 sends the Update template.
+        sendAlertNotification("mikecrinite@gmail.com", details, 3, preview);
     }, millisTill10);
 
 
