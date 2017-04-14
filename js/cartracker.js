@@ -267,10 +267,13 @@ function displayVehicles() {
         a.href = "../pages/car-search.html";
         noCars.innerHTML = "You have no cars to display.";
         var newDiv = document.createElement("div");
+        var col = document.createElement("div");
+        col.className = "col-lg-4";
         newDiv.className = "row";
-        newDiv.appendChild(noCars);
-        newDiv.appendChild(a);
-        document.getElementById("car-list-container").appendChild(newDiv);
+        col.appendChild(noCars);
+        col.appendChild(a);
+        newDiv.appendChild(col);
+        document.getElementById("carListTitleDiv").appendChild(newDiv);
     }
 
 }
