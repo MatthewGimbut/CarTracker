@@ -193,11 +193,28 @@
 
     <div id="page-wrapper" style="height:100%; width:100%;">
         <br>
+        <div>
+            <div class="row">
+                <p>Distance from you in meters (default 1000m)</p>
+            </div>
+            <div class="row">
+                <input type="number" id="distanceInput" placeholder="Enter distance">
+                <button onclick="updateMap()">Update</button>
+
+            </div>
+        </div>
+        <br>
         <div id="mapContainer"></div>
         <script type="text/javascript">
             var map;
             var latitude, longitude;
             var service;
+
+            function updateMap() {
+                var dist = document.getElementById("distanceInput").value;
+                console.log(dist);
+                initMap(dist);
+            }
 
             /*
                 Requests the location of the user.
@@ -206,7 +223,7 @@
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(showPosition);
                 } else {
-                    console.log("Geolocation is not supported by this browser.");
+                    alert("Geolocation is not supported by this browser.");
                     latitude = 0;
                     longitude = 0;
                 }
@@ -227,7 +244,8 @@
                 Initializes the map. Sets the location to user's location gathered from browser.
                 Displays all stores with the tag "autoshop" within given radius.
              */
-            function initMap() {
+            function initMap(rad) {
+                rad = (typeof rad !== 'undefined') ?  rad : 1000; //Defaults to 1000m
                 map = new google.maps.Map(document.getElementById('mapContainer'), {
                     center: {lat: latitude, lng: longitude},
                     zoom: 15
@@ -238,7 +256,7 @@
 
                 service.textSearch({
                     location: {lat: latitude, lng: longitude},
-                    radius: 1000,
+                    radius: rad,
                     query: 'auto shop'
                 }, callback);
             }
@@ -251,6 +269,10 @@
                 }
             }
 
+            /**
+             * Creates the red map markers.
+             * @param place
+             */
             function createMarker(place) {
                 var placeLoc = place.geometry.location;
                 var marker = new google.maps.Marker({
@@ -259,6 +281,10 @@
                 });
                 var request = { placeId: place.place_id };
                 service.getDetails(request, function(details, status) {
+                    /*
+                        Adds a click event to each of the map markers as they are created.
+                        Depending on what information is received, the display string is altered.
+                     */
                     google.maps.event.addListener(marker, 'click', function () {
                         if(details === null) {
                             infowindow.setContent(place.name);
@@ -273,7 +299,6 @@
                     });
                 });
             }
-
         </script>
     </div>
     <!-- /#page-wrapper -->

@@ -233,7 +233,8 @@ function displayVehicles() {
                     var hpCar = document.createElement("div");
                     hpCar.className = "row";
                     hpCar.style.width = "100%";
-                    hpCar.innerHTML = getAddedCarPreview(curr);
+                    //TODO Ask mike about this
+                    hpCar.innerHTML = curr.getFormattedCarHTML(retId);
                     container.appendChild(hpCar);
 
                     document.getElementById("numCars").innerHTML = (i + 1).toString();
@@ -346,6 +347,9 @@ function updateMileage(carID, mileage){
             }
 }
 
+function validateNumbericInput(input) {
+    
+}
 
 //deprecated
 function loadCookies() {
