@@ -41,50 +41,54 @@ function sendTestNotification(){
  * They must be performed outside and the email string must be sent into this method to have
  * an email be sent correctly.
  * @param toEmail the target Email
- * @param messageDetails the details of the critical message. This is the ENTIRETY of the email, so make sure it's descriptive for the situation at hand.
+ * @param messageDetails the details of the message. This is the ENTIRETY of the email details, so make sure it's descriptive for the situation at hand.
+ * @param alertSeverity an int containing the severity of the alert. The following values determine which type of alert is sent:
+ *          0: Highest Severity, Critical
+ *          1: Medium Severity, Moderate
+ *          2: Low Severity, Alert
+ *          3: Notification, Notification
+ *          currently no other values will be accepted. An invalid severity will produce no email.
+ * @param alertPreviewType a string with a 'preview'. This should be categorized so that at the top of the email, this is what a user would see:
+ *          What this alert is about:
+ *          Oil Change <-- alertPreviewType
+ *
  */
-function sendCriticalNotification(toEmail, messageDetails){
-    var params = {toEmail: toEmail, details: messageDetails};
+function sendCriticalNotification(toEmail, messageDetails, alertSeverity, alertPreviewType) {
+    var params = {toEmail: toEmail, details: messageDetails, preview: alertPreviewType};
     initializeEmailJS();
+
+    var severityFlag = true; //flag for ensuring the severity type is valid
 
     // Change to your service ID, or keep using the default service
     var service_id = "default_service";
 
     var template_id = "criticalAlert";
-    src="https://cdn.emailjs.com/dist/email.min.js";
-    src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
-    emailjs.send(service_id,template_id,params)
-        .then(function(){
-            console.log("Sent Critical Notification Email.");
-        }, function(err) {
-            console.log("Send email failed!\r\n Response:\n " + JSON.stringify(err));
-        });
-}
+    src = "https://cdn.emailjs.com/dist/email.min.js";
+    src = "//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
 
-/*
- * This method is to be used outside of the user being logged in, so there is no database calls.
- * They must be performed outside and the email string must be sent into this method to have
- * an email be sent correctly.
- * @param toEmail the target Email
- * @param messageDetails the details of the moderate message. This is the ENTIRETY of the email, so make sure it's descriptive for the situation at hand.
- * @param
- */
-function sendModerateNotification(messageDetails){
-    var params = {toEmail: toEmail, details: messageDetails};
-    initializeEmailJS();
+    switch (alertSeverity) {
+        case 0: //Highest, critical
+            break;
+        case 1: //Medium, moderate
+            break;
+        case 2: //Low, alert
+            break;
+        case 3: //notification, notification
+            break;
+        default: //invalid
+            severityFlag = false;
+    }
 
-    // Change to your service ID, or keep using the default service
-    var service_id = "default_service";
-
-    var template_id = "moderateAlert";
-    src="https://cdn.emailjs.com/dist/email.min.js";
-    src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
-    emailjs.send(service_id,template_id,params)
-        .then(function(){
-            console.log("Sent Moderate Notification Email.");
-        }, function(err) {
-            console.log("Send email failed!\r\n Response:\n " + JSON.stringify(err));
-        });
+    if (severityFlag) {
+        emailjs.send(service_id, template_id, params)
+            .then(function () {
+                console.log("Sent Critical Notification Email.");
+            }, function (err) {
+                console.log("Send email failed!\r\n Response:\n " + JSON.stringify(err));
+            });
+    }else{ //severity was invalid
+        console.log("Error: Severity variable not valid. Email not sent.");
+    }
 }
 
 function sendUpdate(){
