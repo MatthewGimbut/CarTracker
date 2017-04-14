@@ -127,6 +127,7 @@ function addVehicle() {
  * Will display basic information about the car such as the make, model, year, and details.
  * Allows the user to select a car and view more details quickly.
  * @param car Car object to be displayed on the screen.
+ * @param carID Car's carID field in the database
  * @returns {string}
  */
 function getAddedCarPreview(car, carID) {
@@ -134,6 +135,9 @@ function getAddedCarPreview(car, carID) {
         '<div class="panel panel-info">' +
         '<div class="panel-heading">' +
         car.year + " " + car.make + " " + car.model +
+        '<a data-original-title="Remove this car" data-toggle="tooltip" type="button"' +
+        ' class="btn btn-sm btn-danger" onclick="removeCar(' + carID + ');">' +
+        '<i class="glyphicon glyphicon-remove"></i></a>' +
         '</div>' +
         '<div class="panel-body">' +
         '<p>' + 'Style: ' + car.carStyle + '</p>' +
@@ -148,6 +152,27 @@ function getAddedCarPreview(car, carID) {
         '</div>' +
         '</div>' +
         '</div>';
+}
+
+function removeCar(carID){
+    var confirm = confirm("THIS WILL REMOVE YOUR CAR FROM YOUR ACCOUNT AND IS NOT REVERSIBLE!");
+
+    if(confirm) {
+        $.ajax({
+            async: false,
+            url: '../php/removeCar.php',
+            dataType:'json',
+            contentType:'application/javascript',
+            jsonp: 'callback',
+            jsonpcallback: 'logResults',
+            type: 'get',
+            data: {carID: carID}
+        });
+
+        alert("Car removed");
+        location.reload();
+    }
+
 }
 
 /**
