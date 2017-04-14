@@ -45,8 +45,8 @@ function sendTestNotification(){
  * @param alertSeverity an int containing the severity of the alert. The following values determine which type of alert is sent:
  *          0: Highest Severity, Critical
  *          1: Medium Severity, Moderate
- *          2: Low Severity, Alert
- *          3: Notification, Notification
+ *          2: Low Severity, Notification
+ *          3: Update, Update Email
  *          currently no other values will be accepted. An invalid severity will produce no email.
  * @param alertPreviewType a string with a 'preview'. This should be categorized so that at the top of the email, this is what a user would see:
  *          What this alert is about:
@@ -55,9 +55,9 @@ function sendTestNotification(){
  */
 function sendAlertNotification(toEmail, messageDetails, alertSeverity, alertPreviewType) {
     var params = {toEmail: toEmail, details: messageDetails, preview: alertPreviewType};
-    initializeEmailJS();
 
     var severityFlag = true; //flag for ensuring the severity type is valid
+    var emailJSAccount = 0; //identifier for which EmailJS account to use.
 
     // Change to your service ID, or keep using the default service
     var service_id = "default_service";
@@ -73,23 +73,36 @@ function sendAlertNotification(toEmail, messageDetails, alertSeverity, alertPrev
         case 1: //Medium, moderate
             template_id = "moderateAlert";
             break;
-        case 2: //Low, alert
-            template_id = "";
+        case 2: //Low, notification
+            template_id = "notification";
             break;
-        case 3: //notification, notification
-            template_id = "";
+        case 3: //update, Update Email
+            template_id = "update";
+            emailJSAccount = 1;
             break;
         default: //invalid
             severityFlag = false;
     }
 
     if (severityFlag) {
+        //set the correct account for sending, since EmailJS only has 3 templates per account
+        switch(emailJSAccount){
+            case 0:
+                emailjs.init("user_5MjWrl8xxvlAXf4o7epDE");
+                break;
+            case 1:
+                emailjs.init("user_P5JsJpV2qiU1B6MpHRqqM");
+                break;
+        }
+
+        //send the email
         emailjs.send(service_id, template_id, params)
             .then(function () {
                 console.log("Sent Critical Notification Email.");
             }, function (err) {
                 console.log("Send email failed!\r\n Response:\n " + JSON.stringify(err));
             });
+
     }else{ //severity was invalid
         console.log("Error: Severity variable not valid. Email not sent.");
     }
