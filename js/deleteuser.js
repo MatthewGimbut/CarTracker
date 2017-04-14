@@ -25,7 +25,7 @@ function deleteUser(){
                 localStorage.setItem('userJSON', null);
                 window.location="cartrackerproject.me";
             },
-            error: function() {
+            error: function(errorThrown) {
                 alert("Removal of user was not successful\n." + errorThrown);
 
             }
