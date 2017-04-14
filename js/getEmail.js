@@ -7,20 +7,10 @@
 var userJSON;
 
 /**
- * Initializes the emailjs connection
- */
-function initializeEmailJS(){
-    src="https://cdn.emailjs.com/dist/email.min.js";
-    src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
-    emailjs.init("user_5MjWrl8xxvlAXf4o7epDE");
-}
-
-/**
- * @param toEmail target Email
+ * This will send a test notification to the currently logged in user (for debugging purposes, such as testing the email server).
  */
 function sendTestNotification(){
-    var params = {toEmail: userJSON.email};
-    initializeEmailJS();
+    var params = {toEmail: userJSON.email, details: "This is a test notification from CarTracker", preview: "Test Preview"};
 
     // Change to your service ID, or keep using the default service
     var service_id = "default_service";
@@ -28,6 +18,8 @@ function sendTestNotification(){
     var template_id = "notification";
     src="https://cdn.emailjs.com/dist/email.min.js";
     src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
+
+    emailjs.init("user_5MjWrl8xxvlAXf4o7epDE");
     emailjs.send(service_id,template_id,params)
         .then(function(){
             alert("Sent!");
@@ -36,7 +28,7 @@ function sendTestNotification(){
         });
 }
 
-/*
+/**
  * This method is to be used outside of the user being logged in, so there is no database calls.
  * They must be performed outside and the email string must be sent into this method to have
  * an email be sent correctly.
@@ -108,7 +100,7 @@ function sendAlertNotification(toEmail, messageDetails, alertSeverity, alertPrev
     }
 }
 
-/*
+/**
  * This function will send an email to a new user to CarTracker and ask them to verify their email. A randomly generated link
  * should have already been made to accommodate for this to happen.
  * @param toEmail the email that needs to be verified
