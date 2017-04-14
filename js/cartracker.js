@@ -349,38 +349,3 @@ function updateMileage(carID, mileage){
             }
 }
 
-/*function Car(make, model, year, carStyle, trim, mileage) {
-
-    this.make = make;
-    this.model = model;
-    this.year = year;
-    this.carStyle = carStyle;
-    this.trim = trim;
-    this.mileage = mileage;
-    this.alerts = [];
-
-    /**
-     * Pulls up image for car
-     * @returns {null}
-     */
-   /* this.getCarImage = function() {
-        return null;
-    };
-
-    this.getPriorityAlerts = function(priority) {
-        var priorityAlerts = null;
-        var numAlerts = 0;
-        for(var i = 0; i < this.alerts.length; i++) {
-            if(this.alerts[i].priority === priority) {
-                priorityAlerts[numAlerts] = this.alerts[i];
-                numAlerts++;
-            }
-        }
-        return priorityAlerts;
-    };
-}
-
-function Alert(priority, message) {
-    this.priority = priority;
-    this.message = message;
-}*/
