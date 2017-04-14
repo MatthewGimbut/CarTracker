@@ -171,7 +171,7 @@ function removeCar(carID){
         });
 
         alert("Car removed");
-        location.reload();
+        window.location.reload(true); //Force hard reload
     }
 
 }
