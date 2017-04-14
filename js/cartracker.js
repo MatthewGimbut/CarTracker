@@ -190,7 +190,7 @@ function displayVehicles() {
                 // Not the best way to avoid exceptions stopping the program
                 currentRow = document.createElement("div");
             }
-            var curr, retId, retMake, retModel, retYear, retStyle, retTrim, retMileage;
+            var curr, retMake, retModel, retYear, retStyle, retTrim, retMileage, retMileMonth, retMileDay, retMileYear, retId;
 
             for (var i = 0; i < response.length; i++) {
                 div = document.createElement("div");
@@ -203,6 +203,9 @@ function displayVehicles() {
                 retStyle = response[i].style;
                 retTrim = response[i].trim;
                 retMileage = response[i].mileage;
+                retMileMonth = response[i].monthMileage;
+                retMileDay = response[i].dayMileage;
+                retMileYear = response[i].yearMileage;
 
                 curr = new Car(
                     retMake,
@@ -210,7 +213,11 @@ function displayVehicles() {
                     retYear,
                     retStyle,
                     retTrim,
-                    retMileage
+                    retMileage,
+                    retMileMonth,
+                    retMileDay,
+                    retMileYear,
+                    retId
                 );
 
                 savedCarList.push(curr);
@@ -227,7 +234,7 @@ function displayVehicles() {
 }
 
 /**
- * Function below is used with car-info.html
+ * Function below is used with car-info.html to insert the user's cars into a dropdown box
  */
 function retrieveCars(){
 
@@ -244,7 +251,7 @@ function retrieveCars(){
             console.log(textStatus);
             console.log(JSON.stringify(response));
 
-            var curr, retId, retMake, retModel, retYear, retStyle, retTrim, retMileage;
+            var curr, retMake, retModel, retYear, retStyle, retTrim, retMileage, retMileMonth, retMileDay, retMileYear, retId;
 
             for (var i = 0; i < response.length; i++) {
 
@@ -256,6 +263,9 @@ function retrieveCars(){
                 retStyle = response[i].style;
                 retTrim = response[i].trim;
                 retMileage = response[i].mileage;
+                retMileMonth = response[i].monthMileage;
+                retMileDay = response[i].dayMileage;
+                retMileYear = response[i].yearMileage;
 
                 curr = new Car(
                     retMake,
@@ -263,20 +273,18 @@ function retrieveCars(){
                     retYear,
                     retStyle,
                     retTrim,
-                    retMileage
+                    retMileage,
+                    retMileMonth,
+                    retMileDay,
+                    retMileYear,
+                    retId
                 );
 
                 savedCarList.push(curr);
 
-                var list = document.getElementById("carList");
-                var car = curr.make + " " + curr.model + " " + curr.year;
-                var li = document.createElement("li");
-                var link = document.createElement("a");
-                var text = document.createTextNode(car);
-                link.appendChild(text);
-                link.href = "#";
-                li.appendChild(link);
-                list.appendChild(li);
+                $("#carList").append($('<option>', {
+                    text: curr.make + " " + curr.model + " " + curr.year
+                }));
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -284,6 +292,88 @@ function retrieveCars(){
         }
     })
 }
+
+/**
+ * carList is a dropdown box in car-info.html with access of all the user's current cars.
+ */
+$('#carList').on('change', function(){
+    var currentIndex = ($('select[id="carList"]')[0].selectedIndex - 1);
+    if(currentIndex >= 0){
+        var currentCar = savedCarList[currentIndex];
+
+        $("#make").val(currentCar.make);
+        $("#model").val(currentCar.model);
+        $("#year").val(currentCar.year);
+        $("#mileageDate").html('Mileage : Last Updated ' + currentCar.monthMileage + '/' + currentCar.dayMileage + '/'
+                                                        + currentCar.yearMileage);
+        $("#mileage").val(currentCar.mileage);
+    }
+    else{
+        $("#make").val('[Make]');
+        $("#model").val('[Model]');
+        $("#year").val('[Year]');
+        $("#mileageDate").val('Mileage : Last Updated [mm/dd/yyyy]');
+        $("#mileage").val('[Mileage]');
+    }
+})
+
+/**
+ * For use with car-info.html
+ */
+function carInfoUpdateMileage(){
+    var currentIndex = ($('select[id="carList"]')[0].selectedIndex - 1);
+    if(currentIndex >= 0) {
+        var currentCar = savedCarList[currentIndex];
+        var currentDate = new Date();
+        var currentMonth = currentDate.getMonth() + 1;
+        var currentDay = currentDate.getDate();
+        var currentYear = currentDate.getFullYear();
+
+        var carID = currentCar.carID;
+
+        var newMileage = $("#newMileage").val();
+        var mileage = currentCar.mileage;
+
+        if (!isNaN(newMileage)) {
+
+            if (newMileage > mileage ||
+                (newMileage < mileage && confirm("WARNING: Updated mileage is lower than current recorded mileage. Continue to update?"))) {
+                $.ajax({
+                    async: false,
+                    type: 'GET',
+                    url: '../php/updateMileage.php',
+                    dataType: 'jsonp',
+                    contentType: 'application/javascript',
+                    jsonp: 'callback',
+                    jsonpcallback: 'logResults',
+                    data: {
+                        carID: carID,
+                        mileage: newMileage,
+                        monthMileage: currentMonth,
+                        dayMileage: currentDay,
+                        yearMileage: currentYear
+                    },
+                    success: function (response, textStatus) {
+                        console.log(response);
+                        alert("New mileage at " + response.mileage + " updated for current car on " +
+                            response.monthMileage + "/" + response.dayMileage + "/" + response.yearMileage);
+                        $("#mileage").val(newMileage);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("Error " + errorThrown);
+                    }
+                })
+            }
+        }
+        else {
+            alert("New mileage must be a number!");
+        }
+    }
+    else{
+        alert("You must select a car to update mileage!");
+    }
+}
+
 
 /**
  * When a user selects a car, saves the car to the database under the user's name
@@ -366,6 +456,12 @@ function loadHomePage() {
     document.getElementById("welcome-message").innerHTML = "Welcome " + username + "!";
 }
 
+
+/**
+ * for use with the dynamically made car objects in car-list.html
+ * @param carID
+ * @param mileage
+ */
 function updateMileage(carID, mileage){
             var newMileage = $("#car" + carID).val();
             var currentDate = new Date();
@@ -407,6 +503,8 @@ function updateMileage(carID, mileage){
                 alert("New mileage must be a number!");
             }
 }
+
+
 
 /*function Car(make, model, year, carStyle, trim, mileage) {
 

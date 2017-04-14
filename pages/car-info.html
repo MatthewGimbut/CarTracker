@@ -194,12 +194,11 @@
                     <div class="row">
                         <div class="col-lg-4">
 
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Car to Update
-                                    <span class="caret"></span></button>
-                                <ul class="dropdown-menu" id="carList">
-                                    <li><a href="#">[Select Car]</a></li>
-                                </ul>
+                            <div class="form-group">
+                                <label>Select Car</label>
+                                <select class="form-control" id="carList">
+                                    <option>[Select Car]</option>
+                                </select>
                             </div>
                             <br>
 
@@ -215,15 +214,15 @@
 							<input class="form-control" id="year" type="text" placeholder="[Vehicle Year]" disabled>
 							<br>
 							
-							<label for="disabledSelect">Mileage : Last Updated [date]</label>
-							<input class="form-control" id="milage" type="text" placeholder="[Vehicle Mileage]" disabled>
+							<label for="disabledSelect" id="mileageDate">Mileage : Last Updated [mm/dd/yyyy]</label>
+							<input class="form-control" id="mileage" type="text" placeholder="[Vehicle Mileage]" disabled>
 							<br>
 							
 							<label>Update Mileage</label>
 							<div class="form-group input-group">
-                              <input type="text" class="form-control" placeholder="Update Total Mileage">
+                              <input id="newMileage" type="text" class="form-control" placeholder="Update Total Mileage">
                               <span class="input-group-btn" placeholder="Update Total Mileage">
-                                <button class="btn btn-default" type="button" onclick="updateMileage()"><i class="fa fa-check"></i>
+                                <button class="btn btn-default" type="button" onclick="carInfoUpdateMileage()"><i class="fa fa-check"></i>
                                 </button>
                               </span>
 							</div>
