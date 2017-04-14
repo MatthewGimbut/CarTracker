@@ -53,7 +53,7 @@ function sendTestNotification(){
  *          Oil Change <-- alertPreviewType
  *
  */
-function sendCriticalNotification(toEmail, messageDetails, alertSeverity, alertPreviewType) {
+function sendAlertNotification(toEmail, messageDetails, alertSeverity, alertPreviewType) {
     var params = {toEmail: toEmail, details: messageDetails, preview: alertPreviewType};
     initializeEmailJS();
 
@@ -62,18 +62,22 @@ function sendCriticalNotification(toEmail, messageDetails, alertSeverity, alertP
     // Change to your service ID, or keep using the default service
     var service_id = "default_service";
 
-    var template_id = "criticalAlert";
+    var template_id;
     src = "https://cdn.emailjs.com/dist/email.min.js";
     src = "//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
 
     switch (alertSeverity) {
         case 0: //Highest, critical
+            template_id = "criticalAlert";
             break;
         case 1: //Medium, moderate
+            template_id = "";
             break;
         case 2: //Low, alert
+            template_id = "";
             break;
         case 3: //notification, notification
+            template_id = "";
             break;
         default: //invalid
             severityFlag = false;
