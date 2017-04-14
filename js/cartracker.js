@@ -168,6 +168,8 @@ function displayVehicles() {
     //loadCookies();
     //console.log(savedCarList);
 
+    //Saving the length of response check this way because only testing on local.
+    //Will work this way without having to change when on local/live.
     var responseCheck;
 
     //Database call
@@ -253,6 +255,10 @@ function displayVehicles() {
         }
     });
 
+    /*
+        Checks to see if the response was not received or the response contained nothing.
+        Tells the user they have no cars and directs them to add some.
+     */
     if (responseCheck === undefined || responseCheck.length === 0) {
         var noCars = document.createElement("p");
         var a = document.createElement("a");
