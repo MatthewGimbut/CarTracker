@@ -26,6 +26,6 @@ function deleteUser(){
         alert("User deleted");
         localStorage.setItem('savedCarList', null);
         localStorage.setItem('userJSON', null);
-        window.location="cartrackerproject.me";
+        window.location="login.html";
     }
 }
