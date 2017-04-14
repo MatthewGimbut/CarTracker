@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-    <title>CarTracker - User Profile</title>
+    <title>CarTracker - Edit Profile</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="View your CarTracker profile. Login to edit details.">
     <meta name="author" content="CarTracker LLC">
 
     <!-- Bootstrap Core CSS -->
@@ -18,11 +18,13 @@
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
-    <!-- Morris Charts CSS -->
-    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Import jquery library -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,10 +34,11 @@
     <![endif]-->
 
 </head>
-<!-- This user profile template was found at: http://bootsnipp.com/snippets/featured/simple-user-profile -->
+
 <body>
 
 <div id="wrapper">
+
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
@@ -138,6 +141,7 @@
             <!-- /.dropdown -->
         </ul>
         <!-- /.navbar-top-links -->
+
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
@@ -228,64 +232,64 @@
         <!-- /.navbar-static-side -->
     </nav>
 
-    <div id="page-wrapper">
+    <!-- /#page-wrapper -->
 
-        <div class="container">
+</div>
+<!-- /#wrapper -->
 
-            <div class="row">
-                <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
-                    <A href="edit.html">Edit Profile</A>
-                    <label>|</label>
-                    <A id="logout" href="login.html">Logout</A>
-                    <br>
-                    <p class="text-info" id="currentDate"></p>
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Car Tracker - Edit Profile</h3>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
-
-
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h3 class="panel-title" id="nameTitle"></h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-3 col-lg-3 " align="center"><img alt="User Pic"
-                                                                                    src="https://freeiconshop.com/wp-content/uploads/edd/car-outline-front-view.png"
-                                                                                    class="img-responsive"
-                                                                                    style="border: #00018B 4px solid;">
-                                </div>
-
-                                <div class=" col-md-9 col-lg-9 ">
-                                    <table class="table table-user-information">
-                                        <tbody>
-
-                                        <tr>
-                                            <td>Username</td>
-                                            <td id="username">(USERNAME HERE)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Email</td>
-                                            <td id="email"><a href="mailto:EMAIL HERE">EMAIL HERE</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Date of Birth</td>
-                                            <td id="DOB">(DOB HERE)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Age</td>
-                                            <td id="Age">AGE HERE</td>
-                                        </tr>
-
-                                        </tbody>
-                                    </table>
-
-                                    <a href="mileDemo.html" class="btn btn-primary">My Vehicles</a>
-                                    <a href="index.html" class="btn btn-primary">Home Page</a>
+                <div class="panel-body">
+                    <form role="form">
+                        <fieldset>
+                            <div class="form-group">
+                                <input class="form-control" id="firstName" placeholder="First Name" name="firstName">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="lastName" placeholder="Last Name" name="lastName">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="username" placeholder="Username" name="username">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="email" placeholder="E-mail" name="email" type="email"
+                                       autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="confirmEmail" placeholder="Confirm E-mail"
+                                       name="confirmEmail" type="email" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="password" placeholder="Password" name="password"
+                                       type="password" value="">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="confirmPassword" placeholder="Confirm Password"
+                                       name="confirmPassword" type="password">
+                            </div>
+                            <div class="form-group">
+                                <label>Enter Birthdate</label>
+                                <div class="form-group">
+                                    <input type="number" id='bMonth' name="bmonth" max="12" min="1">Month
+                                    <input type="number" id='bDay' name="bday" max="31" min="1" size="0.5">Day
+                                    <input type="number" id='bYear' name="byear" max="2017" min="1900">Year
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                            <!-- Change this to a button or input when using this as a form -->
+                            <div class="form-group">
+                                <button type="button" id="register" class="btn btn-lg btn-success btn-block">Save Changes
+                                </button>
+                                <button type="button" id="cancel" class="btn btn-lg btn-success btn-block"
+                                        onclick="location.href='./login.html';">Cancel
+                                </button>
+                            </div>
+                        </fieldset>
+                    </form>
                 </div>
             </div>
         </div>
@@ -301,21 +305,16 @@
 <!-- Metis Menu Plugin JavaScript -->
 <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
-<script src="../js/userProfile.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="../dist/js/sb-admin-2.js"></script>
 
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-
-<script src="../js/getEmail.js"></script>
+<script src="../js/edit.js"></script>
 
 <!-- Set Up Mileage Progressbars -->
 <script src="../js/progressBars.js"></script>
-
 <script src="../js/dynamicnav.js"></script>
 
 <script src="../js/logout.js"></script>
-
 </body>
 
 </html>
