@@ -8,10 +8,15 @@ function deleteUser(){
     if(confirmDelete){
         var userJSON = localStorage.getItem("userJSON");
         var username = userJSON.username;
+        console.log(username);
 
         $.ajax({
+            async: false,
             url: '../php/removeUser.php',
             dataType:'json',
+            contentType:'application/javascript',
+            jsonp: 'callback',
+            jsonpcallback: 'logResults',
             type: 'get',
             data: {username: username},
             success:function(){
@@ -21,7 +26,8 @@ function deleteUser(){
                 window.location="cartrackerproject.me";
             },
             error: function() {
-                alert("Removal of user was not successful.");
+                alert("Removal of user was not successful\n." + errorThrown);
+
             }
         });
     }
