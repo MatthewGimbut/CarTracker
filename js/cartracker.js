@@ -168,6 +168,8 @@ function displayVehicles() {
     //loadCookies();
     //console.log(savedCarList);
 
+    var responseCheck;
+
     //Database call
     $.ajax({
         async: false,
@@ -179,13 +181,14 @@ function displayVehicles() {
         jsonpcallback: 'logResults',
         data: {username: username},
         success: function(response, textStatus){
+            var currentRow = document.getElementById("car-list-container");
+            responseCheck = response.length;
             console.log(textStatus);
             console.log(JSON.stringify(response));
             //saveCookies(JSON.stringify(response));
             //window.open("../pages/car-list.html", "_self");
 
             var div;
-            var currentRow = document.getElementById("car-list-container");
             if(currentRow === null){
                 currentRow = document.createElement("div");
             }
@@ -248,7 +251,22 @@ function displayVehicles() {
         error: function(jqXHR, textStatus, errorThrown) {
             alert("Error " + errorThrown + "\nPlease contact the webmaster with this error.");
         }
-    })
+    });
+
+    if (responseCheck === undefined || responseCheck.length === 0) {
+        var noCars = document.createElement("p");
+        var a = document.createElement("a");
+        a.title = "Add cars";
+        a.innerHTML = "To add a vehicle, click here.";
+        a.href = "../pages/car-search.html";
+        noCars.innerHTML = "You have no cars to display.";
+        var newDiv = document.createElement("div");
+        newDiv.className = "row";
+        newDiv.appendChild(noCars);
+        newDiv.appendChild(a);
+        document.getElementById("car-list-container").appendChild(newDiv);
+    }
+
 }
 
 /**
