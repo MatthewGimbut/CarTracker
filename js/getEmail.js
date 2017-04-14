@@ -71,7 +71,7 @@ function sendAlertNotification(toEmail, messageDetails, alertSeverity, alertPrev
             template_id = "criticalAlert";
             break;
         case 1: //Medium, moderate
-            template_id = "";
+            template_id = "moderateAlert";
             break;
         case 2: //Low, alert
             template_id = "";
