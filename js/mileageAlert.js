@@ -12,7 +12,7 @@ $(document).ready(function(){
     var username = userJSON.username;
 
     $.ajax({
-        async: true,
+        async: false,
         type: 'GET',
         url: '../php/alert.php',
         dataType: 'jsonp',
