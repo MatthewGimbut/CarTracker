@@ -2,11 +2,13 @@
  * Created by Mike on 4/14/2017.
  */
 
+var userJSON;
+
 function deleteUser(){
     var confirmDelete = confirm("THIS WILL DELETE YOUR ACCOUNT AND IS NOT REVERSIBLE!");
 
     if(confirmDelete){
-        var userJSON = localStorage.getItem("userJSON");
+        userJSON = JSON.parse(localStorage.getItem('userJSON'));
         var username = userJSON.username;
         console.log(username);
 
