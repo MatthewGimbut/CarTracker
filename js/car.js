@@ -101,4 +101,40 @@ function Car(make, model, year, carStyle, trim, mileage, alerts, carID) {
             '</div>' +
             '</div>';
     };
+
+    /**
+     * Formats the style string to be more readable.
+     * Edits the formatting of the number of doors.
+     * @param style The string that contains all style information.
+     * @return {string}
+     */
+    this.formatDoorString = function(style) {
+        //Matches any digit 0-9 followed by 'dr'.
+        var doorRegex = /[0-9]dr/;
+        //Removes the 'dr' letters for only the number.
+        var doorString = style.match(doorRegex).replace( /^\D+/g, '');
+        style.replace(" " + style.match(doorRegex), "");
+        //Appends the full word 'doors' to the end.
+        doorString += " doors";
+        return doorString;
+    };
+
+    /**
+     * Formats the style string to be more readable.
+     * Edits the formatting of the number of cylinders.
+     * @param style The string that contains all style information.
+     * @return {string}
+     */
+    this.formatCylinderSting = function(style) {
+        //Matches any digit 0-9 followed by 'cyl'.
+        var cylRegex = /[0-9]+cyl/;
+        //Removes the 'cyl' letters for only the number.
+        var cylString = style.match(cylRegex).replace( /^\D+/g, '');
+        style.replace(" " + style.match(cylRegex), "");
+        //Appends the full word 'doors' to the end.
+        cylString += " doors";
+        return cylString;
+    }
+
+
 }

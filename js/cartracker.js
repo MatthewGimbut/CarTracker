@@ -255,7 +255,7 @@ function displayVehicles() {
         }
     });
 
-    /*
+     /*
         Checks to see if the response was not received or the response contained nothing.
         Tells the user they have no cars and directs them to add some.
      */
