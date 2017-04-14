@@ -135,9 +135,10 @@ function getAddedCarPreview(car, carID) {
         '<div class="panel panel-info">' +
         '<div class="panel-heading">' +
         car.year + " " + car.make + " " + car.model +
+        '<span class="pull-right">' +
         '<a data-original-title="Remove this car" data-toggle="tooltip" type="button"' +
         ' class="btn btn-sm btn-danger" onclick="removeCar(' + carID + ');">' +
-        '<i class="glyphicon glyphicon-remove"></i></a>' +
+        '<i class="glyphicon glyphicon-remove"></i></a></span>' +
         '</div>' +
         '<div class="panel-body">' +
         '<p>' + 'Style: ' + car.carStyle + '</p>' +
@@ -155,9 +156,9 @@ function getAddedCarPreview(car, carID) {
 }
 
 function removeCar(carID){
-    var confirm = confirm("THIS WILL REMOVE YOUR CAR FROM YOUR ACCOUNT AND IS NOT REVERSIBLE!");
+    var confirmDel = confirm("THIS WILL REMOVE YOUR CAR FROM YOUR ACCOUNT AND IS NOT REVERSIBLE!");
 
-    if(confirm) {
+    if(confirmDel) {
         $.ajax({
             async: false,
             url: '../php/removeCar.php',
