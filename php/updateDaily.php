@@ -22,15 +22,13 @@ while($row = $users->fetch_assoc()) {
       $str = $str . $car['year'] . $car['make'] . $car['model'] . ": " . $since . " miles since maintenance\n";
 
       //Execute the python script
-      exec('python ../python/send_mail.py $email $str');
-      echo('python ../python/send_mail.py $email $str');
+      exec("python ../python/send_mail.py $email $str");
+      echo("python ../python/send_mail.py $email $str");
   }
 }
 
 
 $users->close();
-$userstmt = null;
-$cars->close();
-$carsstmt = null;
+$result->close();
 $mysqli->close();
 ?>
