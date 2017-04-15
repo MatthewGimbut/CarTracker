@@ -16,12 +16,11 @@ while($row = $users->fetch_assoc()) {
 
   while($car = $result->fetch_assoc()){
       $since = $car['mileage'] - $car['mileageLastInspection'];
-      $str = $str . $car['year'] . $car['make'] . $car['model'] . ": " . $since . " miles since maintenance\n";
+      $str = $str . $car['year'] . " " . $car['make'] . " " . $car['model'] . ": " . $since . " miles since maintenance\n";
   }
 
   //Execute the python script
   exec("python ../python/send_mail.py $email \"$str\"");
-  echo("python ../python/send_mail.py $email \"$str\"");
 }
 
 $users->close();
