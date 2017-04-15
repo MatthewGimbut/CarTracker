@@ -17,7 +17,8 @@
  * @param alerts An array of Alert objects that contain all important information which the user needs to see.
  * @constructor
  */
-function Car(make, model, year, carStyle, trim, mileage, monthMileage, dayMileage, yearMileage, carID, alerts) {
+function Car(make, model, year, carStyle, trim, mileage, monthMileage, dayMileage, yearMileage, inspectionMileage, inspectMonth, inspectDay,
+               inspectYear, carID, alerts) {
     this.make = make;
     this.model = model;
     this.year = year;
@@ -27,6 +28,10 @@ function Car(make, model, year, carStyle, trim, mileage, monthMileage, dayMileag
     this.monthMileage = monthMileage;
     this.dayMileage = dayMileage;
     this.yearMileage = yearMileage;
+    this.inspectionMileage = inspectionMileage;
+    this.inspectMonth = inspectMonth;
+    this.inspectDay = inspectDay;
+    this.inspectYear = inspectYear;
     this.carID = carID;
     this.alerts = [];
 
