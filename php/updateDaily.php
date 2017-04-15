@@ -11,7 +11,7 @@ while($row = $users->fetch_assoc()) {
   $email = $row['email'];
   $userID = $row['userID'];
 
-  $carsstmt = $mysqli->prepare('SELECT year,make,model,mileage,mileageLastInspection FROM cars WHERE userID=?') or die($mysqli->error);
+  $carsstmt = $mysqli->prepare("SELECT year,make,model,mileage,mileageLastInspection FROM cars WHERE userID=?") or die($mysqli->error);
   $carsstmt->bind_param("i", $userID);
   $cars = $carsstmt->get_result();
   $str = "";
