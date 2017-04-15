@@ -1,6 +1,7 @@
 /**
  *
  * @author Michael Moscariello
+ * This file is deprecated; the contents of this file were moved to cartracker.js
  */
 $(document).ready(function(){
     $("#update").on("click", function(){
