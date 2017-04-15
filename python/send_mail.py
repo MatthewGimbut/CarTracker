@@ -10,9 +10,10 @@ from email import mime
 from email.mime import multipart
 from email.mime.text import MIMEText
 
-args = argparse.ArgumentParser()
-args.add_argument("addr")
-args.add_argument("text")
+parser = argparse.ArgumentParser()
+parser.add_argument("addr")
+parser.add_argument("text")
+args = parser.parse_args()
 
 # Account info
 username = "info.cartracker@gmail.com"
