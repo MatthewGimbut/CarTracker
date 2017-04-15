@@ -22,6 +22,7 @@ while($row = $users->fetch_assoc()) {
 
       //Execute the python script
       exec('python ../python/send_mail.py $email $str');
+      echo('python ../python/send_mail.py $email $str');
   }
 }
 
