@@ -11,22 +11,18 @@ while($row = $users->fetch_assoc()) {
   $email = $row['email'];
   $userID = $row['userID'];
 
-  //$carsstmt = $mysqli->prepare("SELECT year,make,model,mileage,mileageLastInspection FROM cars WHERE userID=?") or die($mysqli->error);
   $result = $mysqli->query("SELECT * FROM cars WHERE cars.userID=$userID") or die($mysqli->error);
-  //$carsstmt->bind_param("i", $userID);
-  //$cars = $carsstmt->get_result();
   $str = "";
 
   while($car = $result->fetch_assoc()){
       $since = $car['mileage'] - $car['mileageLastInspection'];
       $str = $str . $car['year'] . $car['make'] . $car['model'] . ": " . $since . " miles since maintenance\n";
-
-      //Execute the python script
-      exec("python ../python/send_mail.py $email $str");
-      echo("python ../python/send_mail.py $email $str");
   }
-}
 
+  //Execute the python script
+  exec("python ../python/send_mail.py $email \"$str\"");
+  echo("python ../python/send_mail.py $email \"$str\"");
+}
 
 $users->close();
 $result->close();
