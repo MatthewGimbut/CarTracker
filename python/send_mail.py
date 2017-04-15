@@ -22,12 +22,6 @@ fromaddr = "info.cartracker@gmail.com"
 toaddr = args.addr
 text = args.text
 
-# # Connect to database
-# db = MySQLdb.connect(host="mikedb.clzedg3q1dlc.us-west-2.rds.amazonaws.com",    # your host, usually localhost
-#                      user="MikeDB",                                             # your username
-#                      passwd="moscariello",                                      # your password
-#                      db="CarTrackerInfo")                                       # name of the data base
-#
 
 # Sends text message with report to toaddrs
 def send(subject, body):
@@ -47,13 +41,5 @@ def send(subject, body):
     server.sendmail(fromaddr, toaddr, message)
     server.quit()
 
-# Cursor object allows you to query the database
-# cur = db.cursor()
 
-# SQL Queries begin here
-# cur.execute("SELECT email FROM users WHERE users.notifPref="daily")
-# cur.execute("SELECT email FROM users WHERE users.email='mikecrinite@gmail.com'")
-
-# print all the first cell of all the rows
-# for row in cur.fetchall():
 send("Your Daily CarTracker Update", text)
