@@ -181,11 +181,14 @@
                     </li>
                     <li>
                         <a href="../pages/message-center.html"><i class="fa fa-envelope fa-fw"></i> Message
-                            Center</span></a>
+                            Center</a>
                     </li>
                     <li>
-                        <a href="../pages/map-search.html"><i class="fa fa-shopping-cart fa-fw"></i> Find A Store</span>
+                        <a href="../pages/map-search.html"><i class="fa fa-shopping-cart fa-fw"></i> Find A Store
                         </a>
+                    </li>
+                    <li>
+                        <a href="../pages/resources.html"><i class="fa fa-wrench fa-fw"></i> DIY Resources</a>
                     </li>
                 </ul>
             </div>
@@ -262,7 +265,8 @@
                                            type="button" class="btn btn-sm btn-warning"><i
                                                 class="glyphicon glyphicon-edit"></i></a>
                                         <a data-original-title="Remove this user" data-toggle="tooltip" type="button"
-                                           class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                                           class="btn btn-sm btn-danger" onclick="deleteUser();">
+                                            <i class="glyphicon glyphicon-remove"></i></a>
                                     </span>
                         </div>
                     </div>
@@ -281,9 +285,10 @@
 <!-- Metis Menu Plugin JavaScript -->
 <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
-<script src="../js/userProfile.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="../dist/js/sb-admin-2.js"></script>
 
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="../js/userProfile.js"></script>
 
 <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
 
@@ -293,6 +298,9 @@
 <script src="../js/progressBars.js"></script>
 
 <script src="../js/dynamicnav.js"></script>
+
+<script src="../js/deleteuser.js"></script>
+
 
 <!-- Mileage Alerts -->
 <script src="../js/mileageAlert.js"></script>
