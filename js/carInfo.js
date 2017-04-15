@@ -78,11 +78,13 @@ function retrieveCars(){
 /**
  * carList is a dropdown box in car-info.html with access of all the user's current cars.
  */
-$('#carList').on('change', function(){
+$('#carList').change(function(){
     var currentIndex = ($('select[id="carList"]')[0].selectedIndex - 1);
+
     if(currentIndex >= 0){
+
         var currentCar = savedCarList[currentIndex];
-        console.log(currentCar.inspectionMileage);
+
         $("#make").val(currentCar.make);
         $("#model").val(currentCar.model);
         $("#year").val(currentCar.year);
@@ -135,7 +137,7 @@ $('#carList').on('change', function(){
         $("#nextOilChange").val("[Recommended Date Next Inspection]");
         $("#mileageEstimate").val("[Estimated Miles to Next Inspection]");
     }
-})
+});
 
 /**
  * For use with car-info.html
@@ -155,8 +157,7 @@ function carInfoUpdateMileage(){
         var mileage = currentCar.mileage;
 
         if (!isNaN(newMileage)) {
-
-            if (newMileage > mileage ||
+            if(newMileage > mileage ||
                 (newMileage < mileage && confirm("WARNING: Updated mileage is lower than current recorded mileage. Continue to update?"))) {
                 $.ajax({
                     async: false,
@@ -192,4 +193,69 @@ function carInfoUpdateMileage(){
     else{
         alert("You must select a car to update mileage!");
     }
+}
+
+$("#updateInspection").on('click', function(){
+
+    var currentIndex = ($('select[id="carList"]')[0].selectedIndex - 1);
+    var currentCar = savedCarList[currentIndex];
+    var carID = currentCar.carID;
+
+    //Retrieves Inspection Mileage and date from the respective fields in car-info.html
+    var newMileage = $("#mileageNewInspection").val();
+
+    var inspectionMonth = $('select[id="selectMonth"]')[0].selectedIndex + 1;
+    var inspectionDay = $("#inspectionDay").val();
+    var inspectionYear = $("#inspectionYear").val();
+
+
+    if(!isNaN(newMileage)){
+
+            $.ajax({
+                async: false,
+                type: 'GET',
+                url: '../php/updateInspection.php',
+                dataType: 'jsonp',
+                contentType: 'application/javascript',
+                jsonp: 'callback',
+                jsonpcallback: 'logResults',
+                data: {
+                    carID: carID,
+                    inspectionMileage: newMileage,
+                    monthInspection: inspectionMonth,
+                    dayInspection: inspectionDay,
+                    yearInspection: inspectionYear
+                },
+                success: function (response, textStatus) {
+                    console.log(response);
+                    confirm("Car last inspected at " + response.mileage + " miles on " +
+                        response.monthMileage + "/" + response.dayMileage + "/" + response.yearMileage);
+
+                    location.reload();
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("Error " + errorThrown);
+                }
+            })
+        //}
+    }
+    else{
+        alert("New mileage must be a number!");
+    }
+});
+
+function getRecommendedDate(car){
+    //if (currentCar.inspectMonth < 8) {
+    //     var monthNextInspection = currentCar.inspectMonth + 5;
+    //     $("#nextOilChange").val(monthNextInspection + '/' + currentCar.inspectDay + '/' + currentCar.inspectYear);
+    // }
+    // else {
+    //     var monthNextInspection = currentCar.inspectMonth - 7;
+    //     var yearNextInspection = currentCar.inspectYear + 1;
+    //     $("#nextOilChange").val(monthNextInspection + '/' + currentCar.inspectDay + '/' + yearNextInspection);
+    // }
+    //
+    // var mileageEstimate = currentCar.inspectionMileage + 5000 - currentCar.mileage;
+    // $("#mileageEstimate").val(mileageEstimate);
 }
