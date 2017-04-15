@@ -11,16 +11,29 @@
  * @param carStyle The style of the car (ex. 2 door or 4 door, engine size, etc.)
  * @param trim The trim of the car (information already contained in carStyle, maybe unnecessary?)
  * @param mileage The current mileage of the car
+ * @param monthMileage month that the last mileage was entered
+ * @param dayMileage day that the last mileage was entered
+ * @param yearMileage year that the last mileage was entered
  * @param alerts An array of Alert objects that contain all important information which the user needs to see.
  * @constructor
  */
-function Car(make, model, year, carStyle, trim, mileage, alerts, carID) {
+function Car(make, model, year, carStyle, trim, mileage, monthMileage, dayMileage, yearMileage, inspectionMileage, inspectMonth, inspectDay,
+               inspectYear, carID, alerts) {
+
     this.make = make;
     this.model = model;
     this.year = year;
     this.carStyle = carStyle;
     this.trim = trim;
     this.mileage = mileage;
+    this.monthMileage = monthMileage;
+    this.dayMileage = dayMileage;
+    this.yearMileage = yearMileage;
+    this.inspectionMileage = inspectionMileage;
+    this.inspectMonth = inspectMonth;
+    this.inspectDay = inspectDay;
+    this.inspectYear = inspectYear;
+    this.carID = carID;
     this.alerts = [];
     this.carID = carID;
 

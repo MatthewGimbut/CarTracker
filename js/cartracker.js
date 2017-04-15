@@ -194,7 +194,7 @@ function displayVehicles() {
             if(currentRow === null){
                 currentRow = document.createElement("div");
             }
-            var curr, retId, retMake, retModel, retYear, retStyle, retTrim, retMileage;
+            var curr, retMake, retModel, retYear, retStyle, retTrim, retMileage, retMileMonth, retMileDay, retMileYear, retId;
 
             var container = document.getElementById("carList");
             console.log(container === null);
@@ -210,6 +210,9 @@ function displayVehicles() {
                 retStyle = response[i].style;
                 retTrim = response[i].trim;
                 retMileage = response[i].mileage;
+                retMileMonth = response[i].monthMileage;
+                retMileDay = response[i].dayMileage;
+                retMileYear = response[i].yearMileage;
 
                 curr = new Car(
                     retMake,
@@ -217,7 +220,11 @@ function displayVehicles() {
                     retYear,
                     retStyle,
                     retTrim,
-                    retMileage
+                    retMileage,
+                    retMileMonth,
+                    retMileDay,
+                    retMileYear,
+                    retId
                 );
 
                 //savedCarList.push(curr);
@@ -277,6 +284,9 @@ function displayVehicles() {
     }
 
 }
+
+
+
 
 /**
  * When a user selects a car, saves the car to the database under the user's name
@@ -377,6 +387,7 @@ function updateMileage(carID, mileage){
 function validateNumbericInput(input) {
     
 }
+
 
 //deprecated
 function loadCookies() {
