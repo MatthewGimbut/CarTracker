@@ -8,6 +8,7 @@
 import smtplib
 from email import mime
 from email.mime import multipart
+from email.mime.text import MIMEText
 
 # Username for email account to log into
 username = "info.cartracker@gmail.com"
