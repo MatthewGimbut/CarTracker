@@ -43,4 +43,4 @@ def send(subject, body):
     server.quit()
 
 
-send("Your Daily CarTracker Update", text)
+send("Your CarTracker Update", text)
