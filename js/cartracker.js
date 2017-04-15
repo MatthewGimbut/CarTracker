@@ -63,7 +63,6 @@ function searchCarInfo() {
         url:(url),
         dataType:'json',
         type: 'get',
-        //data: yourForm.serialize(),
         success:function(response){
             console.log(response);
             var currentRow = document.createElement("div");
@@ -79,24 +78,10 @@ function searchCarInfo() {
                 );
                 currentCarList.push(car);
                 var div = document.createElement("div");
-                div.innerHTML =
-                    '<div class="col-lg-4 carSearchDiv">' +
-                    '<div class="panel panel-info">' +
-                    '<div class="panel-heading">' +
-                    car.year + " " + car.make + " " + car.model +
-                    '</div>' +
-                    '<div class="panel-body">' +
-                    '<p>' + 'Style: ' + car.carStyle + '</p>' +
-                    '</div>' +
-                    '<div class="panel-footer">' +
-                    '<a id="carClick" href="#" onclick="userSelectVehicle(this)">Click here to add to car list.</a>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>';
+                div.innerHTML = car.getFormattedSearchHTML();
                 currentRow.appendChild(div);
                 var footer = document.getElementById("carClick");
                 footer.id = i.toString();
-                //currentRow.insertAdjacentHTML('beforeend', carDiv);
             }
         },
 
@@ -130,7 +115,7 @@ function addVehicle() {
  * @param carID Car's carID field in the database
  * @returns {string}
  */
-function getAddedCarPreview(car, carID) {
+/*function getAddedCarPreview(car, carID) {
     return '<br><div class="col-lg-4 carSearchDiv">' +
         '<div class="panel panel-info">' +
         '<div class="panel-heading">' +
@@ -153,7 +138,7 @@ function getAddedCarPreview(car, carID) {
         '</div>' +
         '</div>' +
         '</div>';
-}
+}*/
 
 function removeCar(carID){
     var confirmDel = confirm("THIS WILL REMOVE YOUR CAR FROM YOUR ACCOUNT AND IS NOT REVERSIBLE!");
@@ -183,6 +168,10 @@ function displayVehicles() {
     //loadCookies();
     //console.log(savedCarList);
 
+    //Saving the length of response check this way because only testing on local.
+    //Will work this way without having to change when on local/live.
+    var responseCheck;
+
     //Database call
     $.ajax({
         async: false,
@@ -194,13 +183,14 @@ function displayVehicles() {
         jsonpcallback: 'logResults',
         data: {username: username},
         success: function(response, textStatus){
+            var currentRow = document.getElementById("car-list-container");
+            responseCheck = response.length;
             console.log(textStatus);
             console.log(JSON.stringify(response));
             //saveCookies(JSON.stringify(response));
             //window.open("../pages/car-list.html", "_self");
 
             var div;
-            var currentRow = document.getElementById("car-list-container");
             if(currentRow === null){
                 currentRow = document.createElement("div");
             }
@@ -233,7 +223,7 @@ function displayVehicles() {
                 //savedCarList.push(curr);
 
                 div.className = "row";
-                div.innerHTML = getAddedCarPreview(curr, retId);
+                div.innerHTML = curr.getFormattedCarHTML(retId);
                 currentRow.appendChild(div);
 
                 //Set homepage must be done here because
@@ -248,7 +238,8 @@ function displayVehicles() {
                     var hpCar = document.createElement("div");
                     hpCar.className = "row";
                     hpCar.style.width = "100%";
-                    hpCar.innerHTML = getAddedCarPreview(curr);
+                    //TODO Ask mike about this
+                    hpCar.innerHTML = curr.getFormattedCarHTML(retId);
                     container.appendChild(hpCar);
 
                     document.getElementById("numCars").innerHTML = (i + 1).toString();
@@ -262,7 +253,29 @@ function displayVehicles() {
         error: function(jqXHR, textStatus, errorThrown) {
             alert("Error " + errorThrown + "\nPlease contact the webmaster with this error.");
         }
-    })
+    });
+
+     /*
+        Checks to see if the response was not received or the response contained nothing.
+        Tells the user they have no cars and directs them to add some.
+     */
+    if (responseCheck === undefined || responseCheck.length === 0) {
+        var noCars = document.createElement("p");
+        var a = document.createElement("a");
+        a.title = "Add cars";
+        a.innerHTML = "To add a vehicle, click here.";
+        a.href = "../pages/car-search.html";
+        noCars.innerHTML = "You have no cars to display.";
+        var newDiv = document.createElement("div");
+        var col = document.createElement("div");
+        col.className = "col-lg-4";
+        newDiv.className = "row";
+        col.appendChild(noCars);
+        col.appendChild(a);
+        newDiv.appendChild(col);
+        document.getElementById("carListTitleDiv").appendChild(newDiv);
+    }
+
 }
 
 /**
@@ -361,6 +374,9 @@ function updateMileage(carID, mileage){
             }
 }
 
+function validateNumbericInput(input) {
+    
+}
 
 //deprecated
 function loadCookies() {
@@ -371,60 +387,3 @@ function loadCookies() {
 function saveCookies() {
     localStorage.setItem("savedCarList", JSON.stringify(savedCarList));
 }
-
-/*function Car(make, model, year, carStyle, trim, mileage) {
-
-    this.make = make;
-    this.model = model;
-    this.year = year;
-    this.carStyle = carStyle;
-    this.trim = trim;
-    this.mileage = mileage;
-    this.alerts = [];
-
-    /**
-     * Pulls up image for car
-     * @returns {null}
-     */
-   /* this.getCarImage = function() {
-        return null;
-    };
-
-    this.getPriorityAlerts = function(priority) {
-        var priorityAlerts = null;
-        var numAlerts = 0;
-        for(var i = 0; i < this.alerts.length; i++) {
-            if(this.alerts[i].priority === priority) {
-                priorityAlerts[numAlerts] = this.alerts[i];
-                numAlerts++;
-            }
-        }
-        return priorityAlerts;
-    };
-}
-
-function Alert(priority, message) {
-    this.priority = priority;
-    this.message = message;
-}*/
-
-/**
- * Called when the homepage is loaded, Displays the cars (if any)
- * the user has on the screen.
-function loadHomePage() {
-    //console.log("list contains:\n" + savedCarList);
-    //document.getElementById("numCars").innerHTML = savedCarList.length.toString(); //Added toString so WebStorm wouldn't yell at me for inconsistent types
-    // var container = document.getElementById("carList");
-    // if (savedCarList.length !== 0) {
-    //     for (var i = 0; i < savedCarList.length; i++) {
-    //         var div = document.createElement("div");
-    //         div.className = "row";
-    //         div.style.width = "100%";
-    //         div.innerHTML = getAddedCarPreview(savedCarList[i]);
-    //         container.appendChild(div);
-    //     }
-    // }
-    //Set username
-    //document.getElementById("welcome-message").innerHTML = "Welcome " + username + "!";
-}
- */
