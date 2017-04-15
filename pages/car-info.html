@@ -203,24 +203,24 @@
                                 <br>
 
                                 <label for="disabledSelect">Make</label>
-                                <input class="form-control" id="make" type="text" placeholder="[Vehicle Make]" disabled>
+                                <input class="form-control" id="make" type="text" autocomplete="off" placeholder="[Vehicle Make]" disabled>
                                 <br>
 
                                 <label for="disabledSelect">Model</label>
-                                <input class="form-control" id="model" type="text" placeholder="[Vehicle Model]" disabled>
+                                <input class="form-control" id="model" type="text" autocomplete="off" placeholder="[Vehicle Model]" disabled>
                                 <br>
 
                                 <label for="disabledSelect">Year</label>
-                                <input class="form-control" id="year" type="text" placeholder="[Vehicle Year]" disabled>
+                                <input class="form-control" id="year" type="text" autocomplete="off" placeholder="[Vehicle Year]" disabled>
                                 <br>
 
                                 <label for="disabledSelect" id="mileageDate">Mileage : Last Updated [mm/dd/yyyy]</label>
-                                <input class="form-control" id="mileage" type="text" placeholder="[Vehicle Mileage]" disabled>
+                                <input class="form-control" id="mileage" type="text" autocomplete="off" placeholder="[Vehicle Mileage]" disabled>
                                 <br>
 
                                 <label>Update Mileage</label>
                                 <div class="form-group input-group">
-                                  <input id="newMileage" type="text" class="form-control" placeholder="Update Total Mileage">
+                                  <input id="newMileage" type="text" class="form-control" autocomplete="off" placeholder="Update Total Mileage">
                                   <span class="input-group-btn" placeholder="Update Total Mileage">
                                     <button class="btn btn-default" type="button" onclick="carInfoUpdateMileage()"><i class="fa fa-check"></i>
                                     </button>
@@ -233,19 +233,19 @@
                             <div class="col-lg-5">
 
                                 <label for="disabledSelect">Last Oil Change</label>
-                                <input class="form-control" id="lastOilChange" type="text" placeholder="[month/day/year]" disabled>
+                                <input class="form-control" id="lastOilChange" type="text" autocomplete="off" placeholder="[month/day/year]" disabled>
                                 <br>
 
                                 <label for="disabledSelect">Mileage Last Oil Change</label>
-                                <input class="form-control" id="mileageLastOilChange" type="text" placeholder="[Mileage]" disabled>
+                                <input class="form-control" id="mileageLastOilChange" type="text" autocomplete="off" placeholder="[Mileage]" disabled>
                                 <br>
 
                                 <label for="disabledSelect">Recommended Next Oil Change</label>
-                                <input class="form-control" id="nextOilChange" type="text" placeholder="[month/day/year]" disabled>
+                                <input class="form-control" id="nextOilChange" type="text" autocomplete="off" placeholder="[month/day/year]" disabled>
                                 <br>
 
                                 <label for="disabledSelect">Recommended Mileage Until Next Oil Change</label>
-                                <input class="form-control" id="mileageEstimate" type="text" placeholder="[month/day/year]" disabled>
+                                <input class="form-control" id="mileageEstimate" type="text" autocomplete="off" placeholder="[month/day/year]" disabled>
                                 <br>
 
                                 <div class="form-group">
@@ -253,7 +253,7 @@
                                     <br>
 
                                     <label>Update Mileage at last inspection</label>
-                                    <Input class="form-control" id="mileageNewInspection" type="text">
+                                    <Input class="form-control" id="mileageNewInspection" autocomplete="off" type="text">
                                     <br>
 
                                     <label>Month</label>
@@ -273,9 +273,9 @@
                                     </select>
 
                                     <label>Day</label>
-                                    <input class="form-control" placeholder="day">
+                                    <input class="form-control" placeholder="day" autocomplete="off">
                                     <label>Year</label>
-                                    <input class="form-control" placeholder="year">
+                                    <input class="form-control" placeholder="year" autocomplete="off">
                                     <br>
                                     <button class="btn btn-default" type="button" onclick="updateOilChange()" id="updateInformation">
                                         Update Oil Change <i class="fa fa-check"></i>
@@ -311,7 +311,7 @@
     <script src="../dist/js/sb-admin-2.js"></script>
 
     <!-- CarTracker JavaScript -->
-    <script src="../js/cartracker.js"></script>
+    <script src="../js/carInfo.js"></script>
     <script src="../js/car.js"></script>
     <script src="../js/alert.js"></script>
 
