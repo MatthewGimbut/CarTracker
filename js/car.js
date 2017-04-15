@@ -224,6 +224,9 @@ function Car(make, model, year, carStyle, trim, mileage, monthMileage, dayMileag
      */
     this.trimParenthesis = function(style) {
         var parenRegex = /\s*\(.*\)\s*/;
-        return style.replace(style.match(parenRegex)[0], "");
+        var matches = style.match(parenRegex);
+        if(matches.length !== 0){
+            return style.replace(matches[0], "");
+        }
     };
 }
