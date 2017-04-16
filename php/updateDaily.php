@@ -16,7 +16,7 @@ while($row = $users->fetch_assoc()) {
 
   while($car = $result->fetch_assoc()){
       $since = $car['mileage'] - $car['mileageLastInspection'];
-      $str = $str . $car['year'] . " " . $car['make'] . " " . $car['model'] . ": " . $since . " miles since maintenance\n";
+      $str = $str . "<p>"$car['year'] . " " . $car['make'] . " " . $car['model'] . ": " . $since . " miles since maintenance</p>\n";
   }
 
   //Execute the python script
