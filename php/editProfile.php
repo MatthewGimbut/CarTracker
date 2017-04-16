@@ -15,6 +15,48 @@ while ($row = $result->fetch_assoc()) {
     $userID = $row['userID'];
 }
 
+//get all other possibly changed data
+$firstName = $_GET["firstName"];
+$lastName = $_GET["lastName"];
+$bDay = $_GET["bDay"];
+$bMonth = $_GET["bMonth"];
+$bYear = $_GET["bYear"];
+
+//updating first name
+if ($firstName !== null) {
+    $statement = $mysqli->prepare("UPDATE users SET users.firstName = $firstName WHERE userID = $userID");
+    $statement->execute();
+    $statement->close();
+}
+
+//updating last name
+if($lastName !== null){
+    $statement = $mysqli->prepare("UPDATE users SET users.lastName = $lastName WHERE userID = $userID");
+    $statement->execute();
+    $statement->close();
+}
+
+//updating bDay
+if($bDay !== null){
+    $statement = $mysqli->prepare("UPDATE users SET users.birthDay = $bDay WHERE userID = $userID");
+    $statement->execute();
+    $statement->close();
+}
+
+//updating bMonth
+if($bMonth !== null){
+    $statement = $mysqli->prepare("UPDATE users SET users.birthMonth = $bMonth WHERE userID = $userID");
+    $statement->execute();
+    $statement->close();
+}
+
+//updating bYear
+if($bYear !== null){
+    $statement = $mysqli->prepare("UPDATE users SET users.birthYear = $bYear WHERE userID = $userID");
+    $statement->execute();
+    $statement->close();
+}
+
 while ($row = $result->fetch_assoc()) {
     $myArray[] = $row;
 }
