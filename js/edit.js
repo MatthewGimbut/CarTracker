@@ -11,7 +11,7 @@ $(document).ready(function () {
         var bYear = $("#bYear").val();
 
         if (validateNames(firstName, lastName)
-            && validateDOB(bDay, bMonth, bYear)) {
+            || validateDOB(bDay, bMonth, bYear)) {
             $.ajax({
                 async: false,
                 type: 'GET',
