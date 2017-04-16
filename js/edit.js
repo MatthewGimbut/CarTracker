@@ -47,22 +47,18 @@ $(document).ready(function () {
  *
  * @param firstName Must contain either letters (currently English alphabet only) or spaces
  * @param lastName Must contain either letters (currently English alphabet only) or spaces
- * @param username Must contain either letters, digits, underscore or hyphen
  * @returns {boolean} True if all tests pass
  */
-function validateNames(firstName, lastName, username) {
+function validateNames(firstName, lastName) {
     firstName = firstName.trim();
     lastName = lastName.trim();
-    username = username.trim();
     var regex = /^[a-zA-Z ]+$/; //Lower, upper, space character
 
     //Check for blank
     if (firstName === ""
         || firstName.length > 20
         || lastName === ""
-        || lastName.length > 30
-        || username === ""
-        || username.length > 20) {
+        || lastName.length > 30) {
         alert("Error:\nFields cannot be blank.\nFirst Name and Username must be 20 characters or less.\n" +
             "Last Name must be 30 characters or less");
         return false;
@@ -75,14 +71,6 @@ function validateNames(firstName, lastName, username) {
         alert("Error:\nFirst Name or Last Name contains invalid characters");
         return false;
     }
-
-    regex = /^[a-zA-Z0-9_-]+$/; //Lower, upper, digits, underscore, hyphen
-
-    if (!regex.test(username)) {
-        alert("Error:\nInvalid username");
-        return false;
-    }
-
     return true;
 }
 
