@@ -3,13 +3,13 @@
 
 <head>
 
+    <title>CarTracker - Car Info</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="View and update information of your vehicle. Login to make changes.">
+    <meta name="author" content="CarTracker LLC">
 
-    <title>CarTracker Demo</title>
 
     <!-- Custom CSS made by us (not from template)
     <link href="../dist/css/cartracker.css" rel="stylesheet"> -->
@@ -38,7 +38,7 @@
 
 </head>
 
-<body onload="loadHomePage()">
+<body onload="retrieveCars()">
 
     <div id="wrapper">
 
@@ -60,49 +60,8 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>Read All Messages</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
+                    <ul id="messageList" class="dropdown-menu dropdown-messages">
+
                     </ul>
                     <!-- /.dropdown-messages -->
                 </li>
@@ -129,12 +88,14 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li id="profileLink"><a href="login.html"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li><a href="settings.html"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Login</a>
+                        <li id="loginitem"><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Login</a>
+                        </li>
+                        <li id="reg"><a href="registration.html">Register</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -174,7 +135,7 @@
                                     <a href="car-list.html"> View Cars</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Maintenance</a>
+                                    <a href="car-info.html"> Maintenance</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -184,22 +145,25 @@
                             <a href="#"><i class="fa fa-male fa-fw"></i> Profile<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"> View Profile</a>
+                                    <a href="userProfile.html"> View Profile</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Edit Profile</a>
+                                    <a href="userProfile.html"> Edit Profile</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Preferences</a>
+                                    <a href="settings.html"> Preferences</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="../pages/message-center.html"><i class="fa fa-envelope fa-fw"></i> Message Center</span></a>
+                            <a href="../pages/message-center.html"><i class="fa fa-envelope fa-fw"></i> Message Center</a>
                         </li>
                         <li>
-                            <a href="../pages/map-search.html"><i class="fa fa-shopping-cart fa-fw"></i> Find A Store</span></a>
+                            <a href="../pages/map-search.html"><i class="fa fa-shopping-cart fa-fw"></i> Find A Store</a>
+                        </li>
+                        <li>
+                            <a href="../pages/resources.html"><i class="fa fa-wrench fa-fw"></i> DIY Resources</a>
                         </li>
                     </ul>
                 </div>
@@ -230,72 +194,99 @@
                     <div>
                         <h1 class="page-header" id="testheader">Car Info</h1>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-							<label for="disabledSelect">Make</label>
-                            <input class="form-control" id="make" type="text" placeholder="[Vehicle Make]" disabled>
-							<br>
-							
-							<label for="disabledSelect">Model</label>
-							<input class="form-control" id="model" type="text" placeholder="[Vehicle Model]" disabled>
-							<br>
-							
-							<label for="disabledSelect">Year</label>
-							<input class="form-control" id="year" type="text" placeholder="[Vehicle Year]" disabled>
-							<br>
-							<br>
-							
-							<label for="disabledSelect">Mileage : Last Updated [date]</label>
-							<input class="form-control" id="milage" type="text" placeholder="[Vehicle Mileage]" disabled>
-							<br>
-							
-							<label>Update Mileage</label>
-							<div class="form-group input-group">
-                              <input type="text" class="form-control" placeholder="Update Total Mileage">
-                              <span class="input-group-btn" placeholder="Update Total Mileage">
-                                <button class="btn btn-default" type="button"><i class="fa fa-check"></i>
-                                </button>
-                              </span>
-							</div>
-							<br>
-							
-							<label for="disabledSelect">Last Oil Change</label>
-							<input class="form-control" id="lastOilChange" type="text" placeholder="[month/day/year]" disabled>
-                            <br>
-							
-							<label for="disabledSelect">Recommended Next Oil Change</label>
-							<input class="form-control" id="nextOilChange" type="text" placeholder="[month/day/year]" disabled>
-                            <br>
-							
-							<div class="form-group">
-							<label>Recent Oil Change?</label>
-                              <label>Month</label>
-                                <select class="form-control">
-                                  <option>January</option>
-                                  <option>February</option>
-                                  <option>March</option>
-                                  <option>April</option>
-                                  <option>May</option>
-                                  <option>June</option>
-                                  <option>July</option>
-                                  <option>August</option>
-                                  <option>September</option>
-                                  <option>October</option>
-                                  <option>November</option>
-                                  <option>December</option>
-                                </select>
-								
-                              <label>Day</label>
-                              <input class="form-control" placeholder="day">
-                              <label>Year</label>
-                              <input class="form-control" placeholder="year">
-                              <br>
-                              <button class="btn btn-default" type="button" onclick="updateOilChange()" id="updateInformation">
-                              Update Oil Change <i class="fa fa-check"></i>
-                              </button>
-							  
+                        <div class="row">
+                            <div class="col-lg-4">
+
+                                <div class="form-group">
+                                    <label>Select Car</label>
+                                    <select class="form-control" id="carList">
+                                        <option>[Select Car]</option>
+                                    </select>
+                                </div>
+                                <br>
+
+                                <label for="disabledSelect">Make</label>
+                                <input class="form-control" id="make" type="text" autocomplete="off" placeholder="[Vehicle Make]" disabled>
+                                <br>
+
+                                <label for="disabledSelect">Model</label>
+                                <input class="form-control" id="model" type="text" autocomplete="off" placeholder="[Vehicle Model]" disabled>
+                                <br>
+
+                                <label for="disabledSelect">Year</label>
+                                <input class="form-control" id="year" type="text" autocomplete="off" placeholder="[Vehicle Year]" disabled>
+                                <br>
+
+                                <label for="disabledSelect" id="mileageDate">Mileage : Last Updated [mm/dd/yyyy]</label>
+                                <input class="form-control" id="mileage" type="text" autocomplete="off" placeholder="[Vehicle Mileage]" disabled>
+                                <br>
+
+                                <label>Update Mileage</label>
+                                <div class="form-group input-group">
+                                  <input id="newMileage" type="text" class="form-control" autocomplete="off" placeholder="Update Total Mileage">
+                                  <span class="input-group-btn" placeholder="Update Total Mileage">
+                                    <button class="btn btn-default" type="button" onclick="carInfoUpdateMileage()"><i class="fa fa-check"></i>
+                                    </button>
+                                  </span>
+                                </div>
+                                <br>
+
+
                             </div>
-                        	</div>
+                            <div class="col-lg-5">
+
+                                <label for="disabledSelect">Last Oil Change</label>
+                                <input class="form-control" id="lastOilChange" type="text" autocomplete="off" placeholder="[month/day/year]" disabled>
+                                <br>
+
+                                <label for="disabledSelect">Mileage Last Oil Change</label>
+                                <input class="form-control" id="mileageLastOilChange" type="text" autocomplete="off" placeholder="[Mileage]" disabled>
+                                <br>
+
+                                <label for="disabledSelect">Recommended Next Oil Change</label>
+                                <input class="form-control" id="nextOilChange" type="text" autocomplete="off" placeholder="[month/day/year]" disabled>
+                                <br>
+
+                                <label for="disabledSelect">Recommended Mileage Until Next Oil Change</label>
+                                <input class="form-control" id="mileageEstimate" type="text" autocomplete="off" placeholder="[month/day/year]" disabled>
+                                <br>
+
+                                <div class="form-group">
+                                    <label>Recent Oil Change?</label>
+                                    <br>
+
+                                    <label>Update Mileage at last inspection</label>
+                                    <Input class="form-control" id="mileageNewInspection" autocomplete="off" type="text">
+                                    <br>
+
+                                    <label>Month</label>
+                                    <select class="form-control" id="selectMonth">
+                                        <option>January</option>
+                                        <option>February</option>
+                                        <option>March</option>
+                                        <option>April</option>
+                                        <option>May</option>
+                                        <option>June</option>
+                                        <option>July</option>
+                                        <option>August</option>
+                                        <option>September</option>
+                                        <option>October</option>
+                                        <option>November</option>
+                                        <option>December</option>
+                                    </select>
+
+                                    <label>Day</label>
+                                    <input class="form-control" id="inspectionDay" placeholder="day" autocomplete="off">
+                                    <label>Year</label>
+                                    <input class="form-control" id="inspectionYear" placeholder="year" autocomplete="off">
+                                    <br>
+                                    <button class="btn btn-default" type="button" id="updateInspection">
+                                        Update Oil Change <i class="fa fa-check"></i>
+                                    </button>
+
+                                </div>
+
+                            </div>
                     	</div>
                 	</div> <!-- /.col-lg-12 -->
             	</div> <!-- /.row -->
@@ -323,13 +314,21 @@
     <script src="../dist/js/sb-admin-2.js"></script>
 
     <!-- CarTracker JavaScript -->
-    <script src="../js/cartracker.js"></script>
+
+    <script src="../js/carInfo.js"></script>
     <script src="../js/car.js"></script>
+    <script src="../js/cartracker.js"></script>
     <script src="../js/alert.js"></script>
 
     <!-- Set Up Mileage Progressbars -->
     <script src="../js/progressBars.js"></script>
+    <script src="../js/dynamicnav.js"></script>
 
+    <!-- Mileage Alerts -->
+    <script src="../js/mileageAlert.js"></script>
+
+    <script src="../js/logout.js"></script>
+      
 </body>
 
 </html>

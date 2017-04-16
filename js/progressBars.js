@@ -2,9 +2,8 @@
  * JS to show progress to next inspection for user's vehicles
  *
  * Should be included in every page to change the "tasks" progress levels
- */
-/**
- * Created by Mike on 3/26/2017.
+ *
+ * @author Michael Crinite
  */
 var userJSON;
 
@@ -19,7 +18,7 @@ $(document).ready(function(){
     $.ajax({
         async: false,
         type: 'GET',
-        url: 'http://localhost/getAllCars.php',
+        url: '../php/getAllCars.php',
         dataType: 'jsonp',
         contentType:'application/javascript',
         jsonp: 'callback',
@@ -37,7 +36,7 @@ $(document).ready(function(){
                     var index = 0;
 
                     //HTML vars
-                    var separator, listItem, alink, container, textP, bar, innerbar, innerHTML;
+                    var separator, listItem, alink, container, textP, textP2, bar, innerbar, innerHTML;
 
                     var rounded, type;
 
@@ -48,13 +47,14 @@ $(document).ready(function(){
                         progress = milesSince / window;
                         percent = progress * 100;
                         rounded = roundup(percent);
+                        console.log(rounded);
 
-                        if (rounded < 40 && rounded > 20) {
-                            type = "(success)";
+                        if (rounded < 40) {
+                            type = " progress-bar-success";
                         } else if (rounded < 60) {
-                            type = "(warning)";
+                            type = " progress-bar-warning";
                         } else {
-                            type = "(danger)";
+                            type = " progress-bar-danger";
                         }
 
                         if (index > 0) {
@@ -69,20 +69,26 @@ $(document).ready(function(){
 
                         //For some reason there's an a link with no url?
                         alink = document.createElement("a");
+                        alink.setAttribute("href", "car-list.html");
                         listItem.appendChild(alink);
 
                         //Container for
                         container = document.createElement("div");
+                        container.setAttribute("title", percent + "% To Next Service");
                         alink.appendChild(container);
 
                         //Description
                         textP = document.createElement("p");
                         innerHTML = "<Strong>" + car + "</Strong>";
+                        textP.innerHTML = innerHTML;
+                        container.appendChild(textP);
+                        /**
+                        textP2 = document.createElement("p");
                         innerHTML = innerHTML + "<span class=\"pull-right text-muted\">" +
                             percent + "% To Next Service</span>";
                         textP.innerHTML = innerHTML;
-                        container.appendChild(textP);
-
+                        container.appendChild(textP2);
+                        */
                         //Display bar
 
                         bar = document.createElement("div");
@@ -91,13 +97,13 @@ $(document).ready(function(){
 
                         //Actual progressbar
                         innerbar = document.createElement("div");
-                        innerbar.className = "progress-bar progress-bar-success";
+                        innerbar.className = "progress-bar" + type;
                         innerbar.setAttribute("role", "progressbar");
                         innerbar.setAttribute("aria-valuenow", "" + percent);
                         innerbar.setAttribute("aria-valuemin", "0");
                         innerbar.setAttribute("aria-valuemax", "100");
                         innerbar.setAttribute("style", "width: " + percent + "%");
-                        innerHTML = "<span class=\"sr-only\">" + percent + "Complete" + type + "</span>";
+                        innerHTML = "<span class=\"sr-only\">" + percent + "Complete" + "</span>";
                         innerbar.innerHTML = innerHTML;
                         bar.appendChild(innerbar);
 
@@ -128,15 +134,15 @@ $(document).ready(function(){
  * @returns {number} Rounded number
  */
 function roundup(value){
-    if(value ===0) {
+    if(value === 0) {
         return 0;
-    }else if(value < 20){
+    }else if(value <= 20){
         return 20;
-    }else if(value < 40){
+    }else if(value <= 40){
         return 40;
-    }else if(value <60){
+    }else if(value <= 60){
         return 60;
-    }else if(value < 80){
+    }else if(value <= 80){
         return 80;
     }else{
         return 100;

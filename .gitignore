@@ -7,3 +7,7 @@ bower_components
 .idea/CarTracker.iml
 .idea/modules.xml
 img/Thumbs.db
+python/.idea/workspace.xml
+python/.idea/misc.xml
+python/.idea/modules.xml
+python/.idea/python.iml

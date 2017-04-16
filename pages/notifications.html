@@ -3,13 +3,12 @@
 
 <head>
 
+    <title>CarTracker - Account Notifications</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>CarTracker - Account Notifications</title>
+    <meta name="description" content="View notifications on your Account. Login to view notifications.">
+    <meta name="author" content="CarTracker LLC">
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -54,49 +53,8 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>Read All Messages</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
+                    <ul id="messageList" class="dropdown-menu dropdown-messages">
+
                     </ul>
                     <!-- /.dropdown-messages -->
                 </li>
@@ -188,7 +146,9 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li id="loginitem"><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Login</a>
+                        </li>
+                        <li id="reg"><a href="registration.html">Register</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -497,7 +457,12 @@
 
     <!-- Set Up Mileage Progressbars -->
     <script src="../js/progressBars.js"></script>
+    <script src="../js/dynamicnav.js"></script>
 
+    <!-- Mileage Alerts -->
+    <script src="../js/mileageAlert.js"></script>
+
+    <script src="../js/logout.js"></script>
 </body>
 
 </html>

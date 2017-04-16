@@ -24,7 +24,7 @@ $(document).ready(function(){
             $.ajax({
                 async: false,
                 type: 'GET',
-                url: 'http://localhost/postUser.php',
+                url: '../php/postUser.php',
                 dataType: 'jsonP',
                 contentType:'application/javascript',
                 jsonp: 'callback',

@@ -3,16 +3,14 @@
 
 <head>
 
+    <title>CarTracker - Home Page</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>CarTracker - Home Page</title>
-
-    <!-- Custom CSS made by us (not from template)
-    <link href="../dist/css/cartracker.css" rel="stylesheet"> -->
+    <meta name="description" content="Welcome to CarTracker, the newest way of keeping track of your vehicles! Login to
+add your vehicles and find local maintenance shops! You can also track when maintenance should be performed on your car, how
+many miles you have left until your oil should be changed, and much more!">
+    <meta name="author" content="CarTracker LLC">
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +36,7 @@
 
 </head>
 
-<body onload="loadHomePage()">
+<body onload="displayVehicles()">
 
     <div id="wrapper">
 
@@ -60,49 +58,8 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>Read All Messages</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
+                    <ul id="messageList" class="dropdown-menu dropdown-messages">
+
                     </ul>
                     <!-- /.dropdown-messages -->
                 </li>
@@ -128,12 +85,14 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="userProfile.html"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li id="profileLink"><a href="login.html"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li><a href="settings.html"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Login</a>
+                        <li id="loginitem"><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Login</a>
+                        </li>
+                        <li id="reg"><a href="registration.html">Register</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -202,22 +161,25 @@
                             <a href="#"><i class="fa fa-male fa-fw"></i> Profile<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"> View Profile</a>
+                                    <a href="userProfile.html"> View Profile</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Edit Profile</a>
+                                    <a href="userProfile.html"> Edit Profile</a>
                                 </li>
                                 <li>
-                                    <a href="#"> Preferences</a>
+                                    <a href="settings.html"> Preferences</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="../pages/message-center.html"><i class="fa fa-envelope fa-fw"></i> Message Center</span></a>
+                            <a href="../pages/message-center.html"><i class="fa fa-envelope fa-fw"></i> Message Center</a>
                         </li>
                         <li>
-                            <a href="../pages/map-search.html"><i class="fa fa-shopping-cart fa-fw"></i> Find A Store</span></a>
+                            <a href="../pages/map-search.html"><i class="fa fa-shopping-cart fa-fw"></i> Find A Store</a>
+                        </li>
+                        <li>
+                            <a href="../pages/resources.html"><i class="fa fa-wrench fa-fw"></i> DIY Resources</a>
                         </li>
                     </ul>
                 </div>
@@ -287,12 +249,12 @@
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
+                                    <div id="tasknum" class="huge">0</div>
                                     <div>View tasks!</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="message-center.html">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -309,7 +271,7 @@
             <br>
             <div class="container-fluid">
                 <div class="row" id="carList">
-
+                    <div>You do not currently have any cars linked to your account. Please click Cars -> Add Cars to begin.</div>
                 </div>
             </div>
         </div>
@@ -349,13 +311,20 @@
     <script src="../dist/js/sb-admin-2.js"></script>
 
     <!-- CarTracker JavaScript -->
-    <script src="../js/cartracker.js"></script>
     <script src="../js/car.js"></script>
+    <script src="../js/cartracker.js"></script>
     <script src="../js/alert.js"></script>
 
     <!-- Set Up Mileage Progressbars -->
     <script src="../js/progressBars.js"></script>
+    <script src="../js/dynamicnav.js"></script>
 
+    <script src="../js/getEmail.js"></script>
+
+    <!-- Mileage Alerts -->
+    <script src="../js/mileageAlert.js"></script>
+
+    <script src="../js/logout.js"></script>
 </body>
 
 </html>

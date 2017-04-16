@@ -42,13 +42,28 @@ function display(){
     $("#username").html(userJSON.username);
     $("#email").html(userJSON.email);
     $("#DOB").html(userJSON.birthMonth + "/" + userJSON.birthDay + "/" + userJSON.birthYear)
+    calculateAge();
+}
 
+function calculateAge(){
     var currentDate = new Date();
 
-    if(currentDate.getDay() < parseInt(userJSON.birthDay) || currentDate.getMonth() < parseInt(userJSON.birthMonth)){
-        $("#Age").html(currentDate.getFullYear() - parseInt(userJSON.birthYear) - 1);
+    var month = currentDate.getMonth() + 1;
+    var day = currentDate.getDate();
+    var year = currentDate.getFullYear();
+
+    if(month == userJSON.birthMonth){
+        if(day >= userJSON.birthDay){
+            $("#Age").html(year - userJSON.birthYear);
+        }
+        else{
+            $("#Age").html(year - userJSON.birthYear - 1);
+        }
+    }
+    else if(month > userJSON.birthMonth){
+        $("#Age").html(year - userJSON.birthYear);
     }
     else{
-        $("#Age").html(currentDate.getFullYear() - parseInt(userJSON.birthYear));
+        $("#Age").html(year - userJSON.birthYear - 1);
     }
-    }
+}

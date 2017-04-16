@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="CarTracker LLC">
 
     <title>CarTracker</title>
 
@@ -54,49 +54,8 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
-                <ul class="dropdown-menu dropdown-messages">
-                    <li>
-                        <a href="#">
-                            <div>
-                                <strong>John Smith</strong>
-                                <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                            </div>
-                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <strong>John Smith</strong>
-                                <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                            </div>
-                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <strong>John Smith</strong>
-                                <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                            </div>
-                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a class="text-center" href="#">
-                            <strong>Read All Messages</strong>
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </li>
+                <ul id="messageList" class="dropdown-menu dropdown-messages">
+
                 </ul>
                 <!-- /.dropdown-messages -->
             </li>
@@ -123,12 +82,14 @@
                     <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    <li id="profileLink"><a href="login.html"><i class="fa fa-user fa-fw"></i> User Profile</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    <li><a href="settings.html"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Login</a>
+                    <li id="loginitem"><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Login</a>
+                    </li>
+                    <li id="reg"><a href="registration.html">Register</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -146,7 +107,6 @@
                         </a>
                         <div class="input-group custom-search-form">
                             <input type="text" class="form-control" placeholder="Search...">
-                            <!-- TODO Add a search function for the website? -->
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
                                     <i class="fa fa-search"></i>
@@ -165,10 +125,10 @@
                                 <a href="car-search.html"> Add Cars</a>
                             </li>
                             <li>
-                                <a href="#"> View Cars</a>
+                                <a href="car-list.html"> View Cars</a>
                             </li>
                             <li>
-                                <a href="#"> Maintenance</a>
+                                <a href="car-info.html"> Maintenance</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -178,13 +138,13 @@
                         <a href="#"><i class="fa fa-male fa-fw"></i> Profile<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#"> View Profile</a>
+                                <a href="userProfile.html"> View Profile</a>
                             </li>
                             <li>
-                                <a href="#"> Edit Profile</a>
+                                <a href="userProfile.html"> Edit Profile</a>
                             </li>
                             <li>
-                                <a href="#"> Preferences</a>
+                                <a href="settings.html"> Preferences</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -194,6 +154,9 @@
                     </li>
                     <li>
                         <a href="../pages/map-search.html"><i class="fa fa-shopping-cart fa-fw"></i> Find A Store</a>
+                    </li>
+                    <li>
+                        <a href="../pages/resources.html"><i class="fa fa-wrench fa-fw"></i> DIY Resources</a>
                     </li>
                 </ul>
             </div>
@@ -206,6 +169,9 @@
     <!-- Page Content -->
     <div id="page-wrapper">
         <div class="container-fluid">
+            <div id="carListTitleDiv">
+                <h1 class="page-header" id="carListHeader">Your Cars</h1>
+            </div>
             <div class="row" id="car-list-container">
 
                 <!-- /.col-lg-12 -->
@@ -232,12 +198,18 @@
 <!-- Custom Theme JavaScript -->
 <script src="../dist/js/sb-admin-2.js"></script>
 
-<script src="../js/cartracker.js"></script>
 <script src="../js/car.js"></script>
+<script src="../js/cartracker.js"></script>
 <script src="../js/alert.js"></script>
 
 <!-- Set Up Mileage Progressbars -->
 <script src="../js/progressBars.js"></script>
+<script src="../js/dynamicnav.js"></script>
+
+<!-- Mileage Alerts -->
+<script src="../js/mileageAlert.js"></script>
+
+<script src="../js/logout.js"></script>
 
 </body>
 

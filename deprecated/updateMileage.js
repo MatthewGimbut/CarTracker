@@ -1,6 +1,7 @@
 /**
  *
  * @author Michael Moscariello
+ * This file is deprecated; the contents of this file were moved to cartracker.js
  */
 $(document).ready(function(){
     $("#update").on("click", function(){
@@ -14,7 +15,7 @@ $(document).ready(function(){
             $.ajax({
                 async: false,
                 type: 'GET',
-                url: 'http://localhost/updateMileage.php',
+                url: '../php/updateMileage.php',
                 dataType: 'jsonp',
                 contentType:'application/javascript',
                 jsonp: 'callback',
@@ -27,6 +28,7 @@ $(document).ready(function(){
                     console.log(response);
                     alert("New mileage at " + response.mileage + " updated for current car on " +
                         response.monthMileage + "/" + response.dayMileage + "/" + response.yearMileage);
+                    location.reload(true); //Force server reload
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     alert("Error " + errorThrown);
