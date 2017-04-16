@@ -18,7 +18,7 @@
  * @constructor
  */
 function Car(make, model, year, carStyle, trim, mileage, monthMileage, dayMileage, yearMileage, inspectionMileage, inspectMonth, inspectDay,
-               inspectYear, carID, alerts) {
+             inspectYear, carID, alerts) {
 
     this.make = make;
     this.model = model;
@@ -142,11 +142,10 @@ function Car(make, model, year, carStyle, trim, mileage, monthMileage, dayMileag
         //Matches any digit 0-9 followed by 'dr'.
         var doorRegex = /[0-9]dr/;
         //Removes the 'dr' letters for only the number.
-        var doorString = style.match(doorRegex)[0];
-        console.log(doorString);
-        if(doorString) {
+        var doorString = style.match(doorRegex);
+        if(doorString !== null) {
             //doorString = doorString.replace( /^\D+/g, '');
-            doorString = doorString.replace("dr", "");
+            doorString = doorString[0].replace("dr", "");
             style.replace(style.match(doorRegex)[0], "");
             //Appends the full word 'doors' to the end.
             doorString += " doors";
@@ -164,10 +163,10 @@ function Car(make, model, year, carStyle, trim, mileage, monthMileage, dayMileag
         //Matches any digit 0-9 followed by 'cyl'.
         var cylRegex = /[0-9]+cyl/;
         //Removes the 'cyl' letters for only the number.
-        var cylString = style.match(cylRegex)[0];
-        if(cylString) {
+        var cylString = style.match(cylRegex);
+        if(cylString !== null) {
             //cylString = cylString.replace( /^\D+/g, '');
-            cylString = cylString.replace("cyl", "");
+            cylString = cylString[0].replace("cyl", "");
             style.replace(style.match(cylRegex)[0], "");
             //Appends the full word 'cylinders' to the end.
             cylString += " cylinders";
@@ -184,9 +183,9 @@ function Car(make, model, year, carStyle, trim, mileage, monthMileage, dayMileag
     this.formatLitersString = function(style) {
         //Matches any digit 0-9 followed by an optional '.' and optional 0-9 digit, followed by 'L'.
         var literRegex = /[0-9]\.?[0-9]?L/;
-        var literString = style.match(literRegex)[0];
-        if(literString) {
-            literString = literString.replace("L", "");
+        var literString = style.match(literRegex);
+        if(literString !== null) {
+            literString = literString[0].replace("L", "");
             style.replace(style.match(literRegex)[0], "");
             literString += " liters";
         }
@@ -201,14 +200,14 @@ function Car(make, model, year, carStyle, trim, mileage, monthMileage, dayMileag
      */
     this.formatTransmissionString = function(style) {
         var transmission = "No transmission information present.";
-         //'Truthy' value to see if string contains 'CVT' for automatic transmission
+        //'Truthy' value to see if string contains 'CVT' for automatic transmission
         if(~style.indexOf("CVT")) {
             transmission = "Automatic transmission";
         } else {
             var transmissionRegex = /[1-9]M/;
-            transmission = style.match(transmissionRegex)[0];
-            if(transmission) {
-                transmission = transmission.replace("M", "");
+            transmission = style.match(transmissionRegex);
+            if(transmission !== null) {
+                transmission = transmission[0].replace("M", "");
                 style.replace(style.match(transmissionRegex)[0], "");
                 transmission += " speed manual transmission"
             }
@@ -224,6 +223,12 @@ function Car(make, model, year, carStyle, trim, mileage, monthMileage, dayMileag
      */
     this.trimParenthesis = function(style) {
         var parenRegex = /\s*\(.*\)\s*/;
-        return style.replace(style.match(parenRegex)[0], "");
+        if(style.match(parenRegex) !== null) {
+            var matches = style.match(parenRegex);
+            return style.replace(matches[0], "");
+        }
+        else{
+            return style;
+        }
     };
 }
