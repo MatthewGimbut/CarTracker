@@ -29,9 +29,9 @@ init_text = args.text
 
 # Formats the body of the email in a pretty way
 def format_body(body):
-    with open('mailtop.txt', 'r') as myfile:
+    with open('/var/www/html/CarTracker/python/mailtop.txt', 'r') as myfile:
         mailtop = myfile.read().replace('\n', '')
-    with open('mailbot.txt', 'r') as myfile:
+    with open('/var/www/html/CarTracker/python/mailbot.txt', 'r') as myfile:
         mailbot = myfile.read().replace('\n', '')
 
     return mailtop + body + mailbot
