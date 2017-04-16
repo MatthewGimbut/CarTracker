@@ -14,7 +14,7 @@ function retrieveCars(){
     $.ajax({
         async: false,
         type: 'GET',
-        url: ../php/getAllCars.php',
+        url: '../php/getAllCars.php',
         dataType: 'jsonP',
         contentType:'application/javascript',
         jsonp: 'callback',
