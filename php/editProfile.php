@@ -57,7 +57,9 @@ if($bYear !== null){
     $statement->close();
 }
 
-$result = $mysqli->prepare(SELECT * FROM users WHERE userID = $userID);
+$stmt = $mysqli->prepare("SELECT * FROM users WHERE userID = $userID");
+$stmt->execute();
+$result = $stmt->get_result();
 
 while ($row = $result->fetch_assoc()) {
     $myArray[] = $row;
