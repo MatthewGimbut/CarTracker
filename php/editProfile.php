@@ -1,4 +1,11 @@
 <?php
+function debug_to_console( $data ) {
+    $output = $data;
+    if ( is_array( $output ) )
+        $output = implode( ',', $output);
+
+    echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
+}
 
 $mysqli = new mysqli('mikedb.clzedg3q1dlc.us-west-2.rds.amazonaws.com', 'MikeDB', 'moscariello', 'CarTrackerInfo');
 
@@ -78,10 +85,3 @@ debug_to_console( "third" );
 echo $_GET['callback'] . '(' . json_encode($myArray) . ')';
 ?>
 
-function debug_to_console( $data ) {
-    $output = $data;
-    if ( is_array( $output ) )
-        $output = implode( ',', $output);
-
-    echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
-}
