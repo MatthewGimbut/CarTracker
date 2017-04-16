@@ -1,5 +1,8 @@
 # # #
+# Sends mail from the CarTracker account to the specified user
 #
+# Might not need this since apparently Joe also finished a mailer that is
+# easier to schedule
 #
 # 04.15.2017
 # # #
