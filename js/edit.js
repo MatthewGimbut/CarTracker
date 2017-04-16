@@ -28,7 +28,7 @@ $(document).ready(function () {
                     bYear: bYear
                 },
                 success: function (response, textStatus) {
-                    localStorage.setItem('userJSON', userJSON);
+                    saveCookies(JSON.stringify(response[0]));
                     alert("Profile Updated");
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -41,6 +41,11 @@ $(document).ready(function () {
         }
     })
 });
+
+function saveCookies(userJSON){
+    console.log(userJSON);
+    localStorage.setItem('userJSON', userJSON);
+}
 
 /**
  * Checks whether entered names are valid

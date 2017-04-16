@@ -4,7 +4,7 @@
     //get the user's ID from the database
     $username = $_GET["username"];
     $userID = 0;
-    
+
     $stmt = $mysqli->prepare("SELECT userID FROM users WHERE users.username=?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
