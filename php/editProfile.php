@@ -15,6 +15,8 @@ while ($row = $result->fetch_assoc()) {
     $userID = $row['userID'];
 }
 
+debug_to_console( "firstest checkpoint" );
+
 //get all other possibly changed data
 $firstName = $_GET["firstName"];
 $lastName = $_GET["lastName"];
