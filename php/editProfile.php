@@ -57,9 +57,13 @@ if($bYear !== null){
     $statement->close();
 }
 
+$result = $mysqli->prepare(SELECT * FROM users WHERE userID = $userID);
+
 while ($row = $result->fetch_assoc()) {
     $myArray[] = $row;
 }
+
+$mysqli->close();
 
 echo $_GET['callback'] . '(' . json_encode($myArray) . ')';
 ?>
