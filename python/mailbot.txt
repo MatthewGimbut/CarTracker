@@ -1,0 +1,32 @@
+</td>
+</tr>
+<tr style=3D"font-family: 'Helvetica Neue', Helvetica, Helvetica, Arial, sa=
+ns-serif; box-sizing: border-box; font-size: 14px; margin: 0px; padding: 0p=
+x; height: 68px;">
+<td style=3D"font-family: 'Helvetica Neue', Helvetica, Helvetica, Arial, sa=
+ns-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; mar=
+gin: 0px; padding: 0px 0px 20px; height: 68px;" valign=3D"top"><a style=3D"=
+font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; b=
+ox-sizing: border-box; font-size: 14px; color: #fff; text-decoration: none;=
+ line-height: 2; font-weight: bold; text-align: center; cursor: pointer; di=
+splay: inline-block; border-radius: 5px; text-transform: capitalize; backgr=
+ound-color: #348eda; margin: 0; padding: 0; border-color: #348eda; border-s=
+tyle: solid; border-width: 10px 20px;" href=3D"http://www.cartrackerproject=
+.me/CarTracker/pages/message-center.html" target=3D"_blank">Click to Visit =
+CarTracker</a></td>
+</tr>
+<tr style=3D"font-family: 'Helvetica Neue', Helvetica, Helvetica, Arial, sa=
+ns-serif; box-sizing: border-box; font-size: 14px; margin: 0px; padding: 0p=
+x; height: 80px;">
+<td style=3D"font-family: 'Helvetica Neue', Helvetica, Helvetica, Arial, sa=
+ns-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; mar=
+gin: 0px; padding: 0px 0px 20px; height: 80px;" valign=3D"top">
+<p>Best Wishes,<br />The CarTracker Team</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>

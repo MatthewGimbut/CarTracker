@@ -1,0 +1,49 @@
+<table style=3D"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Aria=
+l, sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; backgr=
+ound-color: #f6f6f6; margin: 0; padding: 0;" bgcolor=3D"#f6f6f6">
+<tbody>
+<tr style=3D"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, =
+sans-serif; box-sizing: border-box; font-size: 14px; margin: 0; padding: 0;=
+">
+<td style=3D"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, =
+sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; m=
+argin: 0; padding: 0;" valign=3D"top">&nbsp;</td>
+<td style=3D"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, =
+sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; d=
+isplay: block !important; max-width: 600px !important; clear: both !importa=
+nt; width: 100% !important; margin: 0 auto; padding: 0;" valign=3D"top" wid=
+th=3D"600">
+<div style=3D"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial,=
+ sans-serif; box-sizing: border-box; font-size: 14px; max-width: 600px; dis=
+play: block; margin: 0 auto; padding: 10px;">
+<table style=3D"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Aria=
+l, sans-serif; box-sizing: border-box; font-size: 14px; border-radius: 3px;=
+ background-color: #fff; margin: 0; padding: 0; border: 1px solid #e9e9e9;"=
+ width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#fff">
+<tbody>
+<tr style=3D"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, =
+sans-serif; box-sizing: border-box; font-size: 14px; margin: 0; padding: 0;=
+">
+<td style=3D"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, =
+sans-serif; box-sizing: border-box; font-size: 16px; vertical-align: top; c=
+olor: #fff; font-weight: 500; text-align: center; border-radius: 3px 3px 0 =
+0; background-color: #00ffe4; margin: 0; padding: 20px;" align=3D"center" v=
+align=3D"top" bgcolor=3D"#ff9f00"><span style=3D"color: #000000;"><strong>Y=
+ou have a new notification!</strong></span></td>
+</tr>
+<tr style=3D"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, =
+sans-serif; box-sizing: border-box; font-size: 14px; margin: 0; padding: 0;=
+">
+<td style=3D"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, =
+sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; m=
+argin: 0; padding: 20px;" valign=3D"top">
+<table style=3D"font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Aria=
+l, sans-serif; box-sizing: border-box; font-size: 14px; margin: 0; padding:=
+ 0;" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0">
+<tbody>
+<tr style=3D"font-family: 'Helvetica Neue', Helvetica, Helvetica, Arial, sa=
+ns-serif; box-sizing: border-box; font-size: 14px; margin: 0px; padding: 0p=
+x; height: 156px;">
+<td style=3D"font-family: 'Helvetica Neue', Helvetica, Helvetica, Arial, sa=
+ns-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; mar=
+gin: 0px; padding: 0px 0px 20px; height: 156px;" valign=3D"top">

@@ -21,7 +21,17 @@ password = "CarTracker123"
 fromaddr = "info.cartracker@gmail.com"
 
 toaddr = args.addr
-text = args.text
+init_text = args.text
+
+
+# Formats the body of the email in a pretty way
+def format_body(body):
+    with open('mailtop.txt', 'r') as myfile:
+        mailtop = myfile.read().replace('\n', '')
+    with open('mailbot.txt', 'r') as myfile:
+        mailbot = myfile.read().replace('\n', '')
+
+    return mailtop + body + mailbot
 
 
 # Sends text message with report to toaddrs
@@ -43,4 +53,5 @@ def send(subject, body):
     server.quit()
 
 
-send("Your CarTracker Update", text)
+send("Your CarTracker Update", format_body(init_text))
+
