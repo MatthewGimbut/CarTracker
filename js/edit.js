@@ -10,7 +10,7 @@ $(document).ready(function () {
         var bMonth = $("#bMonth").val();
         var bYear = $("#bYear").val();
 
-        if (validateNames(firstName, lastName, username)
+        if (validateNames(firstName, lastName)
             && validateDOB(bDay, bMonth, bYear)) {
             $.ajax({
                 async: false,
@@ -59,7 +59,7 @@ function validateNames(firstName, lastName) {
         || firstName.length > 20
         || lastName === ""
         || lastName.length > 30) {
-        alert("Error:\nFields cannot be blank.\nFirst Name and Username must be 20 characters or less.\n" +
+        alert("Error:\nFields cannot be blank.\nFirst Name.\n" +
             "Last Name must be 30 characters or less");
         return false;
     }
