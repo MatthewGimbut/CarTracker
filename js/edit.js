@@ -43,7 +43,7 @@ $(document).ready(function () {
 });
 
 function saveCookies(userJSON){
-    console.log(userJSON);
+    localStorage.setItem('userJSON', null);
     localStorage.setItem('userJSON', userJSON);
 }
 
@@ -99,8 +99,4 @@ function validateDOB(bDay, bMonth, bYear) {
         alert("Day not in range!");
         return false;
     }
-}
-
-function saveCookies(userJSON) {
-    localStorage.setItem('userJSON', userJSON);
 }
