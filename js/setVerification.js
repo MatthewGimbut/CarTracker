@@ -2,14 +2,16 @@
  * Created by Joe Mecca on 4/17/2017.
  */
 
-var userJSON;
+var userJSON = JSON.parse(localStorage.getItem('userJSON'));
+var username = userJSON.username;
+var verified = userJSON.verified;
 
 function verifyEmail(){
     $.ajax({
         async: false,
         type: 'GET',
-        //url: '../php/setVerification.php',
-        url: '//localhost/setVerification.php',
+        url: '../php/setVerification.php',
+        //url: '//localhost/setVerification.php',
         dataType: 'jsonP',
         contentType:'application/javascript',
         jsonp: 'callback',
