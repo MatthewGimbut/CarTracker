@@ -111,8 +111,8 @@ function Car(make, model, year, carStyle, trim, mileage, monthMileage, dayMileag
             this.year + " " + this.make + " " + this.model + " - " + trimmedStyle +
             '<span class="pull-right">' +
             '<a data-original-title="Remove this car" data-toggle="tooltip" type="button"' +
-            ' class="btn btn-sm btn-danger" onclick="removeCar(' + this.carID + ');">' +
-            '<div><i class="glyphicon glyphicon-remove"></i></a></span></div>' +
+            ' class="btn btn-sm btn-danger glyphicon glyphicon-remove" onclick="removeCar(' + this.carID + ');">' +
+            '</a></span>' +
             '</div>' +
             '<div class="panel-body">' +
             '<p>' + 'Style: ' + '</p>' +
@@ -127,7 +127,7 @@ function Car(make, model, year, carStyle, trim, mileage, monthMileage, dayMileag
             '</div>' +
             '</div>' +
             '<div class="panel-footer">' +
-            'Click <a id="carClick" href="#" onclick="#">here</a> to view/edit maintenance details.' +
+            'Click <a id="carClick" href="./car-info.html" >here</a> to view/edit maintenance details.' +
             '</div>' +
             '</div>' +
             '</div>';
