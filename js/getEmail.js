@@ -106,8 +106,8 @@ function sendAlertNotification(toEmail, messageDetails, alertSeverity, alertPrev
  * The randomly generated link is created within this method.
  * @param toEmail the email that needs to be verified
  */
-function sendVerificationEmail(toEmail){
-    var params = {toEmail: toEmail, verifyLink: getVerificationLink()};
+function sendVerificationEmail(toEmail, username){
+    var params = {toEmail: toEmail, verifyLink: getVerificationLink(), username: username};
 
     // Change to your service ID, or keep using the default service
     var service_id = "default_service";

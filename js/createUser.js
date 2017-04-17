@@ -23,7 +23,7 @@ $(document).ready(function(){
                     if (validateDOB(bDay, bMonth, bYear)) {
 
                         //sending verification email BEFORE the new window opens
-                        sendVerificationEmail(email);
+                        sendVerificationEmail(email, username);
 
                         $.ajax({
                             async: false,
