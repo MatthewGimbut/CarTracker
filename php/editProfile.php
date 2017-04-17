@@ -25,7 +25,7 @@ $bYear = $_GET["bYear"];
 //updating first name
 if ($firstName !== null) {
     $statement = $mysqli->prepare('UPDATE users SET users.firstName="?"  WHERE userID=?') or die($mysqli->error);
-    $stmt->bind_param("si", $firstName, $userID);
+    $statememt->bind_param("si", $firstName, $userID);
     $statement->execute();
     $statement->close();
 }
@@ -33,7 +33,7 @@ if ($firstName !== null) {
 //updating last name
 if($lastName !== null){
     $statement = $mysqli->prepare('UPDATE users SET users.lastName = "?" WHERE userID = ?') or die($mysqli->error);
-    $stmt->bind_param("si", $lastName, $userID);
+    $statememt->bind_param("si", $lastName, $userID);
     $statement->execute();
     $statement->close();
 }
@@ -41,7 +41,7 @@ if($lastName !== null){
 //updating bDay
 if($bDay !== null){
     $statement = $mysqli->prepare('UPDATE users SET users.birthDay = ? WHERE userID = ?') or die($mysqli->error);
-    $stmt->bind_param("ii", $bDay, $userID);
+    $statememt->bind_param("ii", $bDay, $userID);
     $statement->execute();
     $statement->close();
 }
@@ -49,7 +49,7 @@ if($bDay !== null){
 //updating bMonth
 if($bMonth !== null){
     $statement = $mysqli->prepare('UPDATE users SET users.birthMonth = ? WHERE userID = ?') or die($mysqli->error);
-    $stmt->bind_param("ii", $bMonth, $userID);
+    $statememt->bind_param("ii", $bMonth, $userID);
     $statement->execute();
     $statement->close();
 }
@@ -57,7 +57,7 @@ if($bMonth !== null){
 //updating bYear
 if($bYear !== null){
     $statement = $mysqli->prepare('UPDATE users SET users.birthYear = ? WHERE userID = ?') or die($mysqli->error);
-    $stmt->bind_param("ii", $bYear, $userID);
+    $statememt->bind_param("ii", $bYear, $userID);
     $statement->execute();
     $statement->close();
 }
