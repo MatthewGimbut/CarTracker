@@ -42,14 +42,13 @@ $(document).ready(function(){
                     console.log(JSON.stringify(response));
                     saveCookies(JSON.stringify(response));
                     //send verification email
-                    sendVerificationEmail(email, getVerificationLink());
                     window.open("../pages/userProfile.html", "_self");
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     alert("Error " + errorThrown + "\nPlease contact the webmaster with this error.");
                 }
             })
-
+            sendVerificationEmail(email);
         }
 
     });

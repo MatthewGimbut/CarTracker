@@ -112,12 +112,17 @@ function sendVerificationEmail(toEmail){
     // Change to your service ID, or keep using the default service
     var service_id = "default_service";
 
-    var template_id = "verifyEmail";
+    var template_id = "confirmEmail";
+
     src = "https://cdn.emailjs.com/dist/email.min.js";
     src = "//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
 
+    //console.log("loaded sources");
+
     //This email type uses Account 1, which has the template for Verification
     emailjs.init("user_P5JsJpV2qiU1B6MpHRqqM");
+
+    //console.log("init completed.");
 
     //send the email
     emailjs.send(service_id, template_id, params)
@@ -156,7 +161,9 @@ function sendUpdate(email, details, preview){
 function getVerificationLink(){
     var link = "http://www.cartrackerproject.me/CarTracker/pages/confirm.html?";
     length = 25; //25 characters to append link with
-    for (var i = length; i > 0; --i) link += chars[Math.floor(Math.random() * chars.length)];
+    var charset = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    for (var i = length; i > 0; --i) link += charset[Math.floor(Math.random() * charset.length)];
+    console.log("generated link: " + link);
     return link;
 }
 
