@@ -208,54 +208,69 @@ $("#updateInspection").on('click', function(){
     var inspectionDay = $("#inspectionDay").val();
     var inspectionYear = $("#inspectionYear").val();
 
-
     if(!isNaN(newMileage)){
+        if(isValidDate(inspectionMonth, inspectionDay, inspectionYear)){
+            if(newMileage > currentCar.inspectionMileage || newMileage < currentCar.inspectionMileage &&
+                confirm("WARNING: The current mileage is lower than the mileage recorded at the last inspection. Continue?")) {
 
-            $.ajax({
-                async: false,
-                type: 'GET',
-                url: '../php/updateInspection.php',
-                dataType: 'jsonp',
-                contentType: 'application/javascript',
-                jsonp: 'callback',
-                jsonpcallback: 'logResults',
-                data: {
-                    carID: carID,
-                    inspectionMileage: newMileage,
-                    monthInspection: inspectionMonth,
-                    dayInspection: inspectionDay,
-                    yearInspection: inspectionYear
-                },
-                success: function (response, textStatus) {
-                    console.log(response);
-                    confirm("Car last inspected at " + response.mileage + " miles on " +
-                        response.monthMileage + "/" + response.dayMileage + "/" + response.yearMileage);
+                $.ajax({
+                    async: false,
+                    type: 'GET',
+                    url: '../php/updateInspection.php',
+                    dataType: 'jsonp',
+                    contentType: 'application/javascript',
+                    jsonp: 'callback',
+                    jsonpcallback: 'logResults',
+                    data: {
+                        carID: carID,
+                        inspectionMileage: newMileage,
+                        monthInspection: inspectionMonth,
+                        dayInspection: inspectionDay,
+                        yearInspection: inspectionYear
+                    },
+                    success: function (response, textStatus) {
+                        console.log(response);
+                        confirm("Car last inspected at " + response.mileage + " miles on " +
+                            response.monthMileage + "/" + response.dayMileage + "/" + response.yearMileage);
 
-                    location.reload();
+                        location.reload();
 
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    alert("Error " + errorThrown);
-                }
-            })
-        //}
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("Error " + errorThrown);
+                    }
+                })
+            }
+        }
     }
     else{
-        alert("New mileage must be a number!");
+        alert("Mileage, must be a number!");
     }
 });
 
-function getRecommendedDate(car){
-    //if (currentCar.inspectMonth < 8) {
-    //     var monthNextInspection = currentCar.inspectMonth + 5;
-    //     $("#nextOilChange").val(monthNextInspection + '/' + currentCar.inspectDay + '/' + currentCar.inspectYear);
-    // }
-    // else {
-    //     var monthNextInspection = currentCar.inspectMonth - 7;
-    //     var yearNextInspection = currentCar.inspectYear + 1;
-    //     $("#nextOilChange").val(monthNextInspection + '/' + currentCar.inspectDay + '/' + yearNextInspection);
-    // }
-    //
-    // var mileageEstimate = currentCar.inspectionMileage + 5000 - currentCar.mileage;
-    // $("#mileageEstimate").val(mileageEstimate);
+function isValidDate(inspectionMonth, inspectionDay, inspectionYear){
+    var date = new Date();
+    var currentMonth = date.getMonth() + 1;
+    var currentDay = date.getDate();
+    var currentYear = date.getFullYear();
+
+    if(isNaN(inspectionDay) || isNaN(inspectionYear)){
+        alert("The day and year fields must be numbers!");
+        return false;
+    }
+    else if(inspectionMonth > currentMonth && inspectionYear >= currentYear){
+        alert('The entered date must be current or previous date!');
+        return false;
+    }
+    else if(inspectionDay > currentDay && inspectionMonth >= currentMonth && inspectionYear >= currentYear){
+        alert('The entered date must be current or previous date!');
+        return false;
+    }
+    else if(inspectionYear > currentYear){
+        alert('The entered date must be current or previous date!');
+        return false
+    }
+    else{
+        return true;
+    }
 }

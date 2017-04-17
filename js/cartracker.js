@@ -149,6 +149,7 @@ function addVehicle() {
 }*/
 
 function removeCar(carID){
+    console.log(carID);
     var confirmDel = confirm("THIS WILL REMOVE YOUR CAR FROM YOUR ACCOUNT AND IS NOT REVERSIBLE!");
 
     if(confirmDel) {
@@ -178,40 +179,57 @@ function displayVehicles() {
 
     //Saving the length of response check this way because only testing on local.
     //Will work this way without having to change when on local/live.
-    var responseCheck;
-
+    var responseCheck = 0;
     //Database call
     $.ajax({
         async: false,
         type: 'GET',
         url: '../php/getAllCars.php',
         dataType: 'jsonP',
-        contentType:'application/javascript',
+        contentType: 'application/javascript',
         jsonp: 'callback',
         jsonpcallback: 'logResults',
         data: {username: username},
-        success: function(response, textStatus){
+        success: function (response, textStatus) {
             var currentRow = document.getElementById("car-list-container");
             responseCheck = response.length;
+            console.log("response length: " + responseCheck);
             console.log(textStatus);
             console.log(JSON.stringify(response));
             //saveCookies(JSON.stringify(response));
             //window.open("../pages/car-list.html", "_self");
 
             var div;
-            if(currentRow === null){
+            if (currentRow === null) {
                 currentRow = document.createElement("div");
             }
-            var curr, retMake, retModel, retYear, retStyle, retTrim, retMileage, retMileMonth, retMileDay, retMileYear, retId;
+            var curr, retMake, retModel, retYear, retStyle, retTrim, retMileage, retMileMonth, retMileDay,
+                retMileYear, retInspectMile, retInspectMonth, retInspectDay, retInspectYear, retId;
 
             var container = document.getElementById("carList");
             console.log(container === null);
+
+            if (responseCheck === undefined || responseCheck === 0) {
+                var noCars = document.createElement("p");
+                var a = document.createElement("a");
+                a.title = "Add cars";
+                a.innerHTML = "To add a vehicle, click here.";
+                a.href = "../pages/car-search.html";
+                noCars.innerHTML = "You have no cars to display.";
+                var newDiv = document.createElement("div");
+                var col = document.createElement("div");
+                col.className = "col-lg-4";
+                newDiv.className = "row";
+                col.appendChild(noCars);
+                col.appendChild(a);
+                newDiv.appendChild(col);
+                document.getElementById("carListTitleDiv").appendChild(newDiv);
+            }
 
             for (var i = 0; i < response.length; i++) {
                 div = document.createElement("div");
 
                 //Generate a car object for each response to user below
-                retId = response[i].carID;
                 retMake = response[i].make;
                 retModel = response[i].model;
                 retYear = response[i].year;
@@ -221,6 +239,12 @@ function displayVehicles() {
                 retMileMonth = response[i].monthMileage;
                 retMileDay = response[i].dayMileage;
                 retMileYear = response[i].yearMileage;
+                retInspectMile = response[i].mileageLastInspection;
+                retInspectMonth = response[i].monthInspection;
+                retInspectDay = response[i].dayInspection;
+                retInspectYear = response[i].yearInspection;
+                retId = response[i].carID;
+
 
                 curr = new Car(
                     retMake,
@@ -232,6 +256,10 @@ function displayVehicles() {
                     retMileMonth,
                     retMileDay,
                     retMileYear,
+                    retInspectMile,
+                    retInspectMonth,
+                    retInspectDay,
+                    retInspectYear,
                     retId
                 );
 
@@ -261,35 +289,27 @@ function displayVehicles() {
 
                 }
             }
-            try{
+            try {
                 document.getElementById("welcome-message").innerHTML = "Welcome " + username + "!";
-            }catch(err){}
+            } catch (err) {
+            }
         },
-        error: function(jqXHR, textStatus, errorThrown) {
-            alert("Error " + errorThrown + "\nPlease contact the webmaster with this error.");
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log("Error " + errorThrown);
+            alert("\nYou have to be logged in to store cars. Please register an account or log in."
+            + "\nIf this problem still persists, contact the webmaster.");
+
+
         }
     });
 
-     /*
-        Checks to see if the response was not received or the response contained nothing.
-        Tells the user they have no cars and directs them to add some.
-     */
-    if (responseCheck === undefined || responseCheck.length === 0) {
-        var noCars = document.createElement("p");
-        var a = document.createElement("a");
-        a.title = "Add cars";
-        a.innerHTML = "To add a vehicle, click here.";
-        a.href = "../pages/car-search.html";
-        noCars.innerHTML = "You have no cars to display.";
-        var newDiv = document.createElement("div");
-        var col = document.createElement("div");
-        col.className = "col-lg-4";
-        newDiv.className = "row";
-        col.appendChild(noCars);
-        col.appendChild(a);
-        newDiv.appendChild(col);
-        document.getElementById("carListTitleDiv").appendChild(newDiv);
-    }
+
+ /*
+    Checks to see if the response was not received or the response contained nothing.
+    Tells the user they have no cars and directs them to add some.
+ */
+
+
 
 }
 

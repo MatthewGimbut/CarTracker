@@ -111,15 +111,15 @@ function Car(make, model, year, carStyle, trim, mileage, monthMileage, dayMileag
             this.year + " " + this.make + " " + this.model + " - " + trimmedStyle +
             '<span class="pull-right">' +
             '<a data-original-title="Remove this car" data-toggle="tooltip" type="button"' +
-            ' class="btn btn-sm btn-danger" onclick="removeCar(' + this.carID + ');">' +
-            '<div><i class="glyphicon glyphicon-remove"></i></a></span></div>' +
+            ' class="btn btn-sm btn-danger glyphicon glyphicon-remove" onclick="removeCar(' + this.carID + ');">' +
+            '</a></span>' +
             '</div>' +
             '<div class="panel-body">' +
             '<p>' + 'Style: ' + '</p>' +
-            '<ul><li>'+ doors + '</li>' +
-            '<li>'+ cyl + '</li>' +
-            '<li>'+ liters + '</li>' +
-            '<li>'+ transmission + '</li></ul>' +
+            (doors !== null ? '<ul><li>'+ doors + '</li>' : "") +
+            (cyl !== null ? '<li>'+ cyl + '</li>' : "") +
+            (liters !== null ? '<li>'+ liters + '</li>' : "") +
+            (transmission !== null ? '<li>'+ transmission + '</li></ul>' : "") +
             '<div class="panel-body">'+
             '<p id="mileage' + this.carID + '">Current Mileage: ' + this.mileage + '</p>' +
             '<input id="car' + this.carID + '">' +
@@ -127,7 +127,7 @@ function Car(make, model, year, carStyle, trim, mileage, monthMileage, dayMileag
             '</div>' +
             '</div>' +
             '<div class="panel-footer">' +
-            'Click <a id="carClick" href="#" onclick="#">here</a> to view/edit maintenance details.' +
+            'Click <a id="carClick" href="./car-info.html" >here</a> to view/edit maintenance details.' +
             '</div>' +
             '</div>' +
             '</div>';
