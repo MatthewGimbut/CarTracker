@@ -349,7 +349,7 @@ function insertCarToDB(){
             username: username},
         success: function(response, textStatus){
             //saveCookies(JSON.stringify(response));
-            window.open("../pages/car-list.html", "_self");
+            window.location.reload();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert("Error " + errorThrown + "\nPlease contact the webmaster with this error.");
@@ -386,6 +386,8 @@ function updateMileage(carID, mileage){
                             alert("New mileage at " + response.mileage + " updated for current car on " +
                                 response.monthMileage + "/" + response.dayMileage + "/" + response.yearMileage);
                             $("#mileage" + carID).text("Current Mileage: " + newMileage);
+
+                            window.location.reload();
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
                             alert("Error " + errorThrown);

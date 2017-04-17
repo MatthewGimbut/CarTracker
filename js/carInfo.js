@@ -176,6 +176,8 @@ function carInfoUpdateMileage(){
                         alert("New mileage at " + response.mileage + " updated for current car on " +
                             response.monthMileage + "/" + response.dayMileage + "/" + response.yearMileage);
                         $("#mileage").val(newMileage);
+
+                        window.location.reload();
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         alert("Error " + errorThrown);
