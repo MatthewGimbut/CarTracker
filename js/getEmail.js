@@ -154,8 +154,19 @@ function sendUpdate(email, details, preview){
  * This method will generate a verification link with a randomly set of alphanumeric characters
  */
 function getVerificationLink(){
-    var link = "";
-    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+    var link = "http://www.cartrackerproject.me/CarTracker/pages/confirm.html?";
+    length = 25; //25 characters to append link with
+    for (var i = length; i > 0; --i) link += chars[Math.floor(Math.random() * chars.length)];
+    return link;
+}
+
+/**
+ * This method will confirm that the url that the user clicked matches that of the url that the email had sent.
+ */
+function confirmEmailAddress(url){
+    //if (userJSON.verificationLink == url){
+        //change the confirm variable in the user to '1'
+    //}
 }
 
 $(document).ready(function(){
