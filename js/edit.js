@@ -2,6 +2,8 @@
  * Created by Andrew Genova on 4/13/2017.
  */
 
+var user = JSON.parse(localStorage.getItem('userJSON'));
+
 $(document).ready(function () {
     $("#saveChanges").on("click", function () {
         var firstName = $("#firstName").val();
@@ -9,6 +11,7 @@ $(document).ready(function () {
         var bDay = $("#bDay").val();
         var bMonth = $("#bMonth").val();
         var bYear = $("#bYear").val();
+        var username = user.username;
 
         if (validateNames(firstName, lastName)
             || validateDOB(bDay, bMonth, bYear)) {
@@ -21,6 +24,7 @@ $(document).ready(function () {
                 jsonp: 'callback',
                 jsonpcallback: 'logResults',
                 data: {
+                    username: username,
                     firstName: firstName,
                     lastName: lastName,
                     bDay: bDay,
