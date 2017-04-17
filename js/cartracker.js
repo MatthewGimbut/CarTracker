@@ -38,12 +38,51 @@ function searchCarInfo() {
     console.log(typeof make);
     console.log(capitalize(make));
 
+    //Remove previous cars from list
+    while (carInfo.firstChild) {
+        carInfo.removeChild(carInfo.firstChild);
+    }
+
     if(make !== "" && model !== "" && year !== "") {
         var url = "https://api.edmunds.com/api/vehicle/v2/" +
             make + "/" +
             (model !== null ? (model + "/"): "") +
             (year !== null ? year: "") +
             "?fmt=json&api_key=2873ck8xzdvuhyh4trmr7axu";
+
+        $.ajax({
+            url:(url),
+            dataType:'json',
+            type: 'get',
+            success:function(response){
+                carInfo.text("");
+                console.log(response);
+
+                var currentRow = document.createElement("div");
+                currentRow.className = "row col-lg-16";
+                carInfo.append(currentRow);
+                for(var i = 0; i < response.styles.length; i++) {
+                    var car = new Car(
+                        capitalize(make),
+                        capitalize(model),
+                        year,
+                        response.styles[i].name,
+                        response.styles[i].trim
+                    );
+                    currentCarList.push(car);
+                    var div = document.createElement("div");
+                    div.innerHTML = car.getFormattedSearchHTML();
+                    currentRow.appendChild(div);
+                    var footer = document.getElementById("carClick");
+                    footer.id = i.toString();
+                }
+            },
+
+            error: function(data) {
+                carInfo.text("");
+                carInfo.text("Search failed!");
+            }
+        });
     } else {
         var errorString = "Search failed.\n";
         if(make === "") {
@@ -55,40 +94,9 @@ function searchCarInfo() {
         if(year === "") {
             errorString += "Please enter a year.\n";
         }
+        carInfo.text("");
         carInfo.text(errorString);
     }
-
-    
-    $.ajax({
-        url:(url),
-        dataType:'json',
-        type: 'get',
-        success:function(response){
-            console.log(response);
-            var currentRow = document.createElement("div");
-            currentRow.className = "row col-lg-16";
-            carInfo.append(currentRow);
-            for(var i = 0; i < response.styles.length; i++) {
-                var car = new Car(
-                    capitalize(make),
-                    capitalize(model),
-                    year,
-                    response.styles[i].name,
-                    response.styles[i].trim
-                );
-                currentCarList.push(car);
-                var div = document.createElement("div");
-                div.innerHTML = car.getFormattedSearchHTML();
-                currentRow.appendChild(div);
-                var footer = document.getElementById("carClick");
-                footer.id = i.toString();
-            }
-        },
-
-        error: function(data) {
-            carInfo.text("Search failed!");
-        }
-    });
 }
 
 /**

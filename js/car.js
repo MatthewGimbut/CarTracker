@@ -69,6 +69,7 @@ function Car(make, model, year, carStyle, trim, mileage, monthMileage, dayMileag
      */
     this.getFormattedSearchHTML = function() {
         var trimmedStyle = this.trimParenthesis(this.carStyle);
+        var finalStyle = this.removeDoors(trimmedStyle);
         var doors = this.formatDoorString(this.carStyle);
         var cyl = this.formatCylinderSting(this.carStyle);
         var liters = this.formatLitersString(this.carStyle);
@@ -76,14 +77,14 @@ function Car(make, model, year, carStyle, trim, mileage, monthMileage, dayMileag
         return '<div class="col-lg-4 carSearchDiv">' +
             '<div class="panel panel-info">' +
             '<div class="panel-heading">' +
-            this.year + " " + this.make + " " + this.model + " - " + trimmedStyle +
+            this.year + " " + this.make + " " + this.model + " - " + finalStyle +
             '</div>' +
             '<div class="panel-body">' +
             '<p>' + 'Style: ' + '</p>' +
-            '<ul><li>'+ doors + '</li>' +
-            '<li>'+ cyl + '</li>' +
-            '<li>'+ liters + '</li>' +
-            '<li>'+ transmission + '</li></ul>' +
+            (doors !== null ? '<ul><li>'+ doors + '</li>' : "") +
+            (cyl !== null ? '<li>'+ cyl + '</li>' : "") +
+            (liters !== null ? '<li>'+ liters + '</li>' : "") +
+            (transmission !== null ? '<li>'+ transmission + '</li></ul>' : "") +
             '</div>' +
             '<div class="panel-footer">' +
             '<a id="carClick" href="#" onclick="userSelectVehicle(this)">Click here to add to car list.</a>' +
@@ -226,9 +227,23 @@ function Car(make, model, year, carStyle, trim, mileage, monthMileage, dayMileag
         if(style.match(parenRegex) !== null) {
             var matches = style.match(parenRegex);
             return style.replace(matches[0], "");
-        }
-        else{
+        } else {
             return style;
         }
     };
+
+    /**
+     * Removes [0-9]dr string from style.
+     * Ex: S 4dr Wagon AWD -> S Wagon AWD
+     * @param style The string that contains all style information.
+     */
+    this.removeDoors = function(style) {
+        var doorRegex = / *[0-9]dr/;
+        if(style.match(doorRegex) !== null) {
+            var matches = style.match(doorRegex);
+            return style.replace(matches[0], "");
+        } else {
+            return style;
+        }
+    }
 }
