@@ -116,10 +116,10 @@ function Car(make, model, year, carStyle, trim, mileage, monthMileage, dayMileag
             '</div>' +
             '<div class="panel-body">' +
             '<p>' + 'Style: ' + '</p>' +
-            '<ul><li>'+ doors + '</li>' +
-            '<li>'+ cyl + '</li>' +
-            '<li>'+ liters + '</li>' +
-            '<li>'+ transmission + '</li></ul>' +
+            (doors !== null ? '<ul><li>'+ doors + '</li>' : "") +
+            (cyl !== null ? '<li>'+ cyl + '</li>' : "") +
+            (liters !== null ? '<li>'+ liters + '</li>' : "") +
+            (transmission !== null ? '<li>'+ transmission + '</li></ul>' : "") +
             '<div class="panel-body">'+
             '<p id="mileage' + this.carID + '">Current Mileage: ' + this.mileage + '</p>' +
             '<input id="car' + this.carID + '">' +
