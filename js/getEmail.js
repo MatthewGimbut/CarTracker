@@ -163,7 +163,9 @@ function getVerificationLink(){
     length = 25; //25 characters to append link with
     var charset = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     for (var i = length; i > 0; --i) link += charset[Math.floor(Math.random() * charset.length)];
+
     //console.log("generated link: " + link);
+
     return link;
 }
 
