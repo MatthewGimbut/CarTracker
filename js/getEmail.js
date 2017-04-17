@@ -5,6 +5,8 @@
  */
 
 var userJSON;
+src="https://cdn.emailjs.com/dist/email.min.js";
+src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
 
 /**
  * This will send a test notification to the currently logged in user (for debugging purposes, such as testing the email server).
@@ -114,8 +116,8 @@ function sendVerificationEmail(toEmail){
 
     var template_id = "confirmEmail";
 
-    src = "https://cdn.emailjs.com/dist/email.min.js";
-    src = "//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
+    src="https://cdn.emailjs.com/dist/email.min.js";
+    src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
 
     //console.log("loaded sources");
 
