@@ -25,7 +25,6 @@ $(document).ready(function(){
         jsonpcallback: 'logResults',
         data: {username: username},
         success: function(response, textStatus){
-            console.log(response);
             try {
                 if (response.length > 0) { //Then at least one car was returned
                     //Generate bars (1 per car)
@@ -47,7 +46,6 @@ $(document).ready(function(){
                         progress = milesSince / window;
                         percent = progress * 100;
                         rounded = roundup(percent);
-                        console.log(rounded);
 
                         if (rounded < 40) {
                             type = " progress-bar-success";
@@ -112,11 +110,8 @@ $(document).ready(function(){
                         index = index + 1;
                     }
                 }
-                else {
-                    console.log("User has no cars in need of maintenance");
-                }
             }catch(e){
-                console.log("No Progress Bars To Set");
+                console.log("Error " + e.message + ": No Progress Bars To Set");
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {

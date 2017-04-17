@@ -33,7 +33,6 @@ $(document).ready(function () {
                 },
                 success: function (response, textStatus) {
                     saveCookies(JSON.stringify(response[0]));
-                    console.log(JSON.stringify(response[0]));
                     alert("Profile Updated");
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -77,7 +76,6 @@ function validateNames(firstName, lastName) {
     //Check first name, last name for valid characters
     if (!regex.test(firstName)
         || !regex.test(lastName)) {
-        console.log(firstName + ", " + lastName);
         alert("Error:\nFirst Name or Last Name contains invalid characters");
         return false;
     }

@@ -20,8 +20,6 @@ function verifyEmail(){
             username: username
         },
         success: function(response, textStatus){
-            console.log(textStatus);
-            console.log(JSON.stringify(response));
             console.log("You have been verified!");
         },
         error: function(jqXHR, textStatus, errorThrown) {

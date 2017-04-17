@@ -90,13 +90,13 @@ function sendAlertNotification(toEmail, messageDetails, alertSeverity, alertPrev
         //send the email
         emailjs.send(service_id, template_id, params)
             .then(function () {
-                console.log("Sent " + template_id + " Email.");
+                alert("Sent " + template_id + " Email.");
             }, function (err) {
-                console.log("Send email failed!\r\n Response:\n " + JSON.stringify(err));
+                alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
             });
 
     }else{ //severity was invalid
-        console.log("Error: Severity variable not valid. Email not sent.");
+        alert("Error: Severity variable not valid. Email not sent.");
     }
 }
 

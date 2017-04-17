@@ -44,8 +44,6 @@ $(document).ready(function(){
                                 bYear: bYear
                             },
                             success: function (response, textStatus) {
-                                console.log(textStatus);
-                                console.log(JSON.stringify(response));
                                 saveCookies(JSON.stringify(response));
                                 window.open("../pages/userProfile.html", "_self");
                             },
