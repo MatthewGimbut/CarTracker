@@ -141,7 +141,7 @@ function sendUpdate(email, details, preview){
         millisTill10 += 86400000; // it's after 10am, try 10am tomorrow.
     }
     setTimeout(function(){
-        //Currently just sends an update at 10am. Let's see if it works.
+        //Currently just sends an update at 10am.
 
         //send update email, severity param is 3 because 3 sends the Update template.
         sendAlertNotification(email, details, 3, preview);
