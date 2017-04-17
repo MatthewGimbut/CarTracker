@@ -128,7 +128,13 @@ function sendVerificationEmail(toEmail, verificationLink){
         });
 }
 
-function sendUpdate(){
+/**
+ * Function that sends an update to a user with car information
+ * @param email the email address to which the update is sent to
+ * @param details the details within the message: i.e "Your Car1 has an oil change in 200 miles."
+ * @param preview should note the type of update based on their preferences. i.e. "Your Weekly Update."
+ */
+function sendUpdate(email, details, preview){
     var now = new Date();
     var millisTill10 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 10, 0, 0, 0) - now;
     if (millisTill10 < 0) {
@@ -137,15 +143,8 @@ function sendUpdate(){
     setTimeout(function(){
         //Currently just sends an update at 10am. Let's see if it works.
 
-        //message details. TODO: currently a skeleton with an example of how the message will be sent once passed to the sendAlertNotification method.
-        var details = "This week with your car account:\n" +
-            "Your {first car} has X miles and is Y miles away from an oil change.\n" +
-            "Your {second car} has Y miles remaining until your tires should be checked or replaced.";
-        var preview = "Weekly Update";
-
         //send update email, severity param is 3 because 3 sends the Update template.
-        //from Joe: I noticed that you used your personal email for the first parameter. I kept it in place, but when you do change it for any user, make sure this is the location it goes now.
-        sendAlertNotification("mikecrinite@gmail.com", details, 3, preview);
+        sendAlertNotification(email, details, 3, preview);
     }, millisTill10);
 
 
