@@ -28,7 +28,6 @@ if ($firstName !== null) {
     $stmt->bind_param("si", $firstName, $userID);
     $statement->execute();
     $statement->close();
-    echo "donefirst";
 }
 
 //updating last name
@@ -37,7 +36,6 @@ if($lastName !== null){
     $stmt->bind_param("si", $lastName, $userID);
     $statement->execute();
     $statement->close();
-     echo "donelast";
 }
 
 //updating bDay
@@ -46,7 +44,6 @@ if($bDay !== null){
     $stmt->bind_param("ii", $bDay, $userID);
     $statement->execute();
     $statement->close();
-     echo "doneday"
 }
 
 //updating bMonth
@@ -55,7 +52,6 @@ if($bMonth !== null){
     $stmt->bind_param("ii", $bMonth, $userID);
     $statement->execute();
     $statement->close();
-     echo "donemonth";
 }
 
 //updating bYear
@@ -64,7 +60,6 @@ if($bYear !== null){
     $stmt->bind_param("ii", $bYear, $userID);
     $statement->execute();
     $statement->close();
-     echo "doneyear"
 }
 
 $stmt = $mysqli->prepare("SELECT * FROM users WHERE userID = ?") or die($mysqli->error);
