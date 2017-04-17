@@ -6,7 +6,7 @@ var userJSON = JSON.parse(localStorage.getItem('userJSON'));
 var username = userJSON.username;
 
 function verifyEmail(){
-    console.log("verifyEmail function called");
+    //console.log("verifyEmail function called");
     $.ajax({
         async: false,
         type: 'GET',
