@@ -79,6 +79,7 @@ function searchCarInfo() {
             },
 
             error: function(data) {
+                carInfo.text("");
                 carInfo.text("Search failed!");
             }
         });
@@ -93,6 +94,7 @@ function searchCarInfo() {
         if(year === "") {
             errorString += "Please enter a year.\n";
         }
+        carInfo.text("");
         carInfo.text(errorString);
     }
 }
