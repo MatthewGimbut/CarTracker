@@ -50,3 +50,8 @@ ADD UNIQUE INDEX `carID_UNIQUE` (`carID` ASC);
 
 ALTER TABLE `CarTrackerInfo`.`cars`
 ADD COLUMN `mileageLastInspection` FLOAT(10) NULL DEFAULT 0.0 AFTER `dateMileage`;
+
+ALTER TABLE `CarTrackerInfo`.`cars` 
+ADD COLUMN `monthInspection` INT NULL AFTER `mileageLastInspection`,
+ADD COLUMN `dayInspection` INT NULL AFTER `monthInspection`,
+ADD COLUMN `yearInspection` INT NULL AFTER `dayInspection`;

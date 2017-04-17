@@ -3,16 +3,18 @@
 
 <head>
 
-    <title>CarTracker - Search for a Shop</title>
+    <title>CarTracker - DIY Resources</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Find a local maintenance shop. Powered by Google Maps.">
+    <meta name="description" content="Welcome to CarTracker, the newest way of keeping track of your vehicles! Login to
+add your vehicles and find local maintenance shops! You can also track when maintenance should be performed on your car, how
+many miles you have left until your oil should be changed, and much more!">
     <meta name="author" content="CarTracker LLC">
 
 
-    <!-- Custom CSS made by us (not from template) -->
-    <link href="../dist/css/cartracker.css" rel="stylesheet">
+    <!-- Custom CSS made by us (not from template)
+    <link href="../dist/css/cartracker.css" rel="stylesheet"> -->
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -40,7 +42,7 @@
 
 <body>
 
-<div id="wrapper" style="height:100%; width: 100%;">
+<div id="wrapper">
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -61,7 +63,7 @@
                     <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul id="messageList" class="dropdown-menu dropdown-messages">
-
+                    <!-- Fill with stuff -->
                 </ul>
                 <!-- /.dropdown-messages -->
             </li>
@@ -71,14 +73,13 @@
                     <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul id="dropdown-miles" class="dropdown-menu dropdown-tasks">
-                    <!--
-                    <li class="divider"></li>
-                    <li>
+                    <!-- <li>
+                        Don't want to link people to the graph-making page
                         <a class="text-center" href="#">
                             <strong>See All Tasks</strong>
                             <i class="fa fa-angle-right"></i>
                         </a>
-                    </li> -->
+                    </li>-->
                 </ul>
                 <!-- /.dropdown-tasks -->
             </li>
@@ -191,115 +192,52 @@
         <!-- /.navbar-static-side -->
     </nav>
 
-    <div id="page-wrapper" style="height:100%; width:100%;">
-        <br>
-        <div>
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container">
+            <!-- Section header -->
+            <div class="row"><h1>Resources</h1></div>
+            <div class ="row"><h3>Use this page to aid in your do-it-yourself car maintenance research</h3></div>
+            <!-- Maybe 3 per row? -->
             <div class="row">
-                <p>Distance from you in meters (default 1000m)</p>
+                <br>
+                <!-- Column -->
+                <div class="col-lg-4 carSearchDiv">
+                    <div class="panel panel-info">
+                        <div class="panel-heading"><a href="index.html">CarTracker Website</a></div>
+                            <div class="panel-body">
+                                <p>CarTracker is a tool to help users keep track of maintenance schedules for their vehicles</p>
+                            </div>
+                        <div class="panel-footer"></div>
+                    </div>
+                </div>
+                <!-- /column -->
+                <!-- Column -->
+                <div class="col-lg-4 carSearchDiv">
+                    <div class="panel panel-info">
+                        <div class="panel-heading"><a href="https://Cartalk.reddit.com">Reddit Car Repair Forum</a></div>
+                        <div class="panel-body">
+                            <p>Reddit forums <i>generally</i> offer friendly useful advice</p>
+                        </div>
+                        <div class="panel-footer"></div>
+                    </div>
+                </div>
+                <!-- /column -->
+                <!-- Column -->
+                <div class="col-lg-4 carSearchDiv">
+                    <div class="panel panel-info">
+                        <div class="panel-heading"><a href="#">Sample 3</a></div>
+                        <div class="panel-body">
+                            <p>Sample 3 is the third sample</p>
+                        </div>
+                        <div class="panel-footer"></div>
+                    </div>
+                </div>
+                <!-- /column -->
             </div>
-            <div class="row">
-                <input type="number" id="distanceInput" placeholder="Enter distance">
-                <button onclick="updateMap()">Update</button>
-
-            </div>
+            <!-- /.row -->
+        <!-- /.container-fluid -->
         </div>
-        <br>
-        <div id="mapContainer"></div>
-        <script type="text/javascript">
-            var map;
-            var latitude, longitude;
-            var service;
-
-            function updateMap() {
-                var dist = document.getElementById("distanceInput").value;
-                console.log(dist);
-                initMap(dist);
-            }
-
-            /*
-                Requests the location of the user.
-             */
-            function getLocation() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(showPosition);
-                } else {
-                    alert("Geolocation is not supported by this browser.");
-                    latitude = 0;
-                    longitude = 0;
-                }
-            }
-
-            /*
-                Sets the location of the user and prints to console.
-             */
-            function showPosition(position) {
-                console.log("Latitude: " + position.coords.latitude +
-                    "Longitude: " + position.coords.longitude);
-                latitude = position.coords.latitude;
-                longitude = position.coords.longitude;
-                initMap();
-            }
-
-            /*
-                Initializes the map. Sets the location to user's location gathered from browser.
-                Displays all stores with the tag "autoshop" within given radius.
-             */
-            function initMap(rad) {
-                rad = (typeof rad !== 'undefined') ?  rad : 1000; //Defaults to 1000m
-                map = new google.maps.Map(document.getElementById('mapContainer'), {
-                    center: {lat: latitude, lng: longitude},
-                    zoom: 15
-                });
-                console.log("Map initiated.");
-                infowindow = new google.maps.InfoWindow();
-                service = new google.maps.places.PlacesService(map);
-
-                service.textSearch({
-                    location: {lat: latitude, lng: longitude},
-                    radius: rad,
-                    query: 'auto shop'
-                }, callback);
-            }
-
-            function callback(results, status) {
-                if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    for (var i = 0; i < results.length; i++) {
-                        createMarker(results[i]);
-                    }
-                }
-            }
-
-            /**
-             * Creates the red map markers.
-             * @param place
-             */
-            function createMarker(place) {
-                var placeLoc = place.geometry.location;
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: place.geometry.location
-                });
-                var request = { placeId: place.place_id };
-                service.getDetails(request, function(details, status) {
-                    /*
-                        Adds a click event to each of the map markers as they are created.
-                        Depending on what information is received, the display string is altered.
-                     */
-                    google.maps.event.addListener(marker, 'click', function () {
-                        if(details === null) {
-                            infowindow.setContent(place.name);
-                        } else{
-                            infowindow.setContent(place.name + "<br/>" +
-                                    (details.formatted_address !== undefined ? details.formatted_address  + "<br/>" : "") +
-                                    (details.website !== undefined ? details.website  + "<br/>" : "") +
-                                    (details.rating !== undefined ? details.rating  + " stars<br/>" : "") +
-                                    (details.formatted_phone_number !== undefined ? details.formatted_phone_number  + "<br/>" : ""));
-                        }
-                        infowindow.open(map, this);
-                    });
-                });
-            }
-        </script>
     </div>
     <!-- /#page-wrapper -->
 
@@ -315,10 +253,6 @@
 <!-- Metis Menu Plugin JavaScript -->
 <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwJL84XBS1VOfsKUS24IqzVYvgJ1WY7mA&callback=getLocation&libraries=places"
-        type="text/javascript">
-</script>
-
 <!-- Morris Charts JavaScript -->
 <!--
 <script src="../vendor/raphael/raphael.min.js"></script>
@@ -330,8 +264,9 @@
 <script src="../dist/js/sb-admin-2.js"></script>
 
 <!-- CarTracker JavaScript -->
-<script src="../js/cartracker.js"></script>
+
 <script src="../js/car.js"></script>
+<script src="../js/cartracker.js"></script>
 <script src="../js/alert.js"></script>
 
 <!-- Set Up Mileage Progressbars -->

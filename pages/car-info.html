@@ -38,7 +38,7 @@
 
 </head>
 
-<body onload="loadHomePage()">
+<body onload="retrieveCars()">
 
     <div id="wrapper">
 
@@ -157,10 +157,13 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="../pages/message-center.html"><i class="fa fa-envelope fa-fw"></i> Message Center</span></a>
+                            <a href="../pages/message-center.html"><i class="fa fa-envelope fa-fw"></i> Message Center</a>
                         </li>
                         <li>
-                            <a href="../pages/map-search.html"><i class="fa fa-shopping-cart fa-fw"></i> Find A Store</span></a>
+                            <a href="../pages/map-search.html"><i class="fa fa-shopping-cart fa-fw"></i> Find A Store</a>
+                        </li>
+                        <li>
+                            <a href="../pages/resources.html"><i class="fa fa-wrench fa-fw"></i> DIY Resources</a>
                         </li>
                     </ul>
                 </div>
@@ -191,72 +194,99 @@
                     <div>
                         <h1 class="page-header" id="testheader">Car Info</h1>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-							<label for="disabledSelect">Make</label>
-                            <input class="form-control" id="make" type="text" placeholder="[Vehicle Make]" disabled>
-							<br>
-							
-							<label for="disabledSelect">Model</label>
-							<input class="form-control" id="model" type="text" placeholder="[Vehicle Model]" disabled>
-							<br>
-							
-							<label for="disabledSelect">Year</label>
-							<input class="form-control" id="year" type="text" placeholder="[Vehicle Year]" disabled>
-							<br>
-							<br>
-							
-							<label for="disabledSelect">Mileage : Last Updated [date]</label>
-							<input class="form-control" id="milage" type="text" placeholder="[Vehicle Mileage]" disabled>
-							<br>
-							
-							<label>Update Mileage</label>
-							<div class="form-group input-group">
-                              <input type="text" class="form-control" placeholder="Update Total Mileage">
-                              <span class="input-group-btn" placeholder="Update Total Mileage">
-                                <button class="btn btn-default" type="button"><i class="fa fa-check"></i>
-                                </button>
-                              </span>
-							</div>
-							<br>
-							
-							<label for="disabledSelect">Last Oil Change</label>
-							<input class="form-control" id="lastOilChange" type="text" placeholder="[month/day/year]" disabled>
-                            <br>
-							
-							<label for="disabledSelect">Recommended Next Oil Change</label>
-							<input class="form-control" id="nextOilChange" type="text" placeholder="[month/day/year]" disabled>
-                            <br>
-							
-							<div class="form-group">
-							<label>Recent Oil Change?</label>
-                              <label>Month</label>
-                                <select class="form-control">
-                                  <option>January</option>
-                                  <option>February</option>
-                                  <option>March</option>
-                                  <option>April</option>
-                                  <option>May</option>
-                                  <option>June</option>
-                                  <option>July</option>
-                                  <option>August</option>
-                                  <option>September</option>
-                                  <option>October</option>
-                                  <option>November</option>
-                                  <option>December</option>
-                                </select>
-								
-                              <label>Day</label>
-                              <input class="form-control" placeholder="day">
-                              <label>Year</label>
-                              <input class="form-control" placeholder="year">
-                              <br>
-                              <button class="btn btn-default" type="button" onclick="updateOilChange()" id="updateInformation">
-                              Update Oil Change <i class="fa fa-check"></i>
-                              </button>
-							  
+                        <div class="row">
+                            <div class="col-lg-4">
+
+                                <div class="form-group">
+                                    <label>Select Car</label>
+                                    <select class="form-control" id="carList">
+                                        <option>[Select Car]</option>
+                                    </select>
+                                </div>
+                                <br>
+
+                                <label for="disabledSelect">Make</label>
+                                <input class="form-control" id="make" type="text" autocomplete="off" placeholder="[Vehicle Make]" disabled>
+                                <br>
+
+                                <label for="disabledSelect">Model</label>
+                                <input class="form-control" id="model" type="text" autocomplete="off" placeholder="[Vehicle Model]" disabled>
+                                <br>
+
+                                <label for="disabledSelect">Year</label>
+                                <input class="form-control" id="year" type="text" autocomplete="off" placeholder="[Vehicle Year]" disabled>
+                                <br>
+
+                                <label for="disabledSelect" id="mileageDate">Mileage : Last Updated [mm/dd/yyyy]</label>
+                                <input class="form-control" id="mileage" type="text" autocomplete="off" placeholder="[Vehicle Mileage]" disabled>
+                                <br>
+
+                                <label>Update Mileage</label>
+                                <div class="form-group input-group">
+                                  <input id="newMileage" type="text" class="form-control" autocomplete="off" placeholder="Update Total Mileage">
+                                  <span class="input-group-btn" placeholder="Update Total Mileage">
+                                    <button class="btn btn-default" type="button" onclick="carInfoUpdateMileage()"><i class="fa fa-check"></i>
+                                    </button>
+                                  </span>
+                                </div>
+                                <br>
+
+
                             </div>
-                        	</div>
+                            <div class="col-lg-5">
+
+                                <label for="disabledSelect">Last Oil Change</label>
+                                <input class="form-control" id="lastOilChange" type="text" autocomplete="off" placeholder="[month/day/year]" disabled>
+                                <br>
+
+                                <label for="disabledSelect">Mileage Last Oil Change</label>
+                                <input class="form-control" id="mileageLastOilChange" type="text" autocomplete="off" placeholder="[Mileage]" disabled>
+                                <br>
+
+                                <label for="disabledSelect">Recommended Next Oil Change</label>
+                                <input class="form-control" id="nextOilChange" type="text" autocomplete="off" placeholder="[month/day/year]" disabled>
+                                <br>
+
+                                <label for="disabledSelect">Recommended Mileage Until Next Oil Change</label>
+                                <input class="form-control" id="mileageEstimate" type="text" autocomplete="off" placeholder="[month/day/year]" disabled>
+                                <br>
+
+                                <div class="form-group">
+                                    <label>Recent Oil Change?</label>
+                                    <br>
+
+                                    <label>Update Mileage at last inspection</label>
+                                    <Input class="form-control" id="mileageNewInspection" autocomplete="off" type="text">
+                                    <br>
+
+                                    <label>Month</label>
+                                    <select class="form-control" id="selectMonth">
+                                        <option>January</option>
+                                        <option>February</option>
+                                        <option>March</option>
+                                        <option>April</option>
+                                        <option>May</option>
+                                        <option>June</option>
+                                        <option>July</option>
+                                        <option>August</option>
+                                        <option>September</option>
+                                        <option>October</option>
+                                        <option>November</option>
+                                        <option>December</option>
+                                    </select>
+
+                                    <label>Day</label>
+                                    <input class="form-control" id="inspectionDay" placeholder="[dd]" autocomplete="off">
+                                    <label>Year</label>
+                                    <input class="form-control" id="inspectionYear" placeholder="[yyyy]" autocomplete="off">
+                                    <br>
+                                    <button class="btn btn-default" type="button" id="updateInspection">
+                                        Update Oil Change <i class="fa fa-check"></i>
+                                    </button>
+
+                                </div>
+
+                            </div>
                     	</div>
                 	</div> <!-- /.col-lg-12 -->
             	</div> <!-- /.row -->
@@ -284,8 +314,10 @@
     <script src="../dist/js/sb-admin-2.js"></script>
 
     <!-- CarTracker JavaScript -->
-    <script src="../js/cartracker.js"></script>
+
+    <script src="../js/carInfo.js"></script>
     <script src="../js/car.js"></script>
+    <script src="../js/cartracker.js"></script>
     <script src="../js/alert.js"></script>
 
     <!-- Set Up Mileage Progressbars -->
@@ -296,7 +328,7 @@
     <script src="../js/mileageAlert.js"></script>
 
     <script src="../js/logout.js"></script>
-
+      
 </body>
 
 </html>

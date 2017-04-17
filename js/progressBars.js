@@ -2,9 +2,8 @@
  * JS to show progress to next inspection for user's vehicles
  *
  * Should be included in every page to change the "tasks" progress levels
- */
-/**
- * Created by Mike on 3/26/2017.
+ *
+ * @author Michael Crinite
  */
 var userJSON;
 
@@ -70,6 +69,7 @@ $(document).ready(function(){
 
                         //For some reason there's an a link with no url?
                         alink = document.createElement("a");
+                        alink.setAttribute("href", "car-list.html");
                         listItem.appendChild(alink);
 
                         //Container for
