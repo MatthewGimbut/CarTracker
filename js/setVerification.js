@@ -10,8 +10,8 @@ function verifyEmail(){
     $.ajax({
         async: false,
         type: 'GET',
-        //url: '../php/setVerification.php',
-        url: '//localhost/setVerification.php',
+        url: '../php/setVerification.php',
+        //url: '//localhost/setVerification.php',
         dataType: 'jsonP',
         contentType:'application/javascript',
         jsonp: 'callback',
