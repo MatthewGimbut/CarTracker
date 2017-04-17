@@ -10,16 +10,16 @@ $(document).ready(function(){
         var lastName = $("#lastName").val();
         var username = $("#username").val();
         var email = $("#email").val();
-        var confirmEmail = $("#confirmEmail").val();
+        var confEmail = $("#confirmEmail").val();
         var password = $("#password").val();
-        var confirmPassword = $("#confirmPassword").val();
+        var confPassword = $("#confirmPassword").val();
         var bDay = $("#bDay").val();
         var bMonth = $("#bMonth").val();
         var bYear = $("#bYear").val();
 
         if(validateFirstName(firstName) && validateLastName(lastName) && validateUsername(username)){
-            if (validateEmail(email, confirmEmail)) {
-                if (validatePassword(password, confirmPassword)) {
+            if (validateEmail(email) && confirmEmail(email, confEmail)) {
+                if (validatePassword(password) && confirmPassword(password, confPassword)) {
                     if (validateDOB(bDay, bMonth, bYear)) {
 
                         //sending verification email BEFORE the new window opens
@@ -115,57 +115,47 @@ $("#username").keyup(function(){
 
 $("#email").keyup(function(){
     var email = $("#email").val();
-    var confirmEmail = $("#confirmEmail").val();
 
-    if(!validateEmail(email, confirmEmail)) {
+    if(!validateEmail(email)) {
         $("#email").css("background-color", "Tomato");
-        $("#confirmEmail").css("background-color", "Tomato");
     }
     else{
         $("#email").css("background-color", "Chartreuse");
-        $("#confirmEmail").css("background-color", "Chartreuse");
     }
 });
 
 
 $("#confirmEmail").keyup(function(){
     var email = $("#email").val();
-    var confirmEmail = $("#confirmEmail").val();
+    var confEmail = $("#confirmEmail").val();
 
-    if(!validateEmail(email, confirmEmail)) {
-        $("#email").css("background-color", "Tomato");
+    if(!confirmEmail(email, confEmail)) {
         $("#confirmEmail").css("background-color", "Tomato");
     }
     else{
-        $("#email").css("background-color", "Chartreuse");
         $("#confirmEmail").css("background-color", "Chartreuse");
     }
 });
 
 $("#password").keyup(function(){
     var password = $("#password").val();
-    var confirmPassword = $("#confirmPassword").val();
 
-    if(!validatePassword(password, confirmPassword)) {
+    if(!validatePassword(password)) {
         $("#password").css("background-color", "Tomato");
-        $("#confirmPassword").css("background-color", "Tomato");
     }
     else{
         $("#password").css("background-color", "Chartreuse");
-        $("#confirmPassword").css("background-color", "Chartreuse");
     }
 });
 
 $("#confirmPassword").keyup(function(){
     var password = $("#password").val();
-    var confirmPassword = $("#confirmPassword").val();
+    var confPassword = $("#confirmPassword").val();
 
-    if(!validatePassword(password, confirmPassword)) {
-        $("#password").css("background-color", "Tomato");
+    if(!confirmPassword(password, confPassword)) {
         $("#confirmPassword").css("background-color", "Tomato");
     }
     else{
-        $("#password").css("background-color", "Chartreuse");
         $("#confirmPassword").css("background-color", "Chartreuse");
     }
 });
@@ -248,16 +238,21 @@ function validateUsername(username){
  * @param confirmPassword Confirmation of password
  * @returns {boolean} True if all tests pass
  */
-function validatePassword(password, confirmPassword){
+function validatePassword(password){
     //Assert a string has at least one number,
     //Assert a string has at least one special character
     //Assert a string has at least one letter
     //Allow lowercase, uppercase, digits, special chars. min length 8, max length 16
     var regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 
-    if (password !== confirmPassword) {
+    if(!regex.test(password)){
         return false;
-    }else if(!regex.test(password)){
+    }
+    return true;
+}
+
+function confirmPassword(password, confPassword){
+    if (password !== confPassword) {
         return false;
     }
     return true;
@@ -269,17 +264,24 @@ function validatePassword(password, confirmPassword){
  * @param confirmEmail Confirmation of email
  * @returns {boolean} True if all tests pass
  */
-function validateEmail(email, confirmEmail) {
+function validateEmail(email) {
     //Found this at emailregex.com. It "99.99% works"
     regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    if (email !== confirmEmail) {
-       // alert("Error:\nEmails do not match");
-        return false;
-    } else if (!regex.test(email)) {
+    if (!regex.test(email)) {
         return false;
     }
     return true;
+}
+
+function confirmEmail(email, confEmail) {
+
+    if (email !== confEmail) {
+        // alert("Error:\nEmails do not match");
+        return false;
+    }
+    return true;
+
 }
 
 
