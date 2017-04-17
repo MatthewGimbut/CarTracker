@@ -33,6 +33,7 @@ $(document).ready(function () {
                 },
                 success: function (response, textStatus) {
                     saveCookies(JSON.stringify(response[0]));
+                    console.log(JSON.stringify(response[0]));
                     alert("Profile Updated");
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
