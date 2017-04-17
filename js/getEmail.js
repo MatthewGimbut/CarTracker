@@ -169,15 +169,6 @@ function getVerificationLink(){
     return link;
 }
 
-/**
- * This method will confirm that the url that the user clicked matches that of the url that the email had sent.
- */
-function confirmEmailAddress(url){
-    //if (userJSON.verificationLink == url){
-        //change the confirm variable in the user to '1'
-    //}
-}
-
 $(document).ready(function(){
     sendUpdate();
 });
