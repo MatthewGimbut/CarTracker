@@ -55,8 +55,49 @@ reset your password.">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
-                <ul id="messageList" class="dropdown-menu dropdown-messages">
-
+                <ul class="dropdown-menu dropdown-messages">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>Read All Messages</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
                 </ul>
                 <!-- /.dropdown-messages -->
             </li>
@@ -83,7 +124,7 @@ reset your password.">
                     <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li id="profileLink"><a href="login.html"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    <li><a href="userProfile.html"><i class="fa fa-user fa-fw"></i> User Profile</a>
                     </li>
                     <li><a href="settings.html"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
@@ -176,15 +217,13 @@ reset your password.">
                     </li>
                     <li>
                         <a href="../pages/message-center.html"><i class="fa fa-envelope fa-fw"></i> Message
-                            Center</a>
+                            Center</span></a>
                     </li>
                     <li>
-                        <a href="../pages/map-search.html"><i class="fa fa-shopping-cart fa-fw"></i> Find A Store
+                        <a href="../pages/map-search.html"><i class="fa fa-shopping-cart fa-fw"></i> Find A Store</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="../pages/resources.html"><i class="fa fa-wrench fa-fw"></i> DIY Resources</a>
-                    </li>
+
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->
@@ -203,34 +242,42 @@ reset your password.">
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
 
-                    <h3 class="panel-title">Forgot Password?</h3>
-                    <h3 class="panel-title">Enter Email And Birthdate To Reset Password</h3>
-
+                    <h3 class="panel-title" id="panel-header">Edit Profile for []</h3>
                 </div>
                 <div class="panel-body">
                     <form role="form">
                         <fieldset>
+                            <label id="emailLabel">Current email: []</label>
                             <div class="form-group">
-                                <label>Enter Email</label>
-                                <input class="form-control" id="email" placeholder="E-mail" name="email" type="email"
+                                <input class="form-control" id="newEmail1" placeholder="New Email" name="email" type="email"
                                        autofocus>
                             </div>
+                            <div class="form-group">
+                                <input class="form-control" id="newEmail2" placeholder="Confirm New Email" name="email"
+                                       type="email" value="">
+                            </div>
+                            <!-- Change this to a button or input when using this as a form -->
+                            <div class="form-group">
+                                <button type="button" id="reset-email" class="btn btn-lg btn-success btn-block">Reset Email</button>
+                            </div>
                             <br>
-
-                            <div class="form-group">
-                                <label>Enter Birthdate</label>
-                                <div class="form-group">
-                                    <input type="number" id='bMonth' name="bmonth" max="12" min="1">Month
-                                    <input type="number" id='bDay' name="bday" max="31" min="1" size="0.5">Day
-                                    <input type="number" id='bYear' name="byear" max="2017" min="1900">Year
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <button type="button" id="forgot-password"
-                                        class="btn btn-lg btn-success btn-block">Reset Password
-                                </button>
-                            </div>
                         </fieldset>
+                        <fieldset>
+                            <div class="form-group">
+                                <input class="form-control" id="newPassword1" placeholder="New Password" name="password" type="password"
+                                       autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="newPassword2" placeholder="Confirm New Password" name="password"
+                                       type="password" value="">
+                            </div>
+                            <!-- Change this to a button or input when using this as a form -->
+                            <div class="form-group">
+                                <button type="button" id="reset-password" class="btn btn-lg btn-success btn-block">Reset Password</button>
+                            </div>
+                            <br>
+                        </fieldset>
+                        <label>Note: Changes may not on pages immediately, but they are updated in database </label>
                     </form>
                 </div>
             </div>
@@ -250,22 +297,15 @@ reset your password.">
 <!-- Custom Theme JavaScript -->
 <script src="../dist/js/sb-admin-2.js"></script>
 
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script src="../js/getEmail.js"></script>
-<script src="../js/forgot-password.js"></script>
+<!--<script src="../js/getUser.js"></script>-->
 
 <!-- Set Up Mileage Progressbars -->
 <script src="../js/progressBars.js"></script>
 <script src="../js/dynamicnav.js"></script>
 
-<script src="../js/car.js"></script>
-<script src="../js/cartracker.js"></script>
-
-<!-- Mileage Alerts -->
-<script src="../js/mileageAlert.js"></script>
-
 <script src="../js/logout.js"></script>
+<script src="../js/reset-password.js"></script>
+<script src="../js/reset-email.js"></script>
+
 </body>
 
-</html>
