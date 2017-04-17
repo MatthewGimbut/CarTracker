@@ -22,6 +22,9 @@ $(document).ready(function(){
                 if (validatePassword(password, confirmPassword)) {
                     if (validateDOB(bDay, bMonth, bYear)) {
 
+                        //sending verification email BEFORE the new window opens
+                        sendVerificationEmail(email);
+
                         $.ajax({
                             async: false,
                             type: 'GET',
@@ -50,9 +53,6 @@ $(document).ready(function(){
                                 alert("Error " + errorThrown + "\nPlease contact the webmaster with this error.");
                             }
                         })
-                      
-                      //sending verification email
-                      sendVerificationEmail(email);
                     }
                     else{
                         //validateDOB
