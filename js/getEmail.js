@@ -106,8 +106,8 @@ function sendAlertNotification(toEmail, messageDetails, alertSeverity, alertPrev
  * The randomly generated link is created within this method.
  * @param toEmail the email that needs to be verified
  */
-function sendVerificationEmail(toEmail){
-    var params = {toEmail: toEmail, verifyLink: getVerificationLink()};
+function sendVerificationEmail(toEmail, username){
+    var params = {toEmail: toEmail, verifyLink: getVerificationLink(), username: username};
 
     // Change to your service ID, or keep using the default service
     var service_id = "default_service";
@@ -163,17 +163,10 @@ function getVerificationLink(){
     length = 25; //25 characters to append link with
     var charset = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     for (var i = length; i > 0; --i) link += charset[Math.floor(Math.random() * charset.length)];
-    //console.log("generated link: " + link);
-    return link;
-}
 
-/**
- * This method will confirm that the url that the user clicked matches that of the url that the email had sent.
- */
-function confirmEmailAddress(url){
-    //if (userJSON.verificationLink == url){
-        //change the confirm variable in the user to '1'
-    //}
+    //console.log("generated link: " + link);
+
+    return link;
 }
 
 $(document).ready(function(){
