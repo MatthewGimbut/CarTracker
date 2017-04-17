@@ -24,40 +24,40 @@ $bYear = $_GET["bYear"];
 
 //updating first name
 if ($firstName !== null) {
-    $statement = $mysqli->prepare('UPDATE users SET users.firstName=?  WHERE userID=?') or die($mysqli->error);
-    $statememt->bind_param("si", $firstName, $userID);
+    $statement = $mysqli->prepare("UPDATE users SET users.firstName=?  WHERE userID=?") or die($mysqli->error);
+    $statement->bind_param("si", $firstName, $userID);
     $statement->execute();
     $statement->close();
 }
 
 //updating last name
 if($lastName !== null){
-    $statement = $mysqli->prepare('UPDATE users SET users.lastName = ? WHERE userID = ?') or die($mysqli->error);
-    $statememt->bind_param("si", $lastName, $userID);
+    $statement = $mysqli->prepare("UPDATE users SET users.lastName = ? WHERE userID = ?") or die($mysqli->error);
+    $statement->bind_param("si", $lastName, $userID);
     $statement->execute();
     $statement->close();
 }
 
 //updating bDay
 if($bDay !== null){
-    $statement = $mysqli->prepare('UPDATE users SET users.birthDay = ? WHERE userID = ?') or die($mysqli->error);
-    $statememt->bind_param("ii", $bDay, $userID);
+    $statement = $mysqli->prepare("UPDATE users SET users.birthDay = ? WHERE userID = ?") or die($mysqli->error);
+    $statement->bind_param("ii", $bDay, $userID);
     $statement->execute();
     $statement->close();
 }
 
 //updating bMonth
 if($bMonth !== null){
-    $statement = $mysqli->prepare('UPDATE users SET users.birthMonth = ? WHERE userID = ?') or die($mysqli->error);
-    $statememt->bind_param("ii", $bMonth, $userID);
+    $statement = $mysqli->prepare("UPDATE users SET users.birthMonth = ? WHERE userID = ?") or die($mysqli->error);
+    $statement->bind_param("ii", $bMonth, $userID);
     $statement->execute();
     $statement->close();
 }
 
 //updating bYear
 if($bYear !== null){
-    $statement = $mysqli->prepare('UPDATE users SET users.birthYear = ? WHERE userID = ?') or die($mysqli->error);
-    $statememt->bind_param("ii", $bYear, $userID);
+    $statement = $mysqli->prepare("UPDATE users SET users.birthYear = ? WHERE userID = ?") or die($mysqli->error);
+    $statement->bind_param("ii", $bYear, $userID);
     $statement->execute();
     $statement->close();
 }
