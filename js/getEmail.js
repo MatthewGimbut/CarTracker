@@ -103,11 +103,11 @@ function sendAlertNotification(toEmail, messageDetails, alertSeverity, alertPrev
 /**
  * This function will send an email to a new user to CarTracker and ask them to verify their email. A randomly generated link
  * should have already been made to accommodate for this to happen.
+ * The randomly generated link is created within this method.
  * @param toEmail the email that needs to be verified
- * @param verificationLink the weblink to where the verification can be completed for the user. This should be randomly-generated
  */
-function sendVerificationEmail(toEmail, verificationLink){
-    var params = {toEmail: toEmail, verifyLink: verificationLink};
+function sendVerificationEmail(toEmail){
+    var params = {toEmail: toEmail, verifyLink: getVerificationLink()};
 
     // Change to your service ID, or keep using the default service
     var service_id = "default_service";
@@ -148,6 +148,14 @@ function sendUpdate(email, details, preview){
     }, millisTill10);
 
 
+}
+
+/**
+ * This method will generate a verification link with a randomly set of alphanumeric characters
+ */
+function getVerificationLink(){
+    var link = "";
+    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
 }
 
 $(document).ready(function(){

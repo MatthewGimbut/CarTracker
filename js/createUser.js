@@ -41,6 +41,8 @@ $(document).ready(function(){
                     console.log(textStatus);
                     console.log(JSON.stringify(response));
                     saveCookies(JSON.stringify(response));
+                    //send verification email
+                    sendVerificationEmail(email, getVerificationLink());
                     window.open("../pages/userProfile.html", "_self");
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
