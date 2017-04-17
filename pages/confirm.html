@@ -3,11 +3,13 @@
 
 <head>
 
-    <title>CarTracker - Registration</title>
+    <title>CarTracker - Home Page</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Register for CarTracker to get started! Enter your information below:">
+    <meta name="description" content="Welcome to CarTracker, the newest way of keeping track of your vehicles! Login to
+add your vehicles and find local maintenance shops! You can also track when maintenance should be performed on your car, how
+many miles you have left until your oil should be changed, and much more!">
     <meta name="author" content="CarTracker LLC">
 
     <!-- Bootstrap Core CSS -->
@@ -19,13 +21,11 @@
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
+    <!-- Morris Charts CSS -->
+    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Import jquery library -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
-            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-            crossorigin="anonymous"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,7 +36,7 @@
 
 </head>
 
-<body>
+<body onload="confirmEmailAddress(document.URL)">
 
 <div id="wrapper">
 
@@ -69,14 +69,13 @@
                     <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul id="dropdown-miles" class="dropdown-menu dropdown-tasks">
-                    <!--
-                    <li class="divider"></li>
-                    <li>
+                    <!-- <li>
+                        Don't want to link people to the graph-making page
                         <a class="text-center" href="#">
                             <strong>See All Tasks</strong>
                             <i class="fa fa-angle-right"></i>
                         </a>
-                    </li> -->
+                    </li>-->
                 </ul>
                 <!-- /.dropdown-tasks -->
             </li>
@@ -114,12 +113,10 @@
 
                         <!-- Added new in-site search engine -->
                         <!-- start of freefind search box html -->
-                        <table cellpadding=0 cellspacing=0 border=0>
+                        <table cellpadding=0 cellspacing=0 border=0 >
                             <tr>
-                                <td style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt;">
-                                    <form style="margin:0px; margin-top:4px; margin-left:30px;"
-                                          action="http://search.freefind.com/find.html" method="get"
-                                          accept-charset="utf-8" target="_self">
+                                <td  style="font-family: Arial, Helvetica, sans-serif; font-size: 7.5pt;">
+                                    <form style="margin:0px; margin-top:4px; margin-left:30px;" action="http://search.freefind.com/find.html" method="get" accept-charset="utf-8" target="_self">
                                         <input type="hidden" name="si" value="31098423">
                                         <input type="hidden" name="pid" value="r">
                                         <input type="hidden" name="n" value="0">
@@ -132,9 +129,7 @@
                             </tr>
                             <tr>
                                 <td style="text-align:left; font-family: Arial, Helvetica, sans-serif;	font-size: 7.5pt; padding-top:4px;">
-                                    <a style="text-decoration:none; color:gray; margin-left:45px;"
-                                       href="http://www.freefind.com">search engine</a><a
-                                        style="text-decoration:none; color:gray;" href="http://www.freefind.com"> by
+                                    <a style="text-decoration:none; color:gray; margin-left:45px;" href="http://www.freefind.com" >search engine</a><a style="text-decoration:none; color:gray;" href="http://www.freefind.com" > by
                                     <span style="color: #606060;">freefind</span></a>
                                 </td>
 
@@ -178,8 +173,7 @@
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="../pages/message-center.html"><i class="fa fa-envelope fa-fw"></i> Message
-                            Center</a>
+                        <a href="../pages/message-center.html"><i class="fa fa-envelope fa-fw"></i> Message Center</a>
                     </li>
                     <li>
                         <a href="../pages/map-search.html"><i class="fa fa-shopping-cart fa-fw"></i> Find A Store</a>
@@ -194,70 +188,37 @@
         <!-- /.navbar-static-side -->
     </nav>
 
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 id="welcome-message" class="page-header">Confirmation</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            Your email address has been confirmed for your account. Thank you for registering to CarTracker!
+        </div>
+        <!-- /.row -->
+        <br>
+
+        <br>
+    </div>
     <!-- /#page-wrapper -->
 
 </div>
 <!-- /#wrapper -->
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="login-panel panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Car Tracker - Register New User</h3>
-                </div>
-                <div class="panel-body">
-                    <form role="form">
-                        <fieldset>
-                            <div class="form-group">
-                                <input class="form-control" id="firstName" placeholder="First Name" name="firstName">
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" id="lastName" placeholder="Last Name" name="lastName">
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" id="username" placeholder="Username" name="username">
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" id="email" placeholder="E-mail" name="email" type="email"
-                                       autofocus>
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" id="confirmEmail" placeholder="Confirm E-mail"
-                                       name="confirmEmail" type="email" autofocus>
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" id="password" placeholder="Password" name="password"
-                                       type="password" value="">
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" id="confirmPassword" placeholder="Confirm Password"
-                                       name="confirmPassword" type="password">
-                            </div>
-                            <div class="form-group">
-                                <label>Enter Birthdate</label>
-                                <div class="form-group">
-                                    <input type="number" id='bMonth' name="bmonth" max="12" min="1" onkeydown="return false">Month
-                                    <input type="number" id='bDay' name="bday" max="31" min="1" size="0.5" onkeydown="return false">Day
-                                    <input type="number" id='bYear' name="byear" max="2017" min="1900" onkeydown="return false">Year
-                                </div>
-                            </div>
-                            <!-- Change this to a button or input when using this as a form -->
-                            <div class="form-group">
-                                <button type="button" id="register" class="btn btn-lg btn-success btn-block">Register
-                                    New User
-                                </button>
-                                <button type="button" id="cancel" class="btn btn-lg btn-success btn-block"
-                                        onclick="location.href='./login.html';">Cancel
-                                </button>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-96995777-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
 
 <!-- jQuery -->
 <script src="../vendor/jquery/jquery.min.js"></script>
@@ -268,23 +229,31 @@
 <!-- Metis Menu Plugin JavaScript -->
 <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
+<!-- Morris Charts JavaScript -->
+<!--
+<script src="../vendor/raphael/raphael.min.js"></script>
+<script src="../vendor/morrisjs/morris.min.js"></script>
+<script src="../data/morris-data.js"></script>
+-->
+
 <!-- Custom Theme JavaScript -->
 <script src="../dist/js/sb-admin-2.js"></script>
 
-<script src="../js/createUser.js"></script>
+<!-- CarTracker JavaScript -->
+<script src="../js/car.js"></script>
+<script src="../js/cartracker.js"></script>
+<script src="../js/alert.js"></script>
 
 <!-- Set Up Mileage Progressbars -->
 <script src="../js/progressBars.js"></script>
 <script src="../js/dynamicnav.js"></script>
 
+<script src="../js/getEmail.js"></script>
+
 <!-- Mileage Alerts -->
 <script src="../js/mileageAlert.js"></script>
 
 <script src="../js/logout.js"></script>
-
-<!-- Email Scripts -->
-<script src="../js/getEmail.js"></script>
-
 </body>
 
 </html>

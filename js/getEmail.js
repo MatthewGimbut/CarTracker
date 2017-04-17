@@ -103,21 +103,26 @@ function sendAlertNotification(toEmail, messageDetails, alertSeverity, alertPrev
 /**
  * This function will send an email to a new user to CarTracker and ask them to verify their email. A randomly generated link
  * should have already been made to accommodate for this to happen.
+ * The randomly generated link is created within this method.
  * @param toEmail the email that needs to be verified
- * @param verificationLink the weblink to where the verification can be completed for the user. This should be randomly-generated
  */
-function sendVerificationEmail(toEmail, verificationLink){
-    var params = {toEmail: toEmail, verifyLink: verificationLink};
+function sendVerificationEmail(toEmail){
+    var params = {toEmail: toEmail, verifyLink: getVerificationLink()};
 
     // Change to your service ID, or keep using the default service
     var service_id = "default_service";
 
-    var template_id = "verifyEmail";
+    var template_id = "confirmEmail";
+
     src = "https://cdn.emailjs.com/dist/email.min.js";
     src = "//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
 
+    //console.log("loaded sources");
+
     //This email type uses Account 1, which has the template for Verification
     emailjs.init("user_P5JsJpV2qiU1B6MpHRqqM");
+
+    //console.log("init completed.");
 
     //send the email
     emailjs.send(service_id, template_id, params)
@@ -148,6 +153,27 @@ function sendUpdate(email, details, preview){
     }, millisTill10);
 
 
+}
+
+/**
+ * This method will generate a verification link with a randomly set of alphanumeric characters
+ */
+function getVerificationLink(){
+    var link = "http://www.cartrackerproject.me/CarTracker/pages/confirm.html?";
+    length = 25; //25 characters to append link with
+    var charset = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    for (var i = length; i > 0; --i) link += charset[Math.floor(Math.random() * charset.length)];
+    //console.log("generated link: " + link);
+    return link;
+}
+
+/**
+ * This method will confirm that the url that the user clicked matches that of the url that the email had sent.
+ */
+function confirmEmailAddress(url){
+    //if (userJSON.verificationLink == url){
+        //change the confirm variable in the user to '1'
+    //}
 }
 
 $(document).ready(function(){

@@ -43,7 +43,6 @@ $(document).ready(function(){
                             success: function (response, textStatus) {
                                 console.log(textStatus);
                                 console.log(JSON.stringify(response));
-
                                 saveCookies(JSON.stringify(response));
                                 window.open("../pages/userProfile.html", "_self");
                             },
@@ -51,6 +50,9 @@ $(document).ready(function(){
                                 alert("Error " + errorThrown + "\nPlease contact the webmaster with this error.");
                             }
                         })
+                      
+                      //sending verification email
+                      sendVerificationEmail(email);
                     }
                     else{
                         //validateDOB
