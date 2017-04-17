@@ -16,7 +16,6 @@ function getCar(){
         jsonp: 'callback',
         jsonpcallback: 'logResults',
         success: function(response, textStatus){
-            console.log(response);
             display(response);
         },
         error: function(jqXHR, textStatus, errorThrown) {

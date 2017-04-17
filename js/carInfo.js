@@ -21,8 +21,6 @@ function retrieveCars(){
         jsonpcallback: 'logResults',
         data: {username: username},
         success: function(response, textStatus){
-            console.log(textStatus);
-            console.log(JSON.stringify(response));
 
             var curr, retMake, retModel, retYear, retStyle, retTrim, retMileage, retMileMonth, retMileDay, retMileYear,
                 retInspectMile, retInspectMonth, retInspectDay, retInspectYear, retId;
@@ -175,7 +173,6 @@ function carInfoUpdateMileage(){
                         yearMileage: currentYear
                     },
                     success: function (response, textStatus) {
-                        console.log(response);
                         alert("New mileage at " + response.mileage + " updated for current car on " +
                             response.monthMileage + "/" + response.dayMileage + "/" + response.yearMileage);
                         $("#mileage").val(newMileage);
@@ -229,7 +226,6 @@ $("#updateInspection").on('click', function(){
                         yearInspection: inspectionYear
                     },
                     success: function (response, textStatus) {
-                        console.log(response);
                         confirm("Car last inspected at " + response.mileage + " miles on " +
                             response.monthMileage + "/" + response.dayMileage + "/" + response.yearMileage);
 

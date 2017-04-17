@@ -19,7 +19,6 @@ $(document).ready(function(){
             data: {email: email,
                    password: password},
             success: function(response, textStatus){
-                console.log(response);
                 if(response.length > 0 && email === response[0].email){
                     saveCookies(JSON.stringify(response[0]));
                     window.open("../pages/userProfile.html", "_self");
@@ -36,6 +35,5 @@ $(document).ready(function(){
 });
 
 function saveCookies(userJSON){
-    console.log(userJSON);
     localStorage.setItem('userJSON', userJSON);
 }

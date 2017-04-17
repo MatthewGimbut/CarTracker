@@ -10,7 +10,6 @@ function deleteUser(){
     if(confirmDelete){
         userJSON = JSON.parse(localStorage.getItem('userJSON'));
         var username = userJSON.username;
-        console.log(username);
 
         $.ajax({
             async: false,

@@ -45,11 +45,8 @@ $(document).ready(function(){
                     newPassword: newPassword
                 },
                 success: function(response, textStatus){
-                    console.log(textStatus);
                     if(response.length > 0) {
                         //found the user, can reset password
-                        console.log(textStatus);
-                        console.log(JSON.stringify(response));
                         //sendTestNotification();
                         sendAlertNotification(email,emailMessage,0,"Password");
                         alert("An Email Has Been Sent to " + email + " With A Temporary Password");

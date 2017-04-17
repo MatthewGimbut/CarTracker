@@ -25,7 +25,6 @@ $(document).ready(function(){
                     dayMileage: currentDay,
                     yearMileage: currentYear},
                 success: function(response, textStatus){
-                    console.log(response);
                     alert("New mileage at " + response.mileage + " updated for current car on " +
                         response.monthMileage + "/" + response.dayMileage + "/" + response.yearMileage);
                     location.reload(true); //Force server reload

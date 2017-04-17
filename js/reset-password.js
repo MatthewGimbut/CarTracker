@@ -31,8 +31,6 @@ $(document).ready(function(){
                     email: email
                 },
                     success: function(response, textStatus){
-                    console.log(textStatus);
-                    console.log(JSON.stringify(response));
                     alert("Your Password Has Been Changed");
                     window.open("../pages/userProfile.html", "_self");
                 },

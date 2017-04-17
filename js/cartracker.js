@@ -35,8 +35,6 @@ function searchCarInfo() {
     var year = $("#yearInput").val();
     var carInfo = $("#carInfo");
 
-    console.log(typeof make);
-    console.log(capitalize(make));
 
     //Remove previous cars from list
     while (carInfo.firstChild) {
@@ -56,7 +54,6 @@ function searchCarInfo() {
             type: 'get',
             success:function(response){
                 carInfo.text("");
-                console.log(response);
 
                 var currentRow = document.createElement("div");
                 currentRow.className = "row col-lg-16";
@@ -149,7 +146,6 @@ function addVehicle() {
 }*/
 
 function removeCar(carID){
-    console.log(carID);
     var confirmDel = confirm("THIS WILL REMOVE YOUR CAR FROM YOUR ACCOUNT AND IS NOT REVERSIBLE!");
 
     if(confirmDel) {
@@ -193,9 +189,6 @@ function displayVehicles() {
         success: function (response, textStatus) {
             var currentRow = document.getElementById("car-list-container");
             responseCheck = response.length;
-            console.log("response length: " + responseCheck);
-            console.log(textStatus);
-            console.log(JSON.stringify(response));
             //saveCookies(JSON.stringify(response));
             //window.open("../pages/car-list.html", "_self");
 
@@ -207,7 +200,6 @@ function displayVehicles() {
                 retMileYear, retInspectMile, retInspectMonth, retInspectDay, retInspectYear, retId;
 
             var container = document.getElementById("carList");
-            console.log(container === null);
 
             if (responseCheck === undefined || responseCheck === 0) {
                 var noCars = document.createElement("p");
@@ -295,7 +287,6 @@ function displayVehicles() {
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            console.log("Error " + errorThrown);
             alert("\nYou have to be logged in to store cars. Please register an account or log in."
             + "\nIf this problem still persists, contact the webmaster.");
 
@@ -323,8 +314,6 @@ function displayVehicles() {
 function userSelectVehicle(source) {
     var carobj = currentCarList[source.id];
 
-    console.log(source.id);
-    console.log(carobj);
     //savedCarList.push(carobj); //No longer save as cookies
     source.innerHTML = "Car has been successfully added to list!";
     source.onclick = "#";
@@ -359,8 +348,6 @@ function insertCarToDB(){
             style: edmStyle,
             username: username},
         success: function(response, textStatus){
-            console.log(textStatus);
-            console.log(JSON.stringify(response));
             //saveCookies(JSON.stringify(response));
             window.open("../pages/car-list.html", "_self");
         },
@@ -396,7 +383,6 @@ function updateMileage(carID, mileage){
                             yearMileage: currentYear
                         },
                         success: function (response, textStatus) {
-                            console.log(response);
                             alert("New mileage at " + response.mileage + " updated for current car on " +
                                 response.monthMileage + "/" + response.dayMileage + "/" + response.yearMileage);
                             $("#mileage" + carID).text("Current Mileage: " + newMileage);

@@ -21,7 +21,6 @@ $(document).ready(function(){
         jsonpcallback: 'logResults',
         data: {username: username},
         success: function(response, textStatus){
-            console.log(response);
             if(response.length > 0){ //Then at least one car was returned
                 var elem = document.getElementById("defaultAlertPanel");
 
@@ -40,7 +39,6 @@ $(document).ready(function(){
                     isMsgCntr = document.getElementById("message-center-distinguisher");
 
                     if(isMsgCntr !== null){
-                        console.log("Right page");
                         //First create row to put alert in
                         var row = document.createElement("div");
                         row.className = "row";
@@ -128,7 +126,6 @@ $(document).ready(function(){
                 }
             }
             else{
-                console.log("User has no cars in need of maintenance");
 
                 //Create listitem
                 listItem = document.createElement("li");

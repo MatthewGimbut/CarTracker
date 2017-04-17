@@ -212,7 +212,6 @@
 
             function updateMap() {
                 var dist = document.getElementById("distanceInput").value;
-                console.log(dist);
                 initMap(dist);
             }
 
@@ -233,8 +232,6 @@
                 Sets the location of the user and prints to console.
              */
             function showPosition(position) {
-                console.log("Latitude: " + position.coords.latitude +
-                    "Longitude: " + position.coords.longitude);
                 latitude = position.coords.latitude;
                 longitude = position.coords.longitude;
                 initMap();
@@ -250,7 +247,6 @@
                     center: {lat: latitude, lng: longitude},
                     zoom: 15
                 });
-                console.log("Map initiated.");
                 infowindow = new google.maps.InfoWindow();
                 service = new google.maps.places.PlacesService(map);
 
