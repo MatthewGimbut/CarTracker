@@ -118,12 +118,8 @@ function sendVerificationEmail(toEmail, username){
     src="https://cdn.emailjs.com/dist/email.min.js";
     src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
 
-    //console.log("loaded sources");
-
     //This email type uses Account 1, which has the template for Verification
     emailjs.init("user_P5JsJpV2qiU1B6MpHRqqM");
-
-    //console.log("init completed.");
 
     //send the email
     emailjs.send(service_id, template_id, params)
