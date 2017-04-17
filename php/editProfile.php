@@ -24,7 +24,7 @@ $bYear = $_GET["bYear"];
 
 //updating first name
 if ($firstName !== null) {
-    $statement = $mysqli->prepare('UPDATE users SET users.firstName="?"  WHERE userID=?') or die($mysqli->error);
+    $statement = $mysqli->prepare('UPDATE users SET users.firstName=?  WHERE userID=?') or die($mysqli->error);
     $statememt->bind_param("si", $firstName, $userID);
     $statement->execute();
     $statement->close();
@@ -32,7 +32,7 @@ if ($firstName !== null) {
 
 //updating last name
 if($lastName !== null){
-    $statement = $mysqli->prepare('UPDATE users SET users.lastName = "?" WHERE userID = ?') or die($mysqli->error);
+    $statement = $mysqli->prepare('UPDATE users SET users.lastName = ? WHERE userID = ?') or die($mysqli->error);
     $statememt->bind_param("si", $lastName, $userID);
     $statement->execute();
     $statement->close();
