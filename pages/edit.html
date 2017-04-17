@@ -209,7 +209,7 @@
                                 <a href="userProfile.html"> View Profile</a>
                             </li>
                             <li>
-                                <a href="userProfile.html"> Edit Profile</a>
+                                <a href="edit.html"> Edit Profile</a>
                             </li>
                             <li>
                                 <a href="settings.html"> Preferences</a>
@@ -242,7 +242,7 @@
         <div class="col-md-4 col-md-offset-4">
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Car Tracker - Edit Profile</h3>
+                    <h3 class="panel-title" id="panel-header">Car Tracker - Edit Profile for [ ]</h3>
                 </div>
                 <div class="panel-body">
                     <p>Please enter a value for every field</p>
@@ -266,6 +266,38 @@
                             <div class="form-group">
                                 <button type="button" id="saveChanges" class="btn btn-lg btn-success btn-block">Save Changes
                                 </button>
+                            </div>
+                            <br>
+                            <label id="emailLabel">Current email: []</label>
+                            <div class="form-group">
+                                <input class="form-control" id="newEmail1" placeholder="New Email" name="email" type="email"
+                                       autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="newEmail2" placeholder="Confirm New Email" name="email"
+                                       type="email" value="">
+                            </div>
+                            <!-- Change this to a button or input when using this as a form -->
+                            <div class="form-group">
+                                <button type="button" id="reset-email" class="btn btn-lg btn-success btn-block">Reset Email</button>
+                            </div>
+                            <br>
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" id="newPassword1" placeholder="New Password" name="password" type="password"
+                                           autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" id="newPassword2" placeholder="Confirm New Password" name="password"
+                                           type="password" value="">
+                                </div>
+                                <!-- Change this to a button or input when using this as a form -->
+                                <div class="form-group">
+                                    <button type="button" id="reset-password" class="btn btn-lg btn-success btn-block">Reset Password</button>
+                                </div>
+                                <br>
+                            </fieldset>
+                            <div class="form-group">
                                 <button type="button" id="cancel" class="btn btn-lg btn-success btn-block"
                                         onclick="location.href='./login.html';">Cancel
                                 </button>
@@ -291,6 +323,8 @@
 <script src="../dist/js/sb-admin-2.js"></script>
 
 <script src="../js/edit.js"></script>
+<script src="../js/reset-email.js"></script>
+<script src="../js/reset-password.js"></script>
 
 <!-- Set Up Mileage Progressbars -->
 <script src="../js/progressBars.js"></script>

@@ -5,7 +5,7 @@ var userJSON = JSON.parse(localStorage.getItem('userJSON'));
 var username = userJSON.username;
 var email = userJSON.email;
 
-document.getElementById("panel-header").innerHTML = "Reset Password for " + username;
+document.getElementById("panel-header").innerHTML = "Car Tracker - Edit Profile for " + username;
 
 $(document).ready(function(){
     $('#reset-password').on('click', function(event) {
