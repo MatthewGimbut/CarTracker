@@ -20,7 +20,7 @@ $(document).ready(function(){
         if(validateFirstName(firstName) && validateLastName(lastName) && validateUsername(username)){
             if (validateEmail(email) && confirmEmail(email, confEmail)) {
                 if (validatePassword(password) && confirmPassword(password, confPassword)) {
-                    if (validateDOB(bDay, bMonth, bYear)) {
+                    if (validateMonth(bMonth) && validateDay(bDay) && validateYear(bYear)) {
 
                         //sending verification email BEFORE the new window opens
                         sendVerificationEmail(email, username);
@@ -160,7 +160,38 @@ $("#confirmPassword").keyup(function(){
     }
 });
 
+$("#bMonth").keyup(function(){
+   var bMonth = $("#bMonth").val();
 
+   if(!validateMonth(bMonth)){
+       $("#bMonth").css("background-color", "Tomato");
+   }
+   else{
+       $("#bMonth").css("background-color", "Chartreuse");
+   }
+});
+
+$("#bDay").keyup(function(){
+    var bDay = $("#bDay").val();
+
+    if(!validateDay(bDay)){
+        $("#bDay").css("background-color", "Tomato");
+    }
+    else{
+        $("#bDay").css("background-color", "Chartreuse");
+    }
+})
+
+$("#bYear").keyup(function(){
+    var bYear = $("#bYear").val();
+
+    if(!validateYear(bYear)){
+        $("#bYear").css("background-color", "Tomato");
+    }
+    else{
+        $("#bYear").css("background-color", "Chartreuse");
+    }
+})
 
 
 /**
@@ -284,25 +315,28 @@ function confirmEmail(email, confEmail) {
 
 }
 
-
-function validateDOB(bDay, bMonth, bYear){
-    var date = new Date();
-
-    if(bDay <= 31 && bDay > 0){
-        if(bMonth <= 12 && bMonth > 0){
-            if(bYear <= (date.getFullYear() - 13) && bYear >= 1900){
-                return true;
-            }
-            else{
-                return false;
-            }
-        }else{
-            return false;
-        }
-    }else{
-        return false;
+function validateMonth(bMonth){
+    if(bMonth <= 12 && bMonth > 0){
+        return true;
     }
+    return false;
 }
+
+function validateDay(bDay){
+    if(bDay <= 31 && bDay > 0){
+        return true;
+    }
+    return false;
+}
+
+function validateYear(bYear){
+    var date = new Date();
+    if(bYear <= (date.getFullYear() - 13) && bYear >= 1900){
+        return true;
+    }
+    return false;
+}
+
 
 function saveCookies(userJSON){
     localStorage.setItem('userJSON', userJSON);
