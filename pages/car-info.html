@@ -38,12 +38,11 @@
 
     <!-- Redirect to the login page if the current email is not verified -->
     <script src="../js/getEmail.js"></script>
-    redirectIfNotVerified();
 
 </head>
 
-<body onload="retrieveCars()">
 
+<body onload="redirectIfNotVerified(); retrieveCars();">
     <div id="wrapper">
 
         <!-- Navigation -->

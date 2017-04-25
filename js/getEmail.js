@@ -172,7 +172,8 @@ function getVerificationLink(){
  */
 function redirectIfNotVerified(){
     if(!userJSON.verified){
-        window.location.href = "http://www.cartrackerproject.me/CarTracker/pages/login.html";
+        //window.location.href = "http://www.cartrackerproject.me/CarTracker/pages/login.html";
+        window.location.href = "http://localhost/CarTracker/pages/login.html";
         return 0;
     }
     return 1;
