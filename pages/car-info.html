@@ -36,6 +36,10 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!-- Redirect to the login page if the current email is not verified -->
+    <script src="../js/getEmail.js"></script>
+    redirectIfNotVerified();
+
 </head>
 
 <body onload="retrieveCars()">

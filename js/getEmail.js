@@ -166,6 +166,20 @@ function getVerificationLink(){
     return link;
 }
 
+/** Method that checks the verification status of a particular email.
+ * If the email is not verified, the website will be redirected to the login page.
+ * @returns a boolean if the email is verified or not.
+ */
+function redirectIfNotVerified(){
+    if(!userJSON.verified){
+        window.location.href = "http://www.cartrackerproject.me/CarTracker/pages/login.html";
+        return 0;
+    }
+    return 1;
+}
+
+
+
 $(document).ready(function(){
     $.ajax({
         async: false,
