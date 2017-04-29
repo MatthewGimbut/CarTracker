@@ -32,7 +32,7 @@ $(document).ready(function(){
                 async: false,
                 type: 'GET',
                 url: '../php/forgot-password.php',
-                //url: '//localhost/forgot-password.php',
+                //url: 'http://localhost/forgot-password.php',
                 dataType: 'jsonP',
                 contentType:'application/javascript',
                 jsonp: 'callback',

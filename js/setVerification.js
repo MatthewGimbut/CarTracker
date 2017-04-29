@@ -11,7 +11,7 @@ function verifyEmail(){
         async: false,
         type: 'GET',
         url: '../php/setVerification.php',
-        //url: '//localhost/setVerification.php',
+        //url: 'http://localhost/setVerification.php',
         dataType: 'jsonP',
         contentType:'application/javascript',
         jsonp: 'callback',

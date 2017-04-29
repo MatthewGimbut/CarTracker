@@ -17,8 +17,8 @@ $(document).ready(function(){
             $.ajax({
                 async: false,
                 type: 'GET',
-                //url: '../php/reset-email.php',
-                url: '//localhost/reset-email.php',
+                url: '../php/reset-email.php',
+                //url: '//localhost/reset-email.php',
                 dataType: 'jsonP',
                 contentType:'application/javascript',
                 jsonp: 'callback',

@@ -12,6 +12,7 @@ $(document).ready(function(){
             async: false,
             type: 'GET',
             url: '../php/getUser.php',
+            //url: 'http://localhost/getUser.php',
             dataType: 'jsonp',
             contentType:'application/javascript',
             jsonp: 'callback',

@@ -4,8 +4,10 @@
  *
  * @author Mike Moscariello, Mike Crinite
  */
-$(document).ready(function(){
-    $('#register').on('click', function(event){
+var userExists = false; //Variable to track whether the username already exists in the DB (true) or not (false).
+var emailExists = false; //Variable to track whether the email already exists in the DB (true) or not (false).
+
+function createUser(){
         var firstName = $("#firstName").val();
         var lastName = $("#lastName").val();
         var username = $("#username").val();
@@ -17,40 +19,53 @@ $(document).ready(function(){
         var bMonth = $("#bMonth").val();
         var bYear = $("#bYear").val();
 
+
+
         if(validateFirstName(firstName) && validateLastName(lastName) && validateUsername(username)){
             if (validateEmail(email) && confirmEmail(email, confEmail)) {
                 if (validatePassword(password) && confirmPassword(password, confPassword)) {
                     if (validateMonth(bMonth) && validateDay(bDay) && validateYear(bYear)) {
+                        if(userExists === false) {
+                            if(emailExists === false) {
+                                //sending verification email BEFORE the new window opens
+                                sendVerificationEmail(email, username);
 
-                        //sending verification email BEFORE the new window opens
-                        sendVerificationEmail(email, username);
-
-                        $.ajax({
-                            async: false,
-                            type: 'GET',
-                            url: '../php/postUser.php',
-                            dataType: 'jsonP',
-                            contentType: 'application/javascript',
-                            jsonp: 'callback',
-                            jsonpcallback: 'logResults',
-                            data: {
-                                firstName: firstName,
-                                lastName: lastName,
-                                username: username,
-                                email: email,
-                                password: password,
-                                bDay: bDay,
-                                bMonth: bMonth,
-                                bYear: bYear
-                            },
-                            success: function (response, textStatus) {
-                                saveCookies(JSON.stringify(response));
-                                window.open("../pages/userProfile.html", "_self");
-                            },
-                            error: function (jqXHR, textStatus, errorThrown) {
-                                alert("Error " + errorThrown + "\nPlease contact the webmaster with this error.");
+                                $.ajax({
+                                    async: false,
+                                    type: 'GET',
+                                    url: '../php/postUser.php',
+                                    //url: 'http://localhost/postUser.php',
+                                    dataType: 'jsonP',
+                                    contentType: 'application/javascript',
+                                    jsonp: 'callback',
+                                    jsonpcallback: 'logResults',
+                                    data: {
+                                        firstName: firstName,
+                                        lastName: lastName,
+                                        username: username,
+                                        email: email,
+                                        password: password,
+                                        bDay: bDay,
+                                        bMonth: bMonth,
+                                        bYear: bYear
+                                    },
+                                    success: function (response, textStatus) {
+                                        saveCookies(JSON.stringify(response));
+                                        console.log("This happened");
+                                        window.open("../pages/userProfile.html", "_self");
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        alert("Error " + errorThrown + "\nPlease contact the webmaster with this error.");
+                                    }
+                                })
                             }
-                        })
+                            else{
+                                alert("The selected email already exists! Please choose a different one.");
+                            }
+                        }
+                        else{
+                            alert("The selected username already exists! Please choose a different one.");
+                        }
                     }
                     else{
                         //validateDOB
@@ -75,6 +90,52 @@ $(document).ready(function(){
                 "-Last Name must be 30 characters or less \n-First and last names can only contain letters\n" +
                 "-Username can only contain letters, numbers, underscores and dashes.");
         }
+}
+
+
+$(document).ready(function() {
+    $('#register').on('click', function (event) {
+
+        var username = $("#username").val();
+        var email = $("#email").val();
+
+        $.ajax({
+            async: false,
+            type: 'GET',
+            url: 'http://localhost/checkExistingUser.php',
+            dataType: 'jsonP',
+            contentType: 'application/javascript',
+            jsonp: 'callback',
+            jsonpcallback: 'logResults',
+            data: {
+                username: username,
+                email: email
+            },
+            success: function (response, textStatus) {
+                if (response.userFields > 0) {
+                    userExists = true;
+                    console.log(response.userFields);
+                }
+                else {
+                    userExists = false;
+                    console.log(response.userFields);
+                }
+
+                if (response.emailFields > 0) {
+                    emailExists = true;
+                    console.log(response.emailFields);
+                }
+                else {
+                    emailExists = false;
+                    console.log(response.emailFields);
+                }
+                createUser();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("Error " + errorThrown + "\nPlease contact the webmaster with this error.");
+            }
+        });
+
     });
 });
 
