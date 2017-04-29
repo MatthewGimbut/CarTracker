@@ -14,6 +14,7 @@ function deleteUser(){
         $.ajax({
             async: false,
             url: '../php/removeUser.php',
+            //url: 'http://localhost/removeUser.php',
             dataType:'json',
             contentType:'application/javascript',
             jsonp: 'callback',

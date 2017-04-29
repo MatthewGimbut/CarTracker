@@ -19,6 +19,7 @@ $(document).ready(function(){
         async: false,
         type: 'GET',
         url: '../php/getAllCars.php',
+        //url: 'http://localhost/getAllCars.php',
         dataType: 'jsonp',
         contentType:'application/javascript',
         jsonp: 'callback',

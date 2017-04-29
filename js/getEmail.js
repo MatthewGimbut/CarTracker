@@ -171,6 +171,7 @@ $(document).ready(function(){
         async: false,
         type: 'GET',
         url: '../php/updateDaily.php',
+        //url: 'http://localhost/updateDaily.php',
         dataType: 'jsonP',
         contentType:'application/javascript',
         jsonp: 'callback',

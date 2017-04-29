@@ -19,6 +19,7 @@ $(document).ready(function () {
                 async: false,
                 type: 'GET',
                 url: '../php/editProfile.php',
+                //url: 'http://localhost/editProfile.php',
                 dataType: 'jsonp',
                 contentType: 'application/javascript',
                 jsonp: 'callback',

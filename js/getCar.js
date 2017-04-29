@@ -11,6 +11,7 @@ function getCar(){
         async: false,
         type: 'GET',
         url: '../php/getCar.php',
+        //url: 'http://localhost/getCar.php',
         dataType: 'jsonp',
         contentType:'application/javascript',
         jsonp: 'callback',
