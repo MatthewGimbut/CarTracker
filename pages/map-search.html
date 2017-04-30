@@ -243,9 +243,25 @@
              */
             function initMap(rad) {
                 rad = (typeof rad !== 'undefined') ?  rad : 1000; //Defaults to 1000m
+                //Dynamically sets the default zoom distance for the map
+                var setZoom;
+                if(rad === 1000) {
+                    setZoom = 14;
+                } else if(rad < 1000) {
+                    setZoom = 15;
+                } else if(rad >= 1000 && rad < 5000) {
+                    setZoom = 13;
+                } else if(rad >= 5000 && rad < 10000) {
+                    setZoom = 12;
+                } else if(rad >= 10000 && rad < 25000) {
+                    setZoom = 12;
+                } else {
+                    setZoom = 11;
+                }
+
                 map = new google.maps.Map(document.getElementById('mapContainer'), {
                     center: {lat: latitude, lng: longitude},
-                    zoom: 15
+                    zoom: setZoom
                 });
                 infowindow = new google.maps.InfoWindow();
                 service = new google.maps.places.PlacesService(map);
