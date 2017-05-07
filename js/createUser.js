@@ -102,7 +102,8 @@ $(document).ready(function() {
         $.ajax({
             async: false,
             type: 'GET',
-            url: 'http://localhost/checkExistingUser.php',
+            //url: 'http://localhost/checkExistingUser.php',
+            url: '../php/checkExistingUser.php',
             dataType: 'jsonP',
             contentType: 'application/javascript',
             jsonp: 'callback',
