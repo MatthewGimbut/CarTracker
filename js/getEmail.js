@@ -166,27 +166,29 @@ function getVerificationLink(){
     return link;
 }
 
-$(document).ready(function(){
-    $.ajax({
-        async: false,
-        type: 'GET',
-        url: '../php/updateDaily.php',
-        //url: 'http://localhost/updateDaily.php',
-        dataType: 'jsonP',
-        contentType:'application/javascript',
-        jsonp: 'callback',
-        jsonpcallback: 'logResults',
-        data: {
-            username: username
-        },
-        success: function(response, textStatus){
-            var resp = JSON.stringify(response);
-            sendUpdate(userJSON.email, resp.details, "Your Weekly Update!");
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log("Error " + errorThrown + "\nPlease contact the webmaster with this error.");
-        }
-    })
+// $(document).ready(function(){
+//     $.ajax({
+//         async: false,
+//         type: 'GET',
+//         //url: '../php/updateDaily.php',
+//         url: 'http://localhost/updateDaily.php',
+//         dataType: 'jsonP',
+//         contentType:'application/javascript',
+//         jsonp: 'callback',
+//         jsonpcallback: 'logResults',
+//         data: {
+//             username: username
+//         },
+//         success: function(response, textStatus){
+//             var resp = JSON.stringify(response);
+//             sendUpdate(userJSON.email, resp.details, "Your Weekly Update!");
+//         },
+//         error: function(jqXHR, textStatus, errorThrown) {
+//             console.log("Error " + errorThrown + "\nPlease contact the webmaster with this error.");
+//         }
+//     })
+//
+// });
 
-});
+
 
